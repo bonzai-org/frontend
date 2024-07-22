@@ -1,12 +1,18 @@
-import './App.css'
+import './App.css';
+import { bonsaiCardData } from './bonsaiProfDummyData';
+import BonsaiCard from './components/bonsaiCard/BonsaiCard';
+import NavBar from './components/navBar/NavBar';
 
 function App() {
-
   return (
-    <h1>
-      Welcome to Bonsai Book. Sorry it's a bit spare right now, we're working to amend that :)
-    </h1>
-  )
+    <div className="container">
+      <NavBar />
+      <hr />
+      <BonsaiCard cardData={bonsaiCardData} />
+      <BonsaiCard cardData={bonsaiCardData} />
+      <BonsaiCard cardData={bonsaiCardData} />
+    </div>
+  );
 }
 
-export default App
+export default App;

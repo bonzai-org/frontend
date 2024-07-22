@@ -1,0 +1,51 @@
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  max-height: 800px;
+  height: fit-content;
+}
+
+hr {
+  width: 100%;
+}
+
+.bonsaiInfoContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 5px 0 10px 0;
+}
+
+.bonsaiInfoCell {
+  border: 1px solid black;
+  display: flex;
+  border-radius: 10px;
+  padding: 2.5px 5px;
+  margin: 2px 10px 0 0;
+}
+
+.bonsaiInfoCell > p {
+  margin: 0 2.5px;
+}
+
+.bonsaiInfoCell > :first-child {
+  font-weight: 700;
+}
+
+.imageFrame {
+  display: flex;
+  max-height: 480px;
+  height: fit-content;
+  max-width: 100%;
+  width: fit-content;
+  background-color: rgba(128, 128, 128, 0.524);
+  border-radius: 10px;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
