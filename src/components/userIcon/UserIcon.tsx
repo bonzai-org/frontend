@@ -1,6 +1,10 @@
 import styles from './UserIcon.module.css';
 
-function UserIcon({ username, userId }: { username: string; userId: string }) {
+interface User {
+  username: string;
+}
+
+function UserIcon({ user }: { user: User }) {
   return (
     <div>
       <button className={styles.userIconContainer}>
@@ -12,7 +16,7 @@ function UserIcon({ username, userId }: { username: string; userId: string }) {
           alt="user avatar"
         />
 
-        <a className={styles.userLink}>{username}</a>
+        <a className={styles.userLink}>{user.username}</a>
       </button>
     </div>
   );
