@@ -13,23 +13,21 @@ interface BonsaiCardData {
 function BonsaiCard({ cardData }: { cardData: BonsaiCardData }) {
   return (
     <div className={styles.cardContainer}>
-      <div className={styles.headerContainer}>
-        <UserIcon username={bonsaiCardData.user} userId={'1'} />
-        <div className={styles.bonsaiInfoContainer}>
-          <div className={styles.bonsaiInfoCell}>
-            <p>Species: </p>
-            <p>{bonsaiCardData.species}</p>
-          </div>
+      <div className={styles.bonsaiInfoContainer}>
+        <UserIcon user={{ username: bonsaiCardData.user }} />
+        <div className={styles.bonsaiInfoCell}>
+          <p>Species: </p>
+          <p>{bonsaiCardData.species}</p>
+        </div>
 
-          <div className={styles.bonsaiInfoCell}>
-            <p>Style: </p>
-            <p>{bonsaiCardData.style}</p>
-          </div>
+        <div className={styles.bonsaiInfoCell}>
+          <p>Style: </p>
+          <p>{bonsaiCardData.style}</p>
+        </div>
 
-          <div className={styles.bonsaiInfoCell}>
-            <p>Location: </p>
-            <p>{bonsaiCardData.location}</p>
-          </div>
+        <div className={styles.bonsaiInfoCell}>
+          <p>Location: </p>
+          <p>{bonsaiCardData.location}</p>
         </div>
       </div>
       <div className={styles.imageFrame}>

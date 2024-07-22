@@ -9,12 +9,6 @@ hr {
   width: 100%;
 }
 
-.headerContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
 .bonsaiInfoContainer {
   display: flex;
   align-items: center;
