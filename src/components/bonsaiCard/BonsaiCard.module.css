@@ -34,12 +34,13 @@ hr {
 
 .imageFrame {
   display: flex;
+  justify-content: center;
   max-height: 480px;
   height: fit-content;
-  max-width: 100%;
-  width: fit-content;
-  background-color: rgba(128, 128, 128, 0.524);
+  max-width: 900px;
+  width: 100%;
   border-radius: 10px;
+  background-color: rgba(128, 128, 128, 0.3);
 }
 
 .image {
