@@ -95,6 +95,7 @@ const BonsaiChapterForm = () => {
     return (
         <DndProvider backend={HTML5Backend}>
             <form onSubmit={handleSubmit}>
+                <h2>Add Bonsai Chapter</h2>
                 <div>
                     <label htmlFor="photo">Photo:</label>
                     <input type="file" id="photo" accept="image/*" onChange={handlePhotoChange} />
@@ -107,7 +108,7 @@ const BonsaiChapterForm = () => {
                     <label htmlFor="date">Date:</label>
                     <input type="date" id="date" value={bonsaiChapter.date.toISOString().split('T')[0]} onChange={handleDateChange} />
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit">Submit Chapter</button>
                 <div>
                     {bonsaiChapter.photos.length > 0 && (
                         <div>
