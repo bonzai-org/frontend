@@ -18,9 +18,22 @@ interface BonsaiChapter {
 interface BonsaiSubmitFormProps {
   bonsaiData: BonsaiData;
   bonsaiChapterArr: BonsaiChapter[];
+  onAddNewChapter: () => void;
+  onEditData: () => void;
+  onEditChapter: (index: number) => void;
+  onDiscardBonsai: () => void;
+  onSubmitBonsai: () => void;
 }
 
-const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({ bonsaiData, bonsaiChapterArr }) => {
+const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
+  bonsaiData,
+  bonsaiChapterArr,
+  onAddNewChapter,
+  onEditData,
+  onEditChapter,
+  onDiscardBonsai,
+  onSubmitBonsai
+}) => {
   return (
     <div>
       <h2>Bonsai Data</h2>
@@ -42,20 +55,20 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({ bonsaiData, bonsaiC
       <div>
         <strong>Species:</strong> {bonsaiData.species}
       </div>
-      <button onClick={() => {/* Redirect to BonsaiDataForm for editing */}}>Edit Bonsai Data</button>
+      <button onClick={onEditData}>Edit Bonsai Data</button>
       <h2>Bonsai Chapters</h2>
       {bonsaiChapterArr.map((chapter, index) => (
         <div key={index}>
           {chapter.photos[0] && (
             <img src={URL.createObjectURL(chapter.photos[0]!)} alt={`Chapter ${index + 1}`} style={{ maxWidth: '200px', maxHeight: '200px' }} />
           )}
-          <button onClick={() => {/* Redirect to bonsaiChapterForm for editing */}}>Edit Chapter</button>
+          <button onClick={() => onEditChapter(index)}>Edit Chapter</button>
         </div>
       ))}
-      <button onClick={() => {/* Add new bonsai chapter logic */}}>Add New Chapter</button>
+      <button onClick={onAddNewChapter}>Add New Chapter</button>
       <hr />
-      <button onClick={() => {/* Discard bonsai logic */}}>Discard Bonsai</button>
-      <button onClick={() => {/* Submit bonsai logic */}}>Submit Bonsai</button>
+      <button onClick={onDiscardBonsai}>Discard Bonsai</button>
+      <button onClick={onSubmitBonsai}>Submit Bonsai</button>
     </div>
   );
 };
