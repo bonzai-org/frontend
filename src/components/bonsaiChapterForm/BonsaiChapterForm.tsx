@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -8,9 +8,21 @@ interface BonsaiChapter {
     date: Date;
 }
 
-const BonsaiChapterForm = () => {
-    const [bonsaiChapter, setBonsaiChapter] = useState<BonsaiChapter>({ photos: [], caption: '', date: new Date() });
-    const [bonsaiChapterArr, setBonsaiChapterArr] = useState<BonsaiChapter[]>([]);
+interface BonsaiChapterFormProps {
+    onSubmit: (chapter: BonsaiChapter) => void;
+    chapter?: BonsaiChapter;
+}
+
+const BonsaiChapterForm: React.FC<BonsaiChapterFormProps> = ({ onSubmit, chapter }) => {
+    const [bonsaiChapter, setBonsaiChapter] = useState<BonsaiChapter>(
+        chapter || { photos: [], caption: '', date: new Date() }
+    );
+
+    useEffect(() => {
+        if (chapter) {
+            setBonsaiChapter(chapter);
+        }
+    }, [chapter]);
 
     const handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0) {
@@ -33,9 +45,7 @@ const BonsaiChapterForm = () => {
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-
-        setBonsaiChapterArr([...bonsaiChapterArr, bonsaiChapter]);
-
+        onSubmit(bonsaiChapter);
         // Reset the form
         setBonsaiChapter({ photos: [], caption: '', date: new Date() });
     };
@@ -95,7 +105,7 @@ const BonsaiChapterForm = () => {
     return (
         <DndProvider backend={HTML5Backend}>
             <form onSubmit={handleSubmit}>
-                <h2>Add Bonsai Chapter</h2>
+                <h2>{chapter ? 'Edit Bonsai Chapter' : 'Add Bonsai Chapter'}</h2>
                 <div>
                     <label htmlFor="photo">Photo:</label>
                     <input type="file" id="photo" accept="image/*" onChange={handlePhotoChange} />
@@ -108,7 +118,7 @@ const BonsaiChapterForm = () => {
                     <label htmlFor="date">Date:</label>
                     <input type="date" id="date" value={bonsaiChapter.date.toISOString().split('T')[0]} onChange={handleDateChange} />
                 </div>
-                <button type="submit">Submit Chapter</button>
+                <button type="submit">{chapter ? 'Save Changes' : 'Submit Chapter'}</button>
                 <div>
                     {bonsaiChapter.photos.length > 0 && (
                         <div>
