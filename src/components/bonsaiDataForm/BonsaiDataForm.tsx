@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
 import style from './BonsaiDataForm.module.css';
 
-const BonsaiDataForm: React.FC = () => {
+interface BonsaiData {
+  hardiness_zone: string;
+  height: number | '';
+  width: number | '';
+  nebari: number | '';
+  style: string;
+  species: string;
+}
+
+interface BonsaiDataFormProps {
+  onSubmit: (data: BonsaiData) => void;
+}
+
+const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({ onSubmit }) => {
   const [hardinessZone, setHardinessZone] = useState('');
   const [height, setHeight] = useState<number | ''>('');
   const [width, setWidth] = useState<number | ''>('');
@@ -19,8 +32,7 @@ const BonsaiDataForm: React.FC = () => {
       style: style,
       species: species,
     };
-    console.log(bonsaiData);
-    // Add your form submission logic here (e.g., API call)
+    onSubmit(bonsaiData);
   };
 
   return (
