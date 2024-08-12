@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import BonsaiDataForm from "../bonsaiDataForm/BonsaiDataForm";
-import BonsaiChapterForm from "../bonsaiChapterForm/BonsaiChapterForm";
-import BonsaiSubmitForm from "../bonsaiSubmitForm/BonsaiSubmitForm";
-import style from "./BonsaiDataForm.module.css";
+import { useState } from 'react';
+import BonsaiDataForm from '../bonsaiDataForm/BonsaiDataForm';
+import BonsaiChapterForm from '../bonsaiChapterForm/BonsaiChapterForm';
+import BonsaiSubmitForm from '../bonsaiSubmitForm/BonsaiSubmitForm';
+import style from './BonsaiDataForm.module.css';
 
 interface BonsaiData {
   hardiness_zone: string;
@@ -22,15 +22,28 @@ interface BonsaiChapter {
 function BonsaiUpload() {
   const [bonsaiData, setBonsaiData] = useState<BonsaiData | null>(null);
   const [bonsaiChapterArr, setBonsaiChapterArr] = useState<BonsaiChapter[]>([]);
-  const [currentForm, setCurrentForm] = useState<'data' | 'chapter' | 'submit'>('data');
+  const [currentForm, setCurrentForm] = useState<'data' | 'chapter' | 'submit'>(
+    'data'
+  );
+  const [bonsaiChapterIndex, setBonsaiChapterIndex] = useState<null | number>(
+    null
+  );
 
   const handleDataSubmit = (data: BonsaiData) => {
     setBonsaiData(data);
     setCurrentForm('chapter');
+    console.log('bonsai data: ', bonsaiData);
   };
 
   const handleChapterSubmit = (chapter: BonsaiChapter) => {
-    setBonsaiChapterArr([...bonsaiChapterArr, chapter]);
+    if (bonsaiChapterIndex !== null) {
+      const newChapterArr = [...bonsaiChapterArr];
+      newChapterArr[bonsaiChapterIndex] = chapter;
+      setBonsaiChapterArr(newChapterArr);
+      setBonsaiChapterIndex(null);
+    } else {
+      setBonsaiChapterArr([...bonsaiChapterArr, chapter]);
+    }
     setCurrentForm('submit');
   };
 
@@ -41,29 +54,34 @@ function BonsaiUpload() {
   const handleEditData = () => {
     setCurrentForm('data');
   };
-  
+
   const handleEditChapter = (index: number) => {
+    setBonsaiChapterIndex(index);
     setCurrentForm('chapter');
   };
-  
+
   const handleDiscardBonsai = () => {
     setBonsaiData(null);
     setBonsaiChapterArr([]);
     setCurrentForm('data');
   };
-  
+
   const handleSubmitBonsai = () => {
     console.log('Submitting Bonsai:', bonsaiData, bonsaiChapterArr);
   };
-  
+
   return (
     <div>
-      {currentForm === 'data' && (
-        <BonsaiDataForm onSubmit={handleDataSubmit} />
-      )}
-      {currentForm === 'chapter' && (
-        <BonsaiChapterForm onSubmit={handleChapterSubmit} />
-      )}
+      {currentForm === 'data' && <BonsaiDataForm onSubmit={handleDataSubmit} />}
+      {currentForm === 'chapter' &&
+        (bonsaiChapterIndex !== null ? (
+          <BonsaiChapterForm
+            onSubmit={handleChapterSubmit}
+            chapter={bonsaiChapterArr[bonsaiChapterIndex]}
+          />
+        ) : (
+          <BonsaiChapterForm onSubmit={handleChapterSubmit} />
+        ))}
       {currentForm === 'submit' && bonsaiData && (
         <BonsaiSubmitForm
           bonsaiData={bonsaiData}
