@@ -23,6 +23,7 @@ interface BonsaiSubmitFormProps {
   onEditChapter: (index: number) => void;
   onDiscardBonsai: () => void;
   onSubmitBonsai: () => void;
+  onDeleteChapter: (index: number) => void;
 }
 
 const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
@@ -32,7 +33,8 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
   onEditData,
   onEditChapter,
   onDiscardBonsai,
-  onSubmitBonsai
+  onSubmitBonsai,
+  onDeleteChapter
 }) => {
   return (
     <div>
@@ -60,9 +62,14 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
       {bonsaiChapterArr.map((chapter, index) => (
         <div key={index}>
           {chapter.photos[0] && (
-            <img src={URL.createObjectURL(chapter.photos[0]!)} alt={`Chapter ${index + 1}`} style={{ maxWidth: '200px', maxHeight: '200px' }} />
+            <img
+              src={URL.createObjectURL(chapter.photos[0]!)}
+              alt={`Chapter ${index + 1}`}
+              style={{ maxWidth: '200px', maxHeight: '200px' }}
+            />
           )}
           <button onClick={() => onEditChapter(index)}>Edit Chapter</button>
+          <button onClick={() => onDeleteChapter(index)}>Delete Chapter</button>
         </div>
       ))}
       <button onClick={onAddNewChapter}>Add New Chapter</button>

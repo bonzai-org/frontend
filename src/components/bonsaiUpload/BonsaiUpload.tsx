@@ -70,6 +70,11 @@ function BonsaiUpload() {
     console.log('Submitting Bonsai:', bonsaiData, bonsaiChapterArr);
   };
 
+  const handleDeleteChapter = (index: number) => {
+    const newChapterArr = bonsaiChapterArr.filter((_, i) => i !== index);
+    setBonsaiChapterArr(newChapterArr);
+  };
+
   return (
     <div>
       {currentForm === 'data' &&
@@ -96,6 +101,7 @@ function BonsaiUpload() {
           onEditChapter={handleEditChapter}
           onDiscardBonsai={handleDiscardBonsai}
           onSubmitBonsai={handleSubmitBonsai}
+          onDeleteChapter={handleDeleteChapter}
         />
       )}
     </div>
