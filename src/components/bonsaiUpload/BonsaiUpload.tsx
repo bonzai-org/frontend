@@ -72,7 +72,12 @@ function BonsaiUpload() {
 
   return (
     <div>
-      {currentForm === 'data' && <BonsaiDataForm onSubmit={handleDataSubmit} />}
+      {currentForm === 'data' &&
+        (bonsaiData !== null ? (
+          <BonsaiDataForm onSubmit={handleDataSubmit} bonsaiData={bonsaiData} />
+        ) : (
+          <BonsaiDataForm onSubmit={handleDataSubmit} />
+        ))}
       {currentForm === 'chapter' &&
         (bonsaiChapterIndex !== null ? (
           <BonsaiChapterForm
