@@ -33,11 +33,11 @@ const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
     const bonsaiData: BonsaiData = {
       hardiness_zone: hardinessZone,
       height: height,
-      species: species
+      species: species,
+      width: width !== '' ? width : '',
+      nebari: nebari !== '' ? nebari : '',
+      style: style !== '' ? style : ''
     };
-    if (width !== '') bonsaiData.width = width;
-    if (nebari !== '') bonsaiData.nebari = nebari;
-    if (style !== '') bonsaiData.style = style;
     onSubmit(bonsaiData);
   };
 
