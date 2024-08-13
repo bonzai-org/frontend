@@ -18,6 +18,7 @@ function App() {
     <div className="container">
       <NavBar />
       <div style={{ display: 'flex' }}>
+        click to view:
         <button onClick={() => setDisplayPage('home')}>Home</button>
         <button onClick={() => setDisplayPage('login')}>Login</button>
         <button onClick={() => setDisplayPage('upload')}>Upload</button>
