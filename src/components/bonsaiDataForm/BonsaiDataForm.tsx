@@ -4,9 +4,9 @@ import style from './BonsaiDataForm.module.css';
 interface BonsaiData {
   hardiness_zone: string;
   height: number | '';
-  width?: number | '';
-  nebari?: number | '';
-  style?: string;
+  width: number | '';
+  nebari: number | '';
+  style: string;
   species: string;
 }
 
