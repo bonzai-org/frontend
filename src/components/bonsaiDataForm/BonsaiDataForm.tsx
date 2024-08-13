@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import style from './BonsaiDataForm.module.css';
 
 interface BonsaiData {
-  hardiness_zone: string; // Ensure this is a string
+  hardiness_zone: string;
   height: number | '';
-  width: number | '';
-  nebari: number | '';
-  style: string;
+  width?: number | '';
+  nebari?: number | '';
+  style?: string;
   species: string;
 }
 
@@ -30,14 +30,14 @@ const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const bonsaiData = {
+    const bonsaiData: BonsaiData = {
       hardiness_zone: hardinessZone,
       height: height,
-      width: width,
-      nebari: nebari,
-      style: style,
       species: species
     };
+    if (width !== '') bonsaiData.width = width;
+    if (nebari !== '') bonsaiData.nebari = nebari;
+    if (style !== '') bonsaiData.style = style;
     onSubmit(bonsaiData);
   };
 
@@ -74,6 +74,7 @@ const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
           onChange={(e) =>
             setHeight(e.target.value ? parseFloat(e.target.value) : '')
           }
+          required
         />
       </div>
       <div>
