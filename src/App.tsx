@@ -10,33 +10,30 @@ import AuthForm from './components/authForm/AuthForm';
 import NavBar from './components/navBar/NavBar';
 
 function App() {
-  const [auth, setAuth] = useState(true);
-  const toggleAuth = () => {
-    setAuth(!auth);
-  };
+  const [displayPage, setDisplayPage] = useState<'home' | 'login' | 'upload'>(
+    'home'
+  );
 
-  if (!auth) {
-    return (
-      <div className="container">
-        <AuthForm />
-        <button onClick={toggleAuth}>Show me the home page</button>
+  return (
+    <div className="container">
+      <NavBar />
+      <div style={{ display: 'flex' }}>
+        <button onClick={() => setDisplayPage('home')}>Home</button>
+        <button onClick={() => setDisplayPage('login')}>Login</button>
+        <button onClick={() => setDisplayPage('upload')}>Upload</button>
       </div>
-    );
-  } else {
-    return (
-      <div className="container">
-        <NavBar />
-        <hr />
-        <button onClick={toggleAuth}>Show me the login</button>
-      {/*   <BonsaiCard cardData={bonsaiCardData} />
-        <BonsaiCard cardData={bonsaiCardData} />
-        <BonsaiCard cardData={bonsaiCardData} /> */}
-{/*         <BonsaiDataForm />  */}
-{/*         <BonsaiChapterForm /> */}
-{/* <BonsaiSubmitForm bonsaiData={{ hardiness_zone: '7', height: 12, width: 10, nebari: 5, style: 'informal upright', species: 'Japanese Maple' }} bonsaiChapterArr={[]} /> */}
-<BonsaiUpload />
-      </div>
-    );
-  }
+
+      <hr />
+      {displayPage === 'home' && (
+        <>
+          <BonsaiCard cardData={bonsaiCardData} />
+          <BonsaiCard cardData={bonsaiCardData} />
+          <BonsaiCard cardData={bonsaiCardData} />
+        </>
+      )}
+      {displayPage === 'upload' && <BonsaiUpload />}
+      {displayPage === 'login' && <AuthForm />}
+    </div>
+  );
 }
 export default App;
