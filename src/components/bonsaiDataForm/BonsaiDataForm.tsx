@@ -100,7 +100,7 @@ const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
           required
         />
       </div>
-      <button type="submit">Upload Bonsai Data</button>
+      <button type="submit">Next</button>
     </form>
   );
 };
