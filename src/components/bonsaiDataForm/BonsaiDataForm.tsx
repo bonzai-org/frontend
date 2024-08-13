@@ -67,7 +67,7 @@ const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
         </select>
       </div>
       <div>
-        <label>Height:</label>
+        <label>Height (cm):</label>
         <input
           type="number"
           value={height}
@@ -77,7 +77,7 @@ const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
         />
       </div>
       <div>
-        <label>Width:</label>
+        <label>Width (cm):</label>
         <input
           type="number"
           value={width}
@@ -87,7 +87,7 @@ const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
         />
       </div>
       <div>
-        <label>Nebari:</label>
+        <label>Nebari (cm):</label>
         <input
           type="number"
           value={nebari}
