@@ -15,21 +15,21 @@ const router = createBrowserRouter([{ path: '*', element: <Root /> }]);
 
 export default function App() {
   return (
-    <>
-      <NavBar />
-      <div className="container">
-        <RouterProvider router={router} />
-      </div>
-    </>
+    <div className="container">
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
 function Root() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/upload" element={<BonsaiUpload />} />
-      <Route path="/login" element={<AuthForm />} />
-    </Routes>
+    <>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/upload" element={<BonsaiUpload />} />
+        <Route path="/login" element={<AuthForm />} />
+      </Routes>
+    </>
   );
 }
