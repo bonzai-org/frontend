@@ -29,6 +29,10 @@
   text-decoration: underline green 2px;
 }
 
+.bonsaiLink:visited {
+  color: black;
+}
+
 .searchBar {
   display: flex;
   flex-direction: row;

@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Menu from '../menu/Menu';
 import styles from './NavBar.module.css';
 
@@ -38,7 +39,9 @@ function NavBar() {
           className={styles.logo}
           alt="Bonsai Book Logo"
         />
-        <a className={styles.bonsaiLink}>Bonsai Book</a>
+        <Link to="/" className={styles.bonsaiLink}>
+          Bonsai Book
+        </Link>
       </button>
 
       <form className={styles.searchBar}>
