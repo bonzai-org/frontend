@@ -29,6 +29,10 @@
   text-decoration: underline green 2px;
 }
 
+.bonsaiLink:visited {
+  color: black;
+}
+
 .searchBar {
   display: flex;
   flex-direction: row;
@@ -82,10 +86,26 @@
   padding: 0;
 }
 
+.userIcon:hover {
+  cursor: pointer;
+}
+
 .userIcon {
   height: 35px;
   width: 35px;
   object-fit: cover;
   background-color: transparent;
   border-radius: 50%;
+}
+
+.menu {
+  z-index: 5;
+  background-color: pink;
+  height: 100vh;
+  width: 300px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }

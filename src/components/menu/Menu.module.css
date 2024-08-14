@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 10px;
+}
+
+.header {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  align-items: center;
+}
+
+.userInfoContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.userIcon {
+  height: 35px;
+  width: 35px;
+  object-fit: cover;
+  background-color: transparent;
+  border-radius: 50%;
+}
+
+.userInfo {
+  padding-left: 10px;
+  padding-top: 2px;
+}
+
+.userInfo > p {
+  margin: 0;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.userfullname {
+  color: grey;
+}
+
+.exitButton {
+  height: 35px;
+  width: 35px;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  margin-left: auto;
+}
+
+.exitButton:hover {
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.436);
+}
+
+hr {
+  background-color: grey;
+  height: 1px;
+  width: 100%;
+  border: none;
+}
+
+.menuItem {
+  text-decoration: underline;
+  width: 100%;
+}
+
+.menuItem:hover {
+  cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.209);
+}
