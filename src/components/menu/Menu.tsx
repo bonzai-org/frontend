@@ -32,7 +32,7 @@ export default function Menu({ user, menuToggle }: MenuProps) {
           X
         </button>
       </div>
-
+      <hr />
       <div
         onClick={() => handleLinkClick('/upload')}
         className={styles.menuItem}
@@ -44,6 +44,9 @@ export default function Menu({ user, menuToggle }: MenuProps) {
         className={styles.menuItem}
       >
         Auth
+      </div>
+      <div onClick={() => handleLinkClick('/')} className={styles.menuItem}>
+        Home
       </div>
     </div>
   );
