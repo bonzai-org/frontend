@@ -1,20 +1,44 @@
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './NavBar.module.css';
 
 function NavBar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
+
   return (
     <div className={styles.container}>
-      <div>
-        <button className={styles.logoContainer}>
-          <img
-            src={
-              'https://res.cloudinary.com/dscsiijis/image/upload/v1721604220/logo_yhqcc5.jpg'
-            }
-            className={styles.logo}
-            alt="Bonsai Book Logo"
-          />
-          <a className={styles.bonsaiLink}>Bonsai Book</a>
-        </button>
-      </div>
+      <button className={styles.logoContainer}>
+        <img
+          src={
+            'https://res.cloudinary.com/dscsiijis/image/upload/v1721604220/logo_yhqcc5.jpg'
+          }
+          className={styles.logo}
+          alt="Bonsai Book Logo"
+        />
+        <a className={styles.bonsaiLink}>Bonsai Book</a>
+      </button>
 
       <form className={styles.searchBar}>
         <button type="submit" className={styles.searchIcon}>
@@ -26,7 +50,7 @@ function NavBar() {
           className={styles.searchInput}
         />
       </form>
-      <button className={styles.userIconContainer}>
+      <button className={styles.userIconContainer} onClick={handleMenuToggle}>
         <img
           src={
             'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg'
@@ -35,6 +59,12 @@ function NavBar() {
           alt="user avatar"
         />
       </button>
+
+      {isMenuOpen && (
+        <div ref={menuRef} className={styles.menu}>
+          {/* Add your menu content here */}
+        </div>
+      )}
     </div>
   );
 }
