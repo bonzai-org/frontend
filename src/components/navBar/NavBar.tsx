@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import Menu from '../menu/Menu';
 import styles from './NavBar.module.css';
 
 function NavBar() {
@@ -62,7 +63,15 @@ function NavBar() {
 
       {isMenuOpen && (
         <div ref={menuRef} className={styles.menu}>
-          {/* Add your menu content here */}
+          <Menu
+            user={{
+              username: 'jNakster',
+              fullname: 'John Naka',
+              avatar:
+                'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg'
+            }}
+            menuToggle={() => setIsMenuOpen(false)}
+          />
         </div>
       )}
     </div>
