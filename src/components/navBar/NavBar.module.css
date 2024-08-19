@@ -24,6 +24,7 @@
   object-fit: cover;
   background-color: transparent;
   border-radius: 50%;
+  border: 2px solid green;
 }
 
 .bonsaiLink {
@@ -47,6 +48,7 @@
   width: fit-content;
   min-width: 400px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid green;
 }
 
 .searchBar:hover {
@@ -101,6 +103,7 @@
   object-fit: cover;
   background-color: transparent;
   border-radius: 50%;
+  border: 2px solid green;
 }
 
 .menu {
