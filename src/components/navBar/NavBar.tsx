@@ -30,54 +30,57 @@ function NavBar() {
   }, [isMenuOpen]);
 
   return (
-    <div className={styles.container}>
-      <button className={styles.logoContainer}>
-        <img
-          src={
-            'https://res.cloudinary.com/dscsiijis/image/upload/v1721604220/logo_yhqcc5.jpg'
-          }
-          className={styles.logo}
-          alt="Bonsai Book Logo"
-        />
-        <Link to="/" className={styles.bonsaiLink}>
-          Bonsai Book
-        </Link>
-      </button>
-
-      <form className={styles.searchBar}>
-        <button type="submit" className={styles.searchIcon}>
-          🔍
-        </button>
-        <input
-          type="text"
-          placeholder="Search Bonsai Book"
-          className={styles.searchInput}
-        />
-      </form>
-      <button className={styles.userIconContainer} onClick={handleMenuToggle}>
-        <img
-          src={
-            'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg'
-          }
-          className={styles.userIcon}
-          alt="user avatar"
-        />
-      </button>
-
-      {isMenuOpen && (
-        <div ref={menuRef} className={styles.menu}>
-          <Menu
-            user={{
-              username: 'jNakster',
-              fullname: 'John Naka',
-              avatar:
-                'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg'
-            }}
-            menuToggle={() => setIsMenuOpen(false)}
+    <>
+      <div className={styles.container}>
+        <button className={styles.logoContainer}>
+          <img
+            src={
+              'https://res.cloudinary.com/dscsiijis/image/upload/v1721604220/logo_yhqcc5.jpg'
+            }
+            className={styles.logo}
+            alt="Bonsai Book Logo"
           />
-        </div>
-      )}
-    </div>
+          <Link to="/" className={styles.bonsaiLink}>
+            Bonsai Book
+          </Link>
+        </button>
+
+        <form className={styles.searchBar}>
+          <button type="submit" className={styles.searchIcon}>
+            🔍
+          </button>
+          <input
+            type="text"
+            placeholder="Search Bonsai Book"
+            className={styles.searchInput}
+          />
+        </form>
+        <button className={styles.userIconContainer} onClick={handleMenuToggle}>
+          <img
+            src={
+              'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg'
+            }
+            className={styles.userIcon}
+            alt="user avatar"
+          />
+        </button>
+
+        {isMenuOpen && (
+          <div ref={menuRef} className={styles.menu}>
+            <Menu
+              user={{
+                username: 'jNakster',
+                fullname: 'John Naka',
+                avatar:
+                  'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg'
+              }}
+              menuToggle={() => setIsMenuOpen(false)}
+            />
+          </div>
+        )}
+      </div>
+      <hr />
+    </>
   );
 }
 
