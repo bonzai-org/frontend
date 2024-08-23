@@ -2,8 +2,9 @@
   width: 100%;
   height: 60px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .logoContainer {
@@ -13,6 +14,8 @@
   border: none;
   align-items: center;
   padding: 0;
+  position: absolute;
+  left: 10px;
 }
 
 .logo {
@@ -21,6 +24,7 @@
   object-fit: cover;
   background-color: transparent;
   border-radius: 50%;
+  border: 2px solid green;
 }
 
 .bonsaiLink {
@@ -44,6 +48,7 @@
   width: fit-content;
   min-width: 400px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid green;
 }
 
 .searchBar:hover {
@@ -84,6 +89,8 @@
   border: none;
   align-items: center;
   padding: 0;
+  position: absolute;
+  right: 10px;
 }
 
 .userIcon:hover {
@@ -96,6 +103,7 @@
   object-fit: cover;
   background-color: transparent;
   border-radius: 50%;
+  border: 2px solid green;
 }
 
 .menu {
@@ -108,4 +116,10 @@
   right: 0;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
+}
+
+hr {
+  margin: 10px 0;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
