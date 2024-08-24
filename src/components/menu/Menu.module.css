@@ -22,6 +22,7 @@
   object-fit: cover;
   background-color: transparent;
   border-radius: 50%;
+  border: 2px solid black;
 }
 
 .userInfo {
@@ -38,7 +39,7 @@
 }
 
 .userfullname {
-  color: grey;
+  color: black;
 }
 
 .exitButton {
@@ -52,11 +53,11 @@
 
 .exitButton:hover {
   cursor: pointer;
-  background-color: rgba(128, 128, 128, 0.436);
+  background-color: var(--primary-color-site);
 }
 
 hr {
-  background-color: grey;
+  background-color: black;
   height: 1px;
   width: 100%;
   border: none;
@@ -69,5 +70,5 @@ hr {
 
 .menuItem:hover {
   cursor: pointer;
-  background-color: rgba(128, 128, 128, 0.209);
+  background-color: var(--primary-color-site);
 }

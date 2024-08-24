@@ -2,7 +2,7 @@ import { useState } from 'react';
 import BonsaiDataForm from '../bonsaiDataForm/BonsaiDataForm';
 import BonsaiChapterForm from '../bonsaiChapterForm/BonsaiChapterForm';
 import BonsaiSubmitForm from '../bonsaiSubmitForm/BonsaiSubmitForm';
-import style from './BonsaiDataForm.module.css';
+import styles from './BonsaiUpload.module.css';
 
 interface BonsaiData {
   hardiness_zone: string;
@@ -76,7 +76,7 @@ function BonsaiUpload() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       {currentForm === 'data' &&
         (bonsaiData !== null ? (
           <BonsaiDataForm onSubmit={handleDataSubmit} bonsaiData={bonsaiData} />

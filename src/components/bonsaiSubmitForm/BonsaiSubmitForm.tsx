@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../bonsaiSubmitForm/BonsaSubmitForm.module.css';
 
 interface BonsaiData {
   hardiness_zone: string;
@@ -37,7 +38,7 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
   onDeleteChapter
 }) => {
   return (
-    <div>
+    <div className={styles.container}>
       <h2>Bonsai Data</h2>
       <div>
         <strong>Hardiness Zone:</strong> {bonsaiData.hardiness_zone}
@@ -57,25 +58,49 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
       <div>
         <strong>Species:</strong> {bonsaiData.species}
       </div>
-      <button onClick={onEditData}>Edit Bonsai Data</button>
+      <button className={styles.btn} onClick={onEditData}>
+        Edit Bonsai Data
+      </button>
+      <hr />
       <h2>Bonsai Chapters</h2>
       {bonsaiChapterArr.map((chapter, index) => (
-        <div key={index}>
+        <>
           {chapter.photos[0] && (
-            <img
-              src={URL.createObjectURL(chapter.photos[0]!)}
-              alt={`Chapter ${index + 1}`}
-              style={{ maxWidth: '200px', maxHeight: '200px' }}
-            />
+            <div key={index} className={styles.chapterContainer}>
+              <img
+                className={styles.chapterImg}
+                src={URL.createObjectURL(chapter.photos[0]!)}
+                alt={`Chapter ${index + 1}`}
+              />
+              <div className={styles.chapBtnContainer}>
+                <button
+                  className={styles.btn}
+                  onClick={() => onEditChapter(index)}
+                >
+                  Edit
+                </button>
+                <button
+                  className={styles.btn}
+                  onClick={() => onDeleteChapter(index)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           )}
-          <button onClick={() => onEditChapter(index)}>Edit Chapter</button>
-          <button onClick={() => onDeleteChapter(index)}>Delete Chapter</button>
-        </div>
+        </>
       ))}
-      <button onClick={onAddNewChapter}>Add New Chapter</button>
+      <button className={styles.btn} onClick={onAddNewChapter}>
+        Add New Chapter
+      </button>
       <hr />
-      <button onClick={onDiscardBonsai}>Discard Bonsai</button>
-      <button onClick={onSubmitBonsai}>Submit Bonsai</button>
+      <button className={styles.btn} onClick={onDiscardBonsai}>
+        Discard Bonsai
+      </button>
+      <button className={styles.btn} onClick={onSubmitBonsai}>
+        Submit Bonsai
+      </button>
+      <hr />
     </div>
   );
 };
