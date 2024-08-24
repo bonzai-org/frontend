@@ -48,7 +48,7 @@
   width: fit-content;
   min-width: 400px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
-  border: 2px solid green;
+  border: 2px solid var(--primary-color-site);
 }
 
 .searchBar:hover {
@@ -103,12 +103,12 @@
   object-fit: cover;
   background-color: transparent;
   border-radius: 50%;
-  border: 2px solid green;
+  border: 2px solid var(--primary-color-site);
 }
 
 .menu {
   z-index: 5;
-  background-color: pink;
+  background-color: var(--secondary-color-site);
   height: 100vh;
   width: 300px;
   position: fixed;
@@ -121,5 +121,5 @@
 hr {
   margin: 10px 0;
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--primary-color-site);
 }

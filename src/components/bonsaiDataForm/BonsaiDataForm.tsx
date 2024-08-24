@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import style from './BonsaiDataForm.module.css';
+import styles from './BonsaiDataForm.module.css';
 
 interface BonsaiData {
   hardiness_zone: string;
@@ -50,7 +50,7 @@ const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
     <form onSubmit={handleSubmit}>
       <h2>Add Bonsai Data</h2>
       <div>
-        <label>Hardiness Zone:</label>
+        <label className={styles.hardinessLabel}>Hardiness Zone:</label>
         <select
           value={hardinessZone}
           onChange={(e) => setHardinessZone(e.target.value)}
@@ -114,7 +114,9 @@ const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
           required
         />
       </div>
-      <button type="submit">Next</button>
+      <button type="submit" className={styles.btn}>
+        Next
+      </button>
     </form>
   );
 };

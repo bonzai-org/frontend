@@ -1,0 +1,49 @@
+.photoUploader > input {
+  height: min-content;
+}
+
+.photoUploader {
+  border-color: transparent;
+}
+
+.btn {
+  background-color: var(--secondary-color-site);
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: var(--primary-color-site);
+}
+
+.removeBtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: var(--secondary-color-site);
+  color: black;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.removeBtn:hover {
+  background: red;
+}
+
+.photoContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: min-content;
+}
+
+.photo {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 10px;
+}

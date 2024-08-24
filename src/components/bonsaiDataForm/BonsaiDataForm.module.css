@@ -1,0 +1,12 @@
+.hardinessLabel {
+  margin-right: 5px;
+}
+
+.btn {
+  background-color: var(--secondary-color-site);
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: var(--primary-color-site);
+}

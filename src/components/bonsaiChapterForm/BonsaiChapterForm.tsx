@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import styles from './BonsaiChapterForm.module.css';
 
 interface BonsaiChapter {
   photos: (File | null)[];
@@ -27,59 +28,47 @@ const BonsaiChapterForm: React.FC<BonsaiChapterFormProps> = ({
     }
   }, [chapter]);
 
-  const handlePhotoChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (event.target.files && event.target.files.length > 0) {
-        const file = event.target.files[0];
-        if (file) {
-          setBonsaiChapter((prevChapter) => ({
-            ...prevChapter,
-            photos: [...prevChapter.photos, file]
-          }));
-        }
+  const handlePhotoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      if (file) {
+        setBonsaiChapter((prevChapter) => ({
+          ...prevChapter,
+          photos: [...prevChapter.photos, file]
+        }));
       }
-    },
-    []
-  );
+    }
+  };
 
-  const handleCaptionChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setBonsaiChapter((prevChapter) => ({
-        ...prevChapter,
-        caption: event.target.value
-      }));
-    },
-    []
-  );
+  const handleCaptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBonsaiChapter((prevChapter) => ({
+      ...prevChapter,
+      caption: event.target.value
+    }));
+  };
 
-  const handleDateChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setBonsaiChapter((prevChapter) => ({
-        ...prevChapter,
-        date: new Date(event.target.value)
-      }));
-    },
-    []
-  );
+  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBonsaiChapter((prevChapter) => ({
+      ...prevChapter,
+      date: new Date(event.target.value)
+    }));
+  };
 
-  const handleRemovePhoto = useCallback((index: number) => {
+  const handleRemovePhoto = (index: number) => {
     setBonsaiChapter((prevChapter) => {
       const newPhotos = prevChapter.photos.filter((_, i) => i !== index);
       return { ...prevChapter, photos: newPhotos };
     });
-  }, []);
+  };
 
-  const handleSubmit = useCallback(
-    (event: React.FormEvent) => {
-      event.preventDefault();
-      onSubmit(bonsaiChapter);
-      // Reset the form
-      setBonsaiChapter({ photos: [], caption: '', date: new Date() });
-    },
-    [bonsaiChapter, onSubmit]
-  );
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    onSubmit(bonsaiChapter);
+    // Reset the form
+    setBonsaiChapter({ photos: [], caption: '', date: new Date() });
+  };
 
-  const movePhoto = useCallback((dragIndex: number, hoverIndex: number) => {
+  const movePhoto = (dragIndex: number, hoverIndex: number) => {
     setBonsaiChapter((prevChapter) => {
       const draggedPhoto = prevChapter.photos[dragIndex];
       const newPhotos = [...prevChapter.photos];
@@ -87,65 +76,41 @@ const BonsaiChapterForm: React.FC<BonsaiChapterFormProps> = ({
       newPhotos.splice(hoverIndex, 0, draggedPhoto);
       return { ...prevChapter, photos: newPhotos };
     });
-  }, []);
+  };
 
-  const Photo = useCallback(
-    ({ photo, index }: { photo: File | null; index: number }) => {
-      const [, ref] = useDrag({
-        type: 'photo',
-        item: { index }
-      });
+  const Photo = ({ photo, index }: { photo: File | null; index: number }) => {
+    const [, ref] = useDrag({
+      type: 'photo',
+      item: { index }
+    });
 
-      const [, drop] = useDrop({
-        accept: 'photo',
-        hover: (item: { index: number }) => {
-          if (item.index !== index) {
-            movePhoto(item.index, index);
-            item.index = index;
-          }
+    const [, drop] = useDrop({
+      accept: 'photo',
+      hover: (item: { index: number }) => {
+        if (item.index !== index) {
+          movePhoto(item.index, index);
+          item.index = index;
         }
-      });
+      }
+    });
 
-      return (
-        <div
-          ref={(node) => ref(drop(node))}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            position: 'relative'
-          }}
+    return (
+      <div ref={(node) => ref(drop(node))} className={styles.photoContainer}>
+        <img
+          src={URL.createObjectURL(photo!)}
+          alt={`Preview ${index}`}
+          className={styles.photo}
+        />
+        <button
+          type="button"
+          onClick={() => handleRemovePhoto(index)}
+          className={styles.removeBtn}
         >
-          <img
-            src={URL.createObjectURL(photo!)}
-            alt={`Preview ${index}`}
-            style={{ maxWidth: '200px', maxHeight: '200px' }}
-          />
-          <button
-            type="button"
-            onClick={() => handleRemovePhoto(index)}
-            style={{
-              position: 'absolute',
-              top: '5px',
-              right: '5px',
-              background: 'red',
-              color: 'white',
-              border: 'none',
-              borderRadius: '50%',
-              width: '20px',
-              height: '20px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer'
-            }}
-          >
-            X
-          </button>
-        </div>
-      );
-    },
-    [movePhoto, handleRemovePhoto]
-  );
+          X
+        </button>
+      </div>
+    );
+  };
 
   const memoizedPhotos = useMemo(
     () =>
@@ -153,14 +118,14 @@ const BonsaiChapterForm: React.FC<BonsaiChapterFormProps> = ({
         (photo, index) =>
           photo && <Photo key={index} photo={photo} index={index} />
       ),
-    [bonsaiChapter.photos, Photo]
+    [bonsaiChapter.photos]
   );
 
   return (
     <DndProvider backend={HTML5Backend}>
       <form onSubmit={handleSubmit}>
         <h2>{chapter ? 'Edit Bonsai Chapter' : 'Add Bonsai Chapter'}</h2>
-        <div>
+        <div className={styles.photoUploader}>
           <label htmlFor="photo">Photo(s):</label>
           <input
             type="file"
@@ -187,7 +152,7 @@ const BonsaiChapterForm: React.FC<BonsaiChapterFormProps> = ({
             onChange={handleDateChange}
           />
         </div>
-        <button type="submit">
+        <button type="submit" className={styles.btn}>
           {chapter ? 'Save Changes' : 'Submit Chapter'}
         </button>
         <div>
