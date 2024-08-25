@@ -56,7 +56,7 @@
   background-color: var(--primary-color-site);
 }
 
-hr {
+.divider {
   background-color: black;
   height: 1px;
   width: 100%;

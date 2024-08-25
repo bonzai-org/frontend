@@ -32,7 +32,7 @@ export default function Menu({ user, menuToggle }: MenuProps) {
           X
         </button>
       </div>
-      <hr />
+      <hr className={styles.divider} />
       <div
         onClick={() => handleLinkClick('/upload')}
         className={styles.menuItem}
