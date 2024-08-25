@@ -1,8 +1,10 @@
 import { bonsaiCardData } from '../../bonsaiProfDummyData';
+import { useNavigate } from 'react-router-dom';
 import UserIcon from '../userIcon/UserIcon';
 import styles from './BonsaiCard.module.css';
 
 interface BonsaiCardData {
+  id: string;
   photoUrl: string;
   species: string;
   user: string;
@@ -11,8 +13,14 @@ interface BonsaiCardData {
 }
 
 function BonsaiCard({ cardData }: { cardData: BonsaiCardData }) {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/bonsai/${cardData.id}`);
+  };
+
   return (
-    <div className={styles.cardContainer}>
+    <div className={styles.cardContainer} onClick={handleCardClick}>
       <div className={styles.bonsaiInfoContainer}>
         <UserIcon user={{ username: bonsaiCardData.user }} />
         <div className={styles.bonsaiInfoCell}>
@@ -31,7 +39,7 @@ function BonsaiCard({ cardData }: { cardData: BonsaiCardData }) {
         </div>
       </div>
       <div className={styles.imageFrame}>
-        <img className={styles.image} src={cardData.photoUrl} alt="" />
+        <img className={styles.image} src={bonsaiCardData.photoUrl} alt="" />
       </div>
     </div>
   );
