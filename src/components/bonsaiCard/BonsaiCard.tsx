@@ -33,7 +33,6 @@ function BonsaiCard({ cardData }: { cardData: BonsaiCardData }) {
       <div className={styles.imageFrame}>
         <img className={styles.image} src={cardData.photoUrl} alt="" />
       </div>
-      <hr />
     </div>
   );
 }

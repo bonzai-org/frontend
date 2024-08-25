@@ -12,10 +12,6 @@
   background-color: rgba(128, 128, 128, 0.1);
 }
 
-hr {
-  width: 100%;
-}
-
 .bonsaiInfoContainer {
   display: flex;
   align-items: center;
