@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import UserIcon from '../userIcon/UserIcon';
 import styles from './BonsaiCard.module.css';
 
+// TODO:
+// Refactor to display leading photo
+// from each chapter in a gallery
+
 interface BonsaiCardData {
   id: string;
   photoUrl: string;
