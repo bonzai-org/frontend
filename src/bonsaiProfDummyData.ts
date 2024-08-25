@@ -1,4 +1,5 @@
 const bonsaiData = {
+  id: '1',
   user: 'Pablo',
   bonsaiChapter: '',
   geoLocation: 'San Francisco, CA',
@@ -21,6 +22,7 @@ const bonsaiChapterData = {
 };
 
 const bonsaiCardData = {
+  id: '1',
   photoUrl: bonsaiChapterData.photoUrls[0],
   species: bonsaiData.species,
   user: bonsaiData.user,
