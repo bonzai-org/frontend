@@ -10,6 +10,7 @@ import Home from './components/home/Home';
 import BonsaiUpload from './components/bonsaiUpload/BonsaiUpload';
 import AuthForm from './components/authForm/AuthForm';
 import NavBar from './components/navBar/NavBar';
+import BonsaiPage from './components/bonsaiPage/BonsaiPage';
 
 const router = createBrowserRouter([{ path: '*', element: <Root /> }]);
 
@@ -29,6 +30,7 @@ function Root() {
         <Route path="/" element={<Home />} />
         <Route path="/upload" element={<BonsaiUpload />} />
         <Route path="/login" element={<AuthForm />} />
+        <Route path="/bonsai/:id" element={<BonsaiPage />} />
       </Routes>
     </>
   );
