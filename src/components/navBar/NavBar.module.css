@@ -108,7 +108,7 @@
 
 .menu {
   z-index: 5;
-  background-color: var(--secondary-color-site);
+  background-color: var(--primary-color-site);
   height: 100vh;
   width: 300px;
   position: fixed;
