@@ -63,17 +63,43 @@ export default function BonsaiPage() {
   return (
     <div>
       {bonsai && (
-        <div>
-          <p>Displaying details for bonsai with ID: {id}</p>
-          <div className={styles.bonsaiData}>
-            <p>Species: {bonsai.species}</p>
-            <p>User: {bonsai.user}</p>
-            {bonsai.geoLocation && <p>Geo Location: {bonsai.geoLocation}</p>}
-            {bonsai.style && <p>Style: {bonsai.style}</p>}
-            {bonsai.height && <p>Height: {bonsai.height}</p>}
-            {bonsai.width && <p>Width: {bonsai.width}</p>}
-            {bonsai.nebari && <p>Nebari: {bonsai.nebari}</p>}
-            <p>Hardiness Zone: {bonsai.hardinessZone}</p>
+        <div className={styles.pageContainer}>
+          <h1>{`${bonsai.user}'s ${bonsai.species}`}</h1>
+          <div className={styles.bonsaiDataContainer}>
+            {bonsai.geoLocation && (
+              <div className={styles.categoryContainer}>
+                <label className={styles.categoryLabel}>Geo Location:</label>
+                <p className={styles.categoryData}>{bonsai.geoLocation}</p>
+              </div>
+            )}
+            {bonsai.style && (
+              <div className={styles.categoryContainer}>
+                <label className={styles.categoryLabel}>Style:</label>
+                <p className={styles.categoryData}>{bonsai.style}</p>
+              </div>
+            )}
+            {bonsai.height && (
+              <div className={styles.categoryContainer}>
+                <label className={styles.categoryLabel}>Height:</label>
+                <p className={styles.categoryData}>{bonsai.height}</p>
+              </div>
+            )}
+            {bonsai.width && (
+              <div className={styles.categoryContainer}>
+                <label className={styles.categoryLabel}>Width:</label>
+                <p className={styles.categoryData}>{bonsai.width}</p>
+              </div>
+            )}
+            {bonsai.nebari && (
+              <div className={styles.categoryContainer}>
+                <label className={styles.categoryLabel}>Nebari:</label>
+                <p className={styles.categoryData}>{bonsai.nebari}</p>
+              </div>
+            )}
+            <div className={styles.categoryContainer}>
+              <label className={styles.categoryLabel}>Hardiness Zone:</label>
+              <p className={styles.categoryData}>{bonsai.hardinessZone}</p>
+            </div>
           </div>
           {bonsai.bonsaiChapters.length > 0 && (
             <div className={styles.chapterContainer}>
@@ -90,7 +116,11 @@ export default function BonsaiPage() {
               </div>
 
               <div className={styles.imageGallery}>
-                <button onClick={handlePrevPhoto} disabled={isProcessing}>
+                <button
+                  className={styles.galleryButton}
+                  onClick={handlePrevPhoto}
+                  disabled={isProcessing}
+                >
                   {'<'}
                 </button>
                 <div className={styles.imageFrame}>
@@ -103,7 +133,11 @@ export default function BonsaiPage() {
                     onLoad={() => setIsProcessing(false)}
                   />
                 </div>
-                <button onClick={handleNextPhoto} disabled={isProcessing}>
+                <button
+                  className={styles.galleryButton}
+                  onClick={handleNextPhoto}
+                  disabled={isProcessing}
+                >
                   {'>'}
                 </button>
               </div>
