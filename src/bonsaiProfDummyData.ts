@@ -11,7 +11,7 @@ const bonsaiChapterData = {
 const bonsaiData = {
   id: '1',
   user: 'Pablo',
-  bonsaiChapters: [bonsaiChapterData],
+  bonsaiChapters: [bonsaiChapterData, bonsaiChapterData, bonsaiChapterData],
   geoLocation: 'San Francisco, CA',
   hardinessZone: '9A',
   height: '6in',
