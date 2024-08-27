@@ -103,7 +103,24 @@ export default function BonsaiPage() {
           </div>
           {bonsai.bonsaiChapters.length > 0 && (
             <div className={styles.chapterContainer}>
-              <h2> Chapter {`${currentChapterIndex + 1}`}</h2>
+              <div className={styles.chapterNav}>
+                <button
+                  className={styles.chapterButton}
+                  onClick={handlePrevPhoto}
+                  disabled={isProcessing}
+                >
+                  {'<'}
+                </button>
+                <h2> Chapter {`${currentChapterIndex + 1}`}</h2>
+                <button
+                  className={styles.chapterButton}
+                  onClick={handleNextPhoto}
+                  disabled={isProcessing}
+                >
+                  {'>'}
+                </button>
+              </div>
+
               <div className={styles.chapterInfo}>
                 <p className={styles.chapterDate}>
                   {bonsai.bonsaiChapters[
@@ -116,13 +133,6 @@ export default function BonsaiPage() {
               </div>
 
               <div className={styles.imageGallery}>
-                <button
-                  className={styles.galleryButton}
-                  onClick={handlePrevPhoto}
-                  disabled={isProcessing}
-                >
-                  {'<'}
-                </button>
                 <div className={styles.imageFrame}>
                   <img
                     src={
@@ -133,13 +143,6 @@ export default function BonsaiPage() {
                     onLoad={() => setIsProcessing(false)}
                   />
                 </div>
-                <button
-                  className={styles.galleryButton}
-                  onClick={handleNextPhoto}
-                  disabled={isProcessing}
-                >
-                  {'>'}
-                </button>
               </div>
             </div>
           )}
