@@ -27,6 +27,7 @@ export default function BonsaiPage() {
   const { id } = useParams<{ id: string }>();
   const [bonsai, setBonsai] = useState<Bonsai | null>(null);
   const [currentChapterIndex, setCurrentChapterIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
@@ -34,22 +35,48 @@ export default function BonsaiPage() {
     setBonsai(bonsaiData);
   }, [id]);
 
-  const handleNextPhoto = () => {
+  const handleNextChapter = () => {
     if (bonsai && !isProcessing) {
       setIsProcessing(true);
       setCurrentChapterIndex(
         (prevIndex) => (prevIndex + 1) % bonsai.bonsaiChapters.length
       );
+      setCurrentImageIndex(0); // Reset image index when chapter changes
     }
   };
 
-  const handlePrevPhoto = () => {
+  const handlePrevChapter = () => {
     if (bonsai && !isProcessing) {
       setIsProcessing(true);
       setCurrentChapterIndex(
         (prevIndex) =>
           (prevIndex - 1 + bonsai.bonsaiChapters.length) %
           bonsai.bonsaiChapters.length
+      );
+      setCurrentImageIndex(0); // Reset image index when chapter changes
+    }
+  };
+
+  const handleNextImage = () => {
+    if (bonsai && !isProcessing) {
+      setIsProcessing(true);
+      setCurrentImageIndex(
+        (prevIndex) =>
+          (prevIndex + 1) %
+          bonsai.bonsaiChapters[currentChapterIndex].photoUrls.length
+      );
+    }
+  };
+
+  const handlePrevImage = () => {
+    if (bonsai && !isProcessing) {
+      setIsProcessing(true);
+      setCurrentImageIndex(
+        (prevIndex) =>
+          (prevIndex -
+            1 +
+            bonsai.bonsaiChapters[currentChapterIndex].photoUrls.length) %
+          bonsai.bonsaiChapters[currentChapterIndex].photoUrls.length
       );
     }
   };
@@ -58,7 +85,7 @@ export default function BonsaiPage() {
     if (bonsai) {
       setIsProcessing(false);
     }
-  }, [currentChapterIndex, bonsai]);
+  }, [currentChapterIndex, currentImageIndex, bonsai]);
 
   return (
     <div>
@@ -106,7 +133,7 @@ export default function BonsaiPage() {
               <div className={styles.chapterNav}>
                 <button
                   className={styles.chapterButton}
-                  onClick={handlePrevPhoto}
+                  onClick={handlePrevChapter}
                   disabled={isProcessing}
                 >
                   {'<'}
@@ -114,7 +141,7 @@ export default function BonsaiPage() {
                 <h2> Chapter {`${currentChapterIndex + 1}`}</h2>
                 <button
                   className={styles.chapterButton}
-                  onClick={handleNextPhoto}
+                  onClick={handleNextChapter}
                   disabled={isProcessing}
                 >
                   {'>'}
@@ -133,16 +160,39 @@ export default function BonsaiPage() {
               </div>
 
               <div className={styles.imageGallery}>
+                {bonsai.bonsaiChapters[currentChapterIndex].photoUrls.length >
+                  1 && (
+                  <button
+                    className={styles.imageButton}
+                    onClick={handlePrevImage}
+                    disabled={isProcessing}
+                  >
+                    {'<'}
+                  </button>
+                )}
+
                 <div className={styles.imageFrame}>
                   <img
                     src={
-                      bonsai.bonsaiChapters[currentChapterIndex].photoUrls[0]
+                      bonsai.bonsaiChapters[currentChapterIndex].photoUrls[
+                        currentImageIndex
+                      ]
                     }
                     alt={`Bonsai Chapter ${currentChapterIndex + 1} Photo`}
                     className={styles.chapterImage}
                     onLoad={() => setIsProcessing(false)}
                   />
                 </div>
+                {bonsai.bonsaiChapters[currentChapterIndex].photoUrls.length >
+                  1 && (
+                  <button
+                    className={styles.imageButton}
+                    onClick={handleNextImage}
+                    disabled={isProcessing}
+                  >
+                    {'>'}
+                  </button>
+                )}
               </div>
             </div>
           )}
