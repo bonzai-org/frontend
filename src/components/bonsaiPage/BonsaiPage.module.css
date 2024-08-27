@@ -33,7 +33,7 @@
   scrollbar-width: none;
   margin: 0 0 10px 0;
   border: 1px solid var(--secondary-color-site);
-  background-color: rgba(128, 128, 128, 0.2);
+  background-color: var(--subtle-background);
   border-radius: 10px;
   padding: 2px;
 }
@@ -57,8 +57,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  background-color: rgba(128, 128, 128, 0.2);
+  background-color: var(--subtle-background);
   border-radius: 10px;
 }
 
