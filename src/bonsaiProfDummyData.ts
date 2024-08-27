@@ -1,6 +1,7 @@
 const bonsaiChapterData1 = {
   photoUrls: [
-    'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg'
+    'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg',
+    'https://res.cloudinary.com/dscsiijis/image/upload/v1712589554/wildRoots/sunflower_atfd07.png'
   ],
   bonsaiId: '1',
   date: new Date(),
@@ -10,7 +11,8 @@ const bonsaiChapterData1 = {
 
 const bonsaiChapterData2 = {
   photoUrls: [
-    'https://res.cloudinary.com/dscsiijis/image/upload/v1712589554/wildRoots/sunflower_atfd07.png'
+    'https://res.cloudinary.com/dscsiijis/image/upload/v1712589554/wildRoots/sunflower_atfd07.png',
+    'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg'
   ],
   bonsaiId: '1',
   date: new Date(),
