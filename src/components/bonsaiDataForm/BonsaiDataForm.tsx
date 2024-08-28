@@ -20,6 +20,10 @@ function BonsaiDataForm({
   const [style, setStyle] = useState(bonsaiData?.style || '');
   const [species, setSpecies] = useState(bonsaiData?.species || '');
 
+  const HARDINESSZONES = ['0a', '0b', '1a', '1b', '2a', '2b', '3a', '3b', 
+    '4a', '4b', '5a', '5b', '6a', '6b', '7a', '7b', '8a', '8b', '9a', '9b',
+     '10a', '10b', '11a', '11b', '12a', '12b', '13a', '13b'];
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const bonsaiData: Bonsai = {
@@ -38,9 +42,7 @@ function BonsaiDataForm({
   };
 
 
-  const hardinessZones = ['0a', '0b', '1a', '1b', '2a', '2b', '3a', '3b', 
-    '4a', '4b', '5a', '5b', '6a', '6b', '7a', '7b', '8a', '8b', '9a', '9b',
-     '10a', '10b', '11a', '11b', '12a', '12b', '13a', '13b'];
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -55,7 +57,7 @@ function BonsaiDataForm({
           <option value="" disabled>
             Select Hardiness Zone
           </option>
-          {hardinessZones.map((zone) => (
+          {HARDINESSZONES.map((zone) => (
             <option key={zone} value={zone}>
               {zone}
             </option>
