@@ -1,37 +1,31 @@
 import React, { useState } from 'react';
 import styles from './BonsaiDataForm.module.css';
+import { Bonsai } from '../../interfaces';
 
-interface BonsaiData {
-  hardiness_zone: string;
-  height: number | '';
-  width: number | '';
-  nebari: number | '';
-  style: string;
-  species: string;
-}
-
-interface BonsaiDataFormProps {
-  onSubmit: (data: BonsaiData) => void;
-  bonsaiData?: BonsaiData;
-}
-
-const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
+function BonsaiDataForm({
   onSubmit,
   bonsaiData
-}) => {
+}: {
+  onSubmit: (data: Bonsai) => void;
+  bonsaiData: Bonsai;
+}) {
   const [hardinessZone, setHardinessZone] = useState(
-    bonsaiData?.hardiness_zone || ''
+    bonsaiData?.hardinessZone || ''
   );
-  const [height, setHeight] = useState<number | ''>(bonsaiData?.height || '');
-  const [width, setWidth] = useState<number | ''>(bonsaiData?.width || '');
-  const [nebari, setNebari] = useState<number | ''>(bonsaiData?.nebari || '');
+  const [height, setHeight] = useState(bonsaiData?.height || '');
+  const [width, setWidth] = useState(bonsaiData?.width || '');
+  const [nebari, setNebari] = useState(bonsaiData?.nebari || '');
   const [style, setStyle] = useState(bonsaiData?.style || '');
   const [species, setSpecies] = useState(bonsaiData?.species || '');
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const bonsaiData: BonsaiData = {
-      hardiness_zone: hardinessZone,
+    const bonsaiData: Bonsai = {
+      id: '',
+      user: '',
+      geoLocation: '',
+      bonsaiChapters: [],
+      hardinessZone: hardinessZone,
       height: height,
       species: species,
       width: width !== '' ? width : '',
@@ -72,7 +66,7 @@ const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
           type="number"
           value={height}
           onChange={(e) =>
-            setHeight(e.target.value ? parseFloat(e.target.value) : '')
+            setHeight(e.target.value )
           }
           required
         />
@@ -83,7 +77,7 @@ const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
           type="number"
           value={width}
           onChange={(e) =>
-            setWidth(e.target.value ? parseFloat(e.target.value) : '')
+            setWidth(e.target.value )
           }
         />
       </div>
@@ -93,7 +87,7 @@ const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
           type="number"
           value={nebari}
           onChange={(e) =>
-            setNebari(e.target.value ? parseFloat(e.target.value) : '')
+            setNebari(e.target.value )
           }
         />
       </div>
@@ -119,6 +113,6 @@ const BonsaiDataForm: React.FC<BonsaiDataFormProps> = ({
       </button>
     </form>
   );
-};
+}
 
 export default BonsaiDataForm;
