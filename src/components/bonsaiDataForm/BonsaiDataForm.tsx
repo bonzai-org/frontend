@@ -1,6 +1,7 @@
 import React, { useState} from 'react';
 import styles from './BonsaiDataForm.module.css';
 import { Bonsai, User } from '../../interfaces';
+import { HARDINESSZONES, BONSAISTYLES } from '../../BonsaiCategoryConstants';
 
 function BonsaiDataForm({
   onSubmit,
@@ -19,10 +20,6 @@ function BonsaiDataForm({
   const [nebari, setNebari] = useState(bonsaiData?.nebari || '');
   const [style, setStyle] = useState(bonsaiData?.style || '');
   const [species, setSpecies] = useState(bonsaiData?.species || '');
-
-  const HARDINESSZONES = ['0a', '0b', '1a', '1b', '2a', '2b', '3a', '3b', 
-    '4a', '4b', '5a', '5b', '6a', '6b', '7a', '7b', '8a', '8b', '9a', '9b',
-     '10a', '10b', '11a', '11b', '12a', '12b', '13a', '13b'];
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -95,14 +92,20 @@ function BonsaiDataForm({
           }
         />
       </div>
-      <div>
-        <label>Style:</label>
-        <input
-          type="text"
+      <select
           value={style}
           onChange={(e) => setStyle(e.target.value)}
-        />
-      </div>
+          required
+        >
+          <option value="" disabled>
+            Select Style
+          </option>
+          {BONSAISTYLES.map((style) => (
+            <option key={style} value={style}>
+              {style}
+            </option>
+          ))}
+        </select>
       <div>
         <label>Species:</label>
         <input
