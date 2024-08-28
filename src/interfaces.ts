@@ -17,3 +17,11 @@ export interface Bonsai {
   hardinessZone: string;
   bonsaiChapters: BonsaiChapter[];
 }
+
+// upload
+
+export interface BonsaiChapterFile {
+  photos: (File | null)[];
+  caption: string;
+  date: Date;
+}

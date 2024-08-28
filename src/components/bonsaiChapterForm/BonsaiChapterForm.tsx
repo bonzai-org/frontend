@@ -2,12 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './BonsaiChapterForm.module.css';
-
-interface BonsaiChapterFile {
-  photos: (File | null)[];
-  caption: string;
-  date: Date;
-}
+import { BonsaiChapterFile } from '../../interfaces';
 
 function BonsaiChapterForm({
   onSubmit,
