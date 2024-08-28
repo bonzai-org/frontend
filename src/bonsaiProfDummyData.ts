@@ -32,16 +32,4 @@ const bonsaiData = {
   species: 'Western Hemlock'
 };
 
-const bonsaiCardData = {
-  id: '1',
-  photoUrl: bonsaiChapterData1.photoUrls[0],
-  species: bonsaiData.species,
-  user: bonsaiData.user,
-  location:
-    bonsaiData.geoLocation !== ''
-      ? bonsaiData.geoLocation
-      : bonsaiData.hardinessZone,
-  style: bonsaiData.style
-};
-
-export { bonsaiData, bonsaiChapterData1, bonsaiChapterData2, bonsaiCardData };
+export { bonsaiData, bonsaiChapterData1, bonsaiChapterData2 };
