@@ -45,11 +45,12 @@ function BonsaiDataForm({
     <form onSubmit={handleSubmit}>
       <h2>Add Bonsai Data</h2>
       <div>
-        <label className={styles.hardinessLabel}>Hardiness Zone:</label>
+        <label className={styles.hardinessLabel} htmlFor='hardiness'>Hardiness Zone:</label>
         <select
           value={hardinessZone}
           onChange={(e) => setHardinessZone(e.target.value)}
           required
+          id='hardiness'
         >
           <option value="" disabled>
             Select Hardiness Zone
@@ -92,10 +93,13 @@ function BonsaiDataForm({
           }
         />
       </div>
+      <div>
+      <label htmlFor="style">Bonsai Style: </label>
       <select
           value={style}
           onChange={(e) => setStyle(e.target.value)}
           required
+          id='style'
         >
           <option value="" disabled>
             Select Style
@@ -106,6 +110,8 @@ function BonsaiDataForm({
             </option>
           ))}
         </select>
+      </div>
+
       <div>
         <label>Species:</label>
         <input
