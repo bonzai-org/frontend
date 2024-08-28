@@ -9,7 +9,7 @@
 
 .cardContainer:hover {
   cursor: pointer;
-  background-color: var(--primary-color-site);
+  background-color: whitesmoke;
 }
 
 .bonsaiInfoContainer {
