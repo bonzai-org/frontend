@@ -25,3 +25,14 @@ export interface BonsaiChapterFile {
   caption: string;
   date: Date;
 }
+
+export interface BonsaiSubmitFormProps {
+  bonsaiData: Bonsai;
+  bonsaiChapterArr: BonsaiChapterFile[];
+  onAddNewChapter: () => void;
+  onEditData: () => void;
+  onEditChapter: (index: number) => void;
+  onDiscardBonsai: () => void;
+  onSubmitBonsai: () => void;
+  onDeleteChapter: (index: number) => void;
+}
