@@ -7,7 +7,7 @@ function BonsaiDataForm({
   bonsaiData
 }: {
   onSubmit: (data: Bonsai) => void;
-  bonsaiData: Bonsai;
+  bonsaiData?: Bonsai;
 }) {
   const [hardinessZone, setHardinessZone] = useState(
     bonsaiData?.hardinessZone || ''
