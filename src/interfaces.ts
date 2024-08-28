@@ -18,6 +18,13 @@ export interface Bonsai {
   bonsaiChapters: BonsaiChapter[];
 }
 
+export interface User {
+  avatar: string;
+  username: string;
+  fullname: string;
+}
+
+
 // upload
 
 export interface BonsaiChapterFile {
