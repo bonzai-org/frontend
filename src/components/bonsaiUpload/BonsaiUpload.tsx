@@ -4,6 +4,7 @@ import BonsaiChapterForm from '../bonsaiChapterForm/BonsaiChapterForm';
 import BonsaiSubmitForm from '../bonsaiSubmitForm/BonsaiSubmitForm';
 import styles from './BonsaiUpload.module.css';
 import { Bonsai, BonsaiChapterFile } from '../../interfaces';
+import {userData} from '../../bonsaiProfDummyData';
 
 function BonsaiUpload() {
   const [bonsaiData, setBonsaiData] = useState<Bonsai | null>(null);
@@ -65,9 +66,9 @@ function BonsaiUpload() {
     <div className={styles.container}>
       {currentForm === 'data' &&
         (bonsaiData !== null ? (
-          <BonsaiDataForm onSubmit={handleDataSubmit} bonsaiData={bonsaiData} />
+          <BonsaiDataForm onSubmit={handleDataSubmit} bonsaiData={bonsaiData} userData={bonsaiData.user}/>
         ) : (
-          <BonsaiDataForm onSubmit={handleDataSubmit} />
+          <BonsaiDataForm onSubmit={handleDataSubmit} userData={userData}/>
         ))}
       {currentForm === 'chapter' &&
         (bonsaiChapterIndex !== null ? (

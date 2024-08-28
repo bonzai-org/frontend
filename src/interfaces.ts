@@ -5,9 +5,16 @@ export interface BonsaiChapter {
   bonsaiId: string;
 }
 
+export interface User {
+  avatar: string;
+  username: string;
+  fullname: string;
+}
+
+
 export interface Bonsai {
   id: string;
-  user: string;
+  user: User;
   species: string;
   geoLocation: string;
   style: string;
@@ -18,11 +25,6 @@ export interface Bonsai {
   bonsaiChapters: BonsaiChapter[];
 }
 
-export interface User {
-  avatar: string;
-  username: string;
-  fullname: string;
-}
 
 
 // upload

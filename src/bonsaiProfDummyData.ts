@@ -19,9 +19,17 @@ const bonsaiChapterData2 = {
   caption: 'Woah it became a sunflower'
 };
 
+const userData = {
+  avatar:
+    'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg',
+  username: 'JNakster',
+  fullname: 'John Naka'
+};
+
+
 const bonsaiData = {
   id: '1',
-  user: 'Pablo',
+  user: userData,
   bonsaiChapters: [bonsaiChapterData1, bonsaiChapterData2],
   geoLocation: 'San Francisco, CA',
   hardinessZone: '9A',
@@ -32,4 +40,6 @@ const bonsaiData = {
   species: 'Western Hemlock'
 };
 
-export { bonsaiData, bonsaiChapterData1, bonsaiChapterData2 };
+
+
+export { bonsaiData, bonsaiChapterData1, bonsaiChapterData2, userData };

@@ -1,8 +1,5 @@
 import styles from './UserIcon.module.css';
-
-interface User {
-  username: string;
-}
+import { User } from '../../interfaces';
 
 function UserIcon({ user }: { user: User }) {
   return (
@@ -10,7 +7,7 @@ function UserIcon({ user }: { user: User }) {
       <button className={styles.userIconContainer}>
         <img
           src={
-            'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg'
+            user.avatar 
           }
           className={styles.userIcon}
           alt="user avatar"
