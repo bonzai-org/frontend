@@ -1,5 +1,6 @@
 :root {
-  --primary-color-site: seagreen;
+  --primary-color-site: rgba(32, 137, 32, 0.8);
   --secondary-color-site: rgb(38, 137, 176);
   --font-family: 'Arial, sans-serif';
+  --subtle-background: rgb(230, 230, 230);
 }

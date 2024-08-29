@@ -1,31 +1,6 @@
 import React from 'react';
 import styles from '../bonsaiSubmitForm/BonsaSubmitForm.module.css';
-
-interface BonsaiData {
-  hardiness_zone: string;
-  height: number | '';
-  width: number | '';
-  nebari: number | '';
-  style: string;
-  species: string;
-}
-
-interface BonsaiChapter {
-  photos: (File | null)[];
-  caption: string;
-  date: Date;
-}
-
-interface BonsaiSubmitFormProps {
-  bonsaiData: BonsaiData;
-  bonsaiChapterArr: BonsaiChapter[];
-  onAddNewChapter: () => void;
-  onEditData: () => void;
-  onEditChapter: (index: number) => void;
-  onDiscardBonsai: () => void;
-  onSubmitBonsai: () => void;
-  onDeleteChapter: (index: number) => void;
-}
+import { BonsaiSubmitFormProps} from '../../interfaces';
 
 const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
   bonsaiData,
@@ -41,7 +16,7 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
     <div className={styles.container}>
       <h2>Bonsai Data</h2>
       <div>
-        <strong>Hardiness Zone:</strong> {bonsaiData.hardiness_zone}
+        <strong>Hardiness Zone:</strong> {bonsaiData.hardinessZone}
       </div>
       <div>
         <strong>Height:</strong> {bonsaiData.height}

@@ -1,24 +1,17 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './BonsaiChapterForm.module.css';
+import { BonsaiChapterFile } from '../../interfaces';
 
-interface BonsaiChapter {
-  photos: (File | null)[];
-  caption: string;
-  date: Date;
-}
-
-interface BonsaiChapterFormProps {
-  onSubmit: (chapter: BonsaiChapter) => void;
-  chapter?: BonsaiChapter;
-}
-
-const BonsaiChapterForm: React.FC<BonsaiChapterFormProps> = ({
+function BonsaiChapterForm({
   onSubmit,
   chapter
-}) => {
-  const [bonsaiChapter, setBonsaiChapter] = useState<BonsaiChapter>(
+}: {
+  onSubmit: (chapter: BonsaiChapterFile) => void;
+  chapter?: BonsaiChapterFile;
+}) {
+  const [bonsaiChapter, setBonsaiChapter] = useState<BonsaiChapterFile>(
     chapter || { photos: [], caption: '', date: new Date() }
   );
 
@@ -166,6 +159,6 @@ const BonsaiChapterForm: React.FC<BonsaiChapterFormProps> = ({
       </form>
     </DndProvider>
   );
-};
+}
 
 export default BonsaiChapterForm;

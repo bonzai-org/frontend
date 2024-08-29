@@ -1,18 +1,11 @@
 import styles from './Menu.module.css';
 import { useNavigate } from 'react-router-dom';
+import {User} from '../../interfaces';
 
-interface User {
-  avatar: string;
-  username: string;
-  fullname: string;
-}
-
-interface MenuProps {
+export default function Menu({ user, menuToggle }: {
   user: User;
   menuToggle: () => void;
-}
-
-export default function Menu({ user, menuToggle }: MenuProps) {
+}) {
   const navigate = useNavigate();
 
   const handleLinkClick = (path: string) => {
@@ -32,7 +25,7 @@ export default function Menu({ user, menuToggle }: MenuProps) {
           X
         </button>
       </div>
-      <hr />
+      <hr className={styles.divider} />
       <div
         onClick={() => handleLinkClick('/upload')}
         className={styles.menuItem}

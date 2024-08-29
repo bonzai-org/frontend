@@ -3,10 +3,13 @@
   flex-direction: column;
   max-height: 800px;
   height: fit-content;
+  border-radius: 10px;
+  padding: 10px;
 }
 
-hr {
-  width: 100%;
+.cardContainer:hover {
+  cursor: pointer;
+  background-color: whitesmoke;
 }
 
 .bonsaiInfoContainer {
@@ -35,12 +38,14 @@ hr {
 .imageFrame {
   display: flex;
   justify-content: center;
-  max-height: 480px;
-  height: fit-content;
-  max-width: 900px;
-  width: 100%;
+  align-items: center;
+  height: 480px;
+  width: 900px;
+  background-color: var(--subtle-background);
+  padding: 10px 0;
   border-radius: 10px;
-  background-color: rgba(128, 128, 128, 0.3);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .image {
@@ -49,4 +54,55 @@ hr {
   width: auto;
   height: auto;
   object-fit: contain;
+}
+
+.image:hover {
+  cursor: default;
+}
+
+.chapterButton {
+  font-size: 20px;
+  margin: 8px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: none;
+  padding: 10px 20px;
+  width: min-content;
+  height: min-content;
+}
+
+.chapterButton:hover {
+  cursor: pointer;
+  background-color: var(--primary-color-site);
+}
+
+.chapterInfo {
+  display: flex;
+  align-items: center;
+  height: min-content;
+  width: 900px;
+  background-color: var(--subtle-background);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-bottom: 5px;
+}
+
+.chapterDate {
+  width: 100px;
+  padding-left: 10px;
+  font-size: small;
+}
+
+.chapterCaption,
+.chapterDate {
+  font-style: italic;
+  margin: 4px 0;
+  color: grey;
+}
+
+.captionContainer {
+  width: calc(100% - 200px);
+  display: flex;
+  justify-content: center;
+  margin-right: 100px;
 }

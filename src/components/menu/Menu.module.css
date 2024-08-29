@@ -22,7 +22,7 @@
   object-fit: cover;
   background-color: transparent;
   border-radius: 50%;
-  border: 2px solid black;
+  border: 2px solid var(--primary-color-site);
 }
 
 .userInfo {
@@ -43,8 +43,8 @@
 }
 
 .exitButton {
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   background-color: transparent;
   border: none;
   border-radius: 5px;
@@ -53,11 +53,11 @@
 
 .exitButton:hover {
   cursor: pointer;
-  background-color: var(--primary-color-site);
+  background-color: rgb(255, 66, 66);
 }
 
-hr {
-  background-color: black;
+.divider {
+  background-color: var(--primary-color-site);
   height: 1px;
   width: 100%;
   border: none;
@@ -66,6 +66,7 @@ hr {
 .menuItem {
   text-decoration: underline;
   width: 100%;
+  padding: 3px;
 }
 
 .menuItem:hover {
