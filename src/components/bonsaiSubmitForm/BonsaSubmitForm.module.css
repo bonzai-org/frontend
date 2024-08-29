@@ -15,6 +15,10 @@
   background-color: var(--primary-color-site);
 }
 
+.chapWrap {
+  display: flex;
+}
+
 .chapterContainer {
   display: flex;
   flex-direction: column;
@@ -45,4 +49,14 @@
   width: 60px;
   margin: 5px;
   padding: 0;
+}
+
+.captionContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.captionContainer > strong {
+  margin-right: 5px;
 }

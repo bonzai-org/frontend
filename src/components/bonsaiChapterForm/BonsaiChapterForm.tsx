@@ -15,6 +15,8 @@ function BonsaiChapterForm({
     chapter || { photos: [], caption: '', date: new Date() }
   );
 
+  const [formError, setFormError] = useState<string | null>(null);
+
   useEffect(() => {
     if (chapter) {
       setBonsaiChapter(chapter);
@@ -56,6 +58,19 @@ function BonsaiChapterForm({
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+
+    // Validation checks
+    if (bonsaiChapter.photos.length === 0) {
+      setFormError('At least one photo is required.');
+      return;
+    }
+
+    if (!bonsaiChapter.caption.trim()) {
+      setFormError('Caption is required.');
+      return;
+    }
+
+    setFormError(null);
     onSubmit(bonsaiChapter);
     // Reset the form
     setBonsaiChapter({ photos: [], caption: '', date: new Date() });
@@ -134,6 +149,7 @@ function BonsaiChapterForm({
             id="caption"
             value={bonsaiChapter.caption}
             onChange={handleCaptionChange}
+            required
           />
         </div>
         <div>
@@ -143,8 +159,10 @@ function BonsaiChapterForm({
             id="date"
             value={bonsaiChapter.date.toISOString().split('T')[0]}
             onChange={handleDateChange}
+            required
           />
         </div>
+        {formError && <p className={styles.error}>{formError}</p>}
         <button type="submit" className={styles.btn}>
           {chapter ? 'Save Changes' : 'Submit Chapter'}
         </button>

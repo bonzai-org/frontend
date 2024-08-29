@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../bonsaiSubmitForm/BonsaSubmitForm.module.css';
-import { BonsaiSubmitFormProps} from '../../interfaces';
+import { BonsaiSubmitFormProps } from '../../interfaces';
 
 const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
   bonsaiData,
@@ -39,14 +39,16 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
       <hr />
       <h2>Bonsai Chapters</h2>
       {bonsaiChapterArr.map((chapter, index) => (
-        <>
+        <div className={styles.chapWrap}>
+        <div key={index} className={styles.chapterContainer}>
           {chapter.photos[0] && (
-            <div key={index} className={styles.chapterContainer}>
+            <div className={styles.previewContainer}>
               <img
                 className={styles.chapterImg}
                 src={URL.createObjectURL(chapter.photos[0]!)}
                 alt={`Chapter ${index + 1}`}
               />
+           
               <div className={styles.chapBtnContainer}>
                 <button
                   className={styles.btn}
@@ -60,10 +62,16 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
                 >
                   Delete
                 </button>
+
+                
               </div>
             </div>
           )}
-        </>
+        </div>
+        <div className={styles.captionContainer}>
+          <strong>Caption: </strong> {bonsaiChapterArr[index].caption}
+        </div>
+        </div>
       ))}
       <button className={styles.btn} onClick={onAddNewChapter}>
         Add New Chapter
