@@ -20,10 +20,13 @@ const bonsaiChapterData2 = {
 };
 
 const userData = {
-  avatar:
+  id: '1',
+  profilePhoto:
     'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg',
-  username: 'JNakster',
-  fullname: 'John Naka'
+  username: 'JNaka',
+  bio: 'GoAt',
+  email: 'johnnaka@bmail.com'
+  
 };
 
 
