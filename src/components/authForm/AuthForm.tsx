@@ -7,63 +7,56 @@ function AuthForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const toggleForm = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setIsLoginForm(!isLoginForm);
   };
 
-  if (isLoginForm) {
-    return (
-      <div className={styles.container}>
-        <h1 className={styles.title}>Log In</h1>
-        <form onSubmit={() => alert("ok cowboy, you're in")}>
-          <div className={styles.formGroup}>
-            <label>
-              Email
-              <input
-                name="email"
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-              />
-            </label>
-          </div>
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
-          <div className={styles.formGroup}>
-            <label>
-              Password
-              <input
-                name="password"
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-              />
-            </label>
-          </div>
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const emailValue = e.target.value;
+    setEmail(emailValue);
+    if (!validateEmail(emailValue)) {
+      setEmailError('Invalid email format');
+    } else {
+      setEmailError('');
+    }
+  };
 
-          <button className={styles.btn} type="submit">
-            Submit
-          </button>
-          <hr />
-          <button
-            className={`${styles.btn} ${styles.toggle}`}
-            onClick={toggleForm}
-          >
-            Wait, I don't have an account!
-          </button>
-        </form>
-      </div>
-    );
-  } else {
-    return (
-      <div className={styles.container}>
-        <h1 className={styles.title}>Sign Up</h1>
-        <form
-          onSubmit={() =>
-            alert('I have no memory, I will not recognize you next time :)')
-          }
-        >
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const handlePasswordConfirmChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordConfirm(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateEmail(email)) {
+      setEmailError('Invalid email format');
+      return;
+    }
+    if (!isLoginForm && password !== passwordConfirm) {
+      setPasswordError('Passwords do not match');
+      return;
+    }
+    setPasswordError('');
+    alert(isLoginForm ? "ok cowboy, you're in" : 'I have no memory, I will not recognize you next time :)');
+  };
+
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>{isLoginForm ? 'Log In' : 'Sign Up'}</h1>
+      <form onSubmit={handleSubmit}>
+        {!isLoginForm && (
           <div className={styles.formGroup}>
             <label>
               Username:
@@ -75,53 +68,57 @@ function AuthForm() {
               />
             </label>
           </div>
-          <div className={styles.formGroup}>
-            <label>
-              Email:
-              <input
-                name="email"
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-              />
-            </label>
-          </div>
-          <div className={styles.formGroup}>
-            <label>
-              Password:
-              <input
-                name="password"
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-              />
-            </label>
-          </div>
+        )}
+        <div className={styles.formGroup}>
+          <label>
+            Email:
+            <input
+              name="email"
+              type="email"
+              onChange={handleEmailChange}
+              value={email}
+            />
+          </label>
+          {emailError && <p className={styles.error}>{emailError}</p>}
+        </div>
+        <div className={styles.formGroup}>
+          <label>
+            Password:
+            <input
+              name="password"
+              type="password"
+              onChange={handlePasswordChange}
+              value={password}
+            />
+          </label>
+        </div>
+        {!isLoginForm && (
           <div className={styles.formGroup}>
             <label>
               Confirm Password:
               <input
                 name="confirmPassword"
                 type="password"
-                onChange={(e) => setPasswordConfirm(e.target.value)}
+                onChange={handlePasswordConfirmChange}
                 value={passwordConfirm}
               />
             </label>
+            {passwordError && <p className={styles.error}>{passwordError}</p>}
           </div>
-
-          <button className={`${styles.btn} ${styles.submit}`} type="submit">
-            Submit
-          </button>
-          <button
-            className={`${styles.btn} ${styles.toggle}`}
-            onClick={toggleForm}
-          >
-            Wait, I already have an account!
-          </button>
-        </form>
-      </div>
-    );
-  }
+        )}
+        <button className={styles.btn} type="submit">
+          Submit
+        </button>
+        <hr />
+        <button
+          className={`${styles.btn} ${styles.toggle}`}
+          onClick={toggleForm}
+        >
+          {isLoginForm ? "Wait, I don't have an account!" : 'Wait, I already have an account!'}
+        </button>
+      </form>
+    </div>
+  );
 }
 
 export default AuthForm;
