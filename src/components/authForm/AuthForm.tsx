@@ -23,11 +23,6 @@ function AuthForm() {
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const emailValue = e.target.value;
     setEmail(emailValue);
-    if (!validateEmail(emailValue)) {
-      setEmailError('Invalid email format');
-    } else {
-      setEmailError('');
-    }
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
