@@ -26,8 +26,24 @@ form > * {
   background-color: var(--primary-color-site);
 }
 
-.toggle {
+.toggle, .submit {
   background-color: pink;
+}
+
+.toggle {
+  border-color: var(--secondary-color-site);
+}
+
+/* Potentially whack button hover flair */
+.toggle:hover {
+  color: pink;
+  border-color: pink;
+  background-color: var(--secondary-color-site);
+}
+
+.submit:hover{
+  color: pink;
+  border-color: pink;
 }
 
 .btn,
@@ -45,7 +61,7 @@ input {
   padding: 12px 10px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid var(--primary-color-site);
+  border: 1px solid var(--secondary-color-site);
   border-radius: 4px;
   box-sizing: border-box;
   border-radius: 20px;

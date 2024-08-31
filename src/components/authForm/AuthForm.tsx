@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import styles from './AuthForm.module.css';
 
 function AuthForm() {
   const [isLoginForm, setIsLoginForm] = useState(true);
+  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -18,20 +19,18 @@ function AuthForm() {
         <h1 className={styles.title}>Log In</h1>
         <form onSubmit={() => alert("ok cowboy, you're in")}>
           <div className={styles.formGroup}>
-            {' '}
             <label>
-              Username
+              Email
               <input
-                name="username"
-                type="text"
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
+                name="email"
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
               />
             </label>
           </div>
 
           <div className={styles.formGroup}>
-            {' '}
             <label>
               Password
               <input
@@ -78,6 +77,17 @@ function AuthForm() {
           </div>
           <div className={styles.formGroup}>
             <label>
+              Email:
+              <input
+                name="email"
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+            </label>
+          </div>
+          <div className={styles.formGroup}>
+            <label>
               Password:
               <input
                 name="password"
@@ -99,7 +109,7 @@ function AuthForm() {
             </label>
           </div>
 
-          <button className={`${styles.btn}`} type="submit">
+          <button className={`${styles.btn} ${styles.submit}`} type="submit">
             Submit
           </button>
           <button
