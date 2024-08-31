@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './AuthForm.module.css';
 
 function AuthForm() {
@@ -51,6 +51,15 @@ function AuthForm() {
     setPasswordError('');
     alert(isLoginForm ? "ok cowboy, you're in" : 'I have no memory, I will not recognize you next time :)');
   };
+
+  useEffect(() => {
+    if (!isLoginForm && username) {
+      // Simulate an API call to check if the username is available
+      console.log(`Checking availability for username: ${username}`);
+      // Here you would typically make an API call to check username availability
+      // For now, we just log the username
+    }
+  }, [username, isLoginForm]);
 
   return (
     <div className={styles.container}>
