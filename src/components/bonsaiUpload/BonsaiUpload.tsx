@@ -18,7 +18,13 @@ function BonsaiUpload() {
 
   const handleDataSubmit = (data: Bonsai) => {
     setBonsaiData(data);
-    setCurrentForm('chapter');
+    console.log(bonsaiChapterArr)
+    if (bonsaiChapterArr.length > 0){
+      setCurrentForm('submit')
+    }
+    else {
+      setCurrentForm('chapter');
+    }
     console.log('bonsai data: ', bonsaiData);
   };
 
