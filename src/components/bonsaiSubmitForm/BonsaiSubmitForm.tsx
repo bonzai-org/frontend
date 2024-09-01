@@ -39,8 +39,8 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
       <hr />
       <h2>Bonsai Chapters</h2>
       {bonsaiChapterArr.map((chapter, index) => (
-        <div className={styles.chapWrap}>
-        <div key={index} className={styles.chapterContainer}>
+        <div className={styles.chapWrap} key={index}>
+        <div  className={styles.chapterContainer}>
           {chapter.photos[0] && (
             <div className={styles.previewContainer}>
               <img
