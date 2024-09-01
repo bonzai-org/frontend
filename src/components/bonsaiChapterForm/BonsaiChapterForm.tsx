@@ -187,7 +187,7 @@ function BonsaiChapterForm({
         >
           Add New Chapter
         </button>
-        {canSkip && (<button className={styles.btn} onClick={goBack}>Back To Submit</button>)}
+        {canSkip && (<button className={styles.btn} onClick={goBack}>Go to Review and Submit</button>)}
         
         <div>
           {bonsaiChapter.photos.length > 0 && (
