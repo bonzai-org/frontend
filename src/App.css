@@ -5,3 +5,15 @@
   flex-direction: column;
   align-items: center;
 }
+
+input {
+  width: 100%;
+  padding: 12px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid var(--secondary-color-site);
+  border-radius: 4px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  font-size: 18px;
+}
