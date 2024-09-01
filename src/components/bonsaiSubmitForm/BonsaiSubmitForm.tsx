@@ -61,19 +61,22 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
           <div className={styles.chapterContainer}>
             {chapter.photos.length > 0 && (
               <div className={styles.previewContainer}>
-                <img
-                  className={styles.chapterImg}
-                  src={URL.createObjectURL(chapter.photos[currentPhotoIndex[index]]!)}
-                  alt={`Chapter ${index + 1}`}
-                />
-                <div className={styles.photoNav}>
-                  <button
+                <div className={styles.imagePreview}>
+                <button
                     className={styles.navBtn}
                     onClick={() => handlePrevPhoto(index)}
                     disabled={chapter.photos.length <= 1}
                   >
                     {'<'}
                   </button>
+                  <div className={styles.chapterImgFrame}>
+                  <img
+                  className={styles.chapterImg}
+                  src={URL.createObjectURL(chapter.photos[currentPhotoIndex[index]]!)}
+                  alt={`Chapter ${index + 1}`}
+                />
+                  </div>
+             
                   <button
                     className={styles.navBtn}
                     onClick={() => handleNextPhoto(index)}
@@ -82,6 +85,8 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
                     {'>'}
                   </button>
                 </div>
+                
+         
                 <div className={styles.chapBtnContainer}>
                   <button
                     className={styles.btn}

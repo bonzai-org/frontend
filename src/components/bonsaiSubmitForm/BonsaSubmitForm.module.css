@@ -23,7 +23,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: min-content;
+  width: 50%;
+  height: 300px;
   justify-content: center;
   border: 1px solid var(--primary-color-site);
   border-radius: 10px;
@@ -32,10 +33,45 @@
   margin-bottom: 5px;
 }
 
+.previewContainer, .imagePreview {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagePreview {
+  max-height: 90%;
+}
+
+.previewContainer {
+  flex-direction: column;
+}
+
+.navBtn{
+  font-size: 20px;
+  margin: 8px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: none;
+  width: min-content;
+  height: min-content;
+}
+
+.chapterImgFrame {
+  width: 90%;
+  height: calc(100% - 40px);
+  display: flex;
+  justify-content: center;
+}
+
 .chapterImg {
-  max-width: 200px;
-  max-height: 200px;
+  overflow: hidden;
+  max-width: 100%;
+  max-height: 100%;
   border-radius: 10px;
+  object-fit: contain;
 }
 
 .chapBtnContainer {
@@ -52,6 +88,7 @@
 }
 
 .captionContainer {
+  width: 40%;
   display: flex;
   align-items: center;
   margin-left: 10px;
