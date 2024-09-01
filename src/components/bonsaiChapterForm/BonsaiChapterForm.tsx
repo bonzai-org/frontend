@@ -42,7 +42,7 @@ function BonsaiChapterForm({
     }
   };
 
-  const handleCaptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCaptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBonsaiChapter((prevChapter) => ({
       ...prevChapter,
       caption: event.target.value
@@ -150,10 +150,10 @@ function BonsaiChapterForm({
             ref={fileInputRef}
           />
         </div>
-        <div>
+        <div className={styles.captionContainer}>
           <label htmlFor="caption">Caption:</label>
-          <input
-            type="text"
+          <textarea
+          className={styles.caption}
             id="caption"
             value={bonsaiChapter.caption}
             onChange={handleCaptionChange}
