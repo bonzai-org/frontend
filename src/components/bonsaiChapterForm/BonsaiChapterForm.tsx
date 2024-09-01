@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './BonsaiChapterForm.module.css';
@@ -6,9 +6,13 @@ import { BonsaiChapterFile } from '../../interfaces';
 
 function BonsaiChapterForm({
   onSubmit,
+  canSkip,
+  goBack,
   chapter
 }: {
-  onSubmit: (chapter: BonsaiChapterFile) => void;
+  onSubmit: (chapter: BonsaiChapterFile, destinationForm: 'chapter' | 'submit') => void;
+  canSkip: boolean;
+  goBack?: () => void;
   chapter?: BonsaiChapterFile;
 }) {
   const [bonsaiChapter, setBonsaiChapter] = useState<BonsaiChapterFile>(
@@ -16,10 +20,13 @@ function BonsaiChapterForm({
   );
 
   const [formError, setFormError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (chapter) {
       setBonsaiChapter(chapter);
+    } else {
+      setBonsaiChapter({ photos: [], caption: '', date: new Date() });
     }
   }, [chapter]);
 
@@ -71,7 +78,7 @@ function BonsaiChapterForm({
     }
 
     setFormError(null);
-    onSubmit(bonsaiChapter);
+    onSubmit(bonsaiChapter, 'submit');
     // Reset the form
     setBonsaiChapter({ photos: [], caption: '', date: new Date() });
   };
@@ -140,6 +147,7 @@ function BonsaiChapterForm({
             id="photo"
             accept="image/*"
             onChange={handlePhotoChange}
+            ref={fileInputRef}
           />
         </div>
         <div>
@@ -166,6 +174,21 @@ function BonsaiChapterForm({
         <button type="submit" className={styles.btn}>
           {chapter ? 'Save Changes' : 'Submit Chapter'}
         </button>
+        <button
+          className={styles.btn}
+          onClick={(e) => {
+            e.preventDefault();
+            onSubmit(bonsaiChapter, 'chapter');
+            setBonsaiChapter({ photos: [], caption: '', date: new Date() });
+            if (fileInputRef.current) {
+              fileInputRef.current.value = '';
+            }
+          }}
+        >
+          Add New Chapter
+        </button>
+        {canSkip && (<button className={styles.btn} onClick={goBack}>Back To Submit</button>)}
+        
         <div>
           {bonsaiChapter.photos.length > 0 && (
             <div>

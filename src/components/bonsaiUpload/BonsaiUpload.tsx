@@ -4,7 +4,7 @@ import BonsaiChapterForm from '../bonsaiChapterForm/BonsaiChapterForm';
 import BonsaiSubmitForm from '../bonsaiSubmitForm/BonsaiSubmitForm';
 import styles from './BonsaiUpload.module.css';
 import { Bonsai, BonsaiChapterFile } from '../../interfaces';
-import {userData} from '../../bonsaiProfDummyData';
+import { userData } from '../../bonsaiProfDummyData';
 
 function BonsaiUpload() {
   const [bonsaiData, setBonsaiData] = useState<Bonsai | null>(null);
@@ -18,17 +18,16 @@ function BonsaiUpload() {
 
   const handleDataSubmit = (data: Bonsai) => {
     setBonsaiData(data);
-    console.log(bonsaiChapterArr)
-    if (bonsaiChapterArr.length > 0){
-      setCurrentForm('submit')
-    }
-    else {
+    console.log(bonsaiChapterArr);
+    if (bonsaiChapterArr.length > 0) {
+      setCurrentForm('submit');
+    } else {
       setCurrentForm('chapter');
     }
     console.log('bonsai data: ', bonsaiData);
   };
 
-  const handleChapterSubmit = (chapter: BonsaiChapterFile) => {
+  const handleChapterSubmit = (chapter: BonsaiChapterFile, destinationForm: 'chapter' | 'submit') => {
     if (bonsaiChapterIndex !== null) {
       const newChapterArr = [...bonsaiChapterArr];
       newChapterArr[bonsaiChapterIndex] = chapter;
@@ -37,11 +36,7 @@ function BonsaiUpload() {
     } else {
       setBonsaiChapterArr([...bonsaiChapterArr, chapter]);
     }
-    setCurrentForm('submit');
-  };
-
-  const handleAddNewChapter = () => {
-    setCurrentForm('chapter');
+    setCurrentForm(destinationForm);
   };
 
   const handleEditData = () => {
@@ -72,24 +67,27 @@ function BonsaiUpload() {
     <div className={styles.container}>
       {currentForm === 'data' &&
         (bonsaiData !== null ? (
-          <BonsaiDataForm onSubmit={handleDataSubmit} bonsaiData={bonsaiData} userData={bonsaiData.user}/>
+          <BonsaiDataForm onSubmit={handleDataSubmit} bonsaiData={bonsaiData} userData={bonsaiData.user} />
         ) : (
-          <BonsaiDataForm onSubmit={handleDataSubmit} userData={userData}/>
+          <BonsaiDataForm onSubmit={handleDataSubmit} userData={userData} />
         ))}
       {currentForm === 'chapter' &&
         (bonsaiChapterIndex !== null ? (
           <BonsaiChapterForm
             onSubmit={handleChapterSubmit}
             chapter={bonsaiChapterArr[bonsaiChapterIndex]}
+            canSkip = {bonsaiChapterArr.length > 0}
+            goBack={() => setCurrentForm('submit')}
           />
         ) : (
-          <BonsaiChapterForm onSubmit={handleChapterSubmit} />
+          <BonsaiChapterForm onSubmit={handleChapterSubmit} canSkip = {bonsaiChapterArr.length > 0}
+          goBack={() => setCurrentForm('submit')}/>
         ))}
       {currentForm === 'submit' && bonsaiData && (
         <BonsaiSubmitForm
           bonsaiData={bonsaiData}
           bonsaiChapterArr={bonsaiChapterArr}
-          onAddNewChapter={handleAddNewChapter}
+          onAddNewChapter={() => setCurrentForm('chapter')}
           onEditData={handleEditData}
           onEditChapter={handleEditChapter}
           onDiscardBonsai={handleDiscardBonsai}
