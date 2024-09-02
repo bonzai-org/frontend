@@ -26,17 +26,23 @@ function AuthForm() {
     setEmail(emailValue);
   };
 
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  };
+
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handlePasswordConfirmChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePasswordConfirmChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setPasswordConfirm(e.target.value);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateEmail(email)) {
+    if (!isLoginForm && !validateEmail(email)) {
       setEmailError('Invalid email format');
       return;
     }
@@ -45,20 +51,22 @@ function AuthForm() {
       return;
     }
     setPasswordError('');
-    const request = isLoginForm ? (
-      async function(){
-        fetch(APIBASE + 'login')
-      }
-    ) : (
-      async function(){
-        fetch(APIBASE + 'signup')
-      }
-    );
+    const request = isLoginForm
+      ? async function () {
+          fetch(APIBASE + 'login');
+        }
+      : async function () {
+          fetch(APIBASE + 'signup');
+        };
     const response = await request();
     console.log(response);
     // if error, display error
-    //else, handle response
-    alert(isLoginForm ? "ok cowboy, you're in" : 'I have no memory, I will not recognize you next time :)');
+    // else, handle response
+    alert(
+      isLoginForm
+        ? "ok cowboy, you're in"
+        : 'I have no memory, I will not recognize you next time :)'
+    );
   };
 
   useEffect(() => {
@@ -74,31 +82,31 @@ function AuthForm() {
     <div className={styles.container}>
       <h1 className={styles.title}>{isLoginForm ? 'Log In' : 'Sign Up'}</h1>
       <form onSubmit={handleSubmit}>
+        <div className={styles.formGroup}>
+          <label>
+            Username:
+            <input
+              name="username"
+              type="text"
+              onChange={handleUsernameChange}
+              value={username}
+            />
+          </label>
+        </div>
         {!isLoginForm && (
           <div className={styles.formGroup}>
             <label>
-              Username:
+              Email:
               <input
-                name="username"
-                type="text"
-                onChange={(e) => setUsername(e.target.value)}
-                value={username}
+                name="email"
+                type="email"
+                onChange={handleEmailChange}
+                value={email}
               />
             </label>
+            {emailError && <p className={styles.error}>{emailError}</p>}
           </div>
         )}
-        <div className={styles.formGroup}>
-          <label>
-            Email:
-            <input
-              name="email"
-              type="email"
-              onChange={handleEmailChange}
-              value={email}
-            />
-          </label>
-          {emailError && <p className={styles.error}>{emailError}</p>}
-        </div>
         <div className={styles.formGroup}>
           <label>
             Password:
@@ -132,7 +140,9 @@ function AuthForm() {
           className={`${styles.btn} ${styles.toggle}`}
           onClick={toggleForm}
         >
-          {isLoginForm ? "Wait, I don't have an account!" : 'Wait, I already have an account!'}
+          {isLoginForm
+            ? "Wait, I don't have an account!"
+            : 'Wait, I already have an account!'}
         </button>
       </form>
     </div>
