@@ -7,7 +7,7 @@ function UserIcon({ user }: { user: User }) {
       <button className={styles.userIconContainer}>
         <img
           src={
-            user.avatar 
+            user.profilePhoto 
           }
           className={styles.userIcon}
           alt="user avatar"

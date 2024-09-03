@@ -6,6 +6,23 @@
   border-color: transparent;
 }
 
+.captionContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.caption {
+  margin-top: 8px;
+  width: 100%;
+  border-radius: 20px;
+  border-bottom-right-radius: 0;
+  padding: 12px 10px;
+  border: 1px solid var(--secondary-color-site);
+  font-size: 16px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .btn {
   background-color: var(--secondary-color-site);
 }

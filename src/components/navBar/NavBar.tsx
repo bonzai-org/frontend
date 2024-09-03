@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Menu from '../menu/Menu';
 import styles from './NavBar.module.css';
+import { userData } from '../../bonsaiProfDummyData';
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,12 +69,7 @@ function NavBar() {
         {isMenuOpen && (
           <div ref={menuRef} className={styles.menu}>
             <Menu
-              user={{
-                username: 'jNakster',
-                fullname: 'John Naka',
-                avatar:
-                  'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg'
-              }}
+              user={userData}
               menuToggle={() => setIsMenuOpen(false)}
             />
           </div>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../bonsaiSubmitForm/BonsaSubmitForm.module.css';
-import { BonsaiSubmitFormProps} from '../../interfaces';
+import { BonsaiSubmitFormProps } from '../../interfaces';
 
 const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
   bonsaiData,
@@ -12,6 +12,24 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
   onSubmitBonsai,
   onDeleteChapter
 }) => {
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState<number[]>(bonsaiChapterArr.map(() => 0));
+
+  const handleNextPhoto = (chapterIndex: number) => {
+    setCurrentPhotoIndex((prevIndexes) => {
+      const newIndexes = [...prevIndexes];
+      newIndexes[chapterIndex] = (newIndexes[chapterIndex] + 1) % bonsaiChapterArr[chapterIndex].photos.length;
+      return newIndexes;
+    });
+  };
+
+  const handlePrevPhoto = (chapterIndex: number) => {
+    setCurrentPhotoIndex((prevIndexes) => {
+      const newIndexes = [...prevIndexes];
+      newIndexes[chapterIndex] = (newIndexes[chapterIndex] - 1 + bonsaiChapterArr[chapterIndex].photos.length) % bonsaiChapterArr[chapterIndex].photos.length;
+      return newIndexes;
+    });
+  };
+
   return (
     <div className={styles.container}>
       <h2>Bonsai Data</h2>
@@ -39,31 +57,57 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
       <hr />
       <h2>Bonsai Chapters</h2>
       {bonsaiChapterArr.map((chapter, index) => (
-        <>
-          {chapter.photos[0] && (
-            <div key={index} className={styles.chapterContainer}>
-              <img
-                className={styles.chapterImg}
-                src={URL.createObjectURL(chapter.photos[0]!)}
-                alt={`Chapter ${index + 1}`}
-              />
-              <div className={styles.chapBtnContainer}>
+        <div className={styles.chapWrap} key={index}>
+          <div className={styles.chapterContainer}>
+            {chapter.photos.length > 0 && (
+              <div className={styles.previewContainer}>
+                <div className={styles.imagePreview}>
                 <button
-                  className={styles.btn}
-                  onClick={() => onEditChapter(index)}
-                >
-                  Edit
-                </button>
-                <button
-                  className={styles.btn}
-                  onClick={() => onDeleteChapter(index)}
-                >
-                  Delete
-                </button>
+                    className={styles.navBtn}
+                    onClick={() => handlePrevPhoto(index)}
+                    disabled={chapter.photos.length <= 1}
+                  >
+                    {'<'}
+                  </button>
+                  <div className={styles.chapterImgFrame}>
+                  <img
+                  className={styles.chapterImg}
+                  src={URL.createObjectURL(chapter.photos[currentPhotoIndex[index]]!)}
+                  alt={`Chapter ${index + 1}`}
+                />
+                  </div>
+             
+                  <button
+                    className={styles.navBtn}
+                    onClick={() => handleNextPhoto(index)}
+                    disabled={chapter.photos.length <= 1}
+                  >
+                    {'>'}
+                  </button>
+                </div>
+                
+         
+                <div className={styles.chapBtnContainer}>
+                  <button
+                    className={styles.btn}
+                    onClick={() => onEditChapter(index)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className={styles.btn}
+                    onClick={() => onDeleteChapter(index)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-            </div>
-          )}
-        </>
+            )}
+          </div>
+          <div className={styles.captionContainer}>
+            <strong>Caption: </strong> {bonsaiChapterArr[index].caption}
+          </div>
+        </div>
       ))}
       <button className={styles.btn} onClick={onAddNewChapter}>
         Add New Chapter

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import styles from './BonsaiDataForm.module.css';
 import { Bonsai, User } from '../../interfaces';
 import { HARDINESSZONES, BONSAISTYLES } from '../../BonsaiCategoryConstants';
@@ -20,13 +20,14 @@ function BonsaiDataForm({
   const [nebari, setNebari] = useState(bonsaiData?.nebari || '');
   const [style, setStyle] = useState(bonsaiData?.style || '');
   const [species, setSpecies] = useState(bonsaiData?.species || '');
+  const [geoLocation, setGeoLocation] = useState(bonsaiData?.geoLocation || '');
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const bonsaiData: Bonsai = {
       id: '',
       user: userData,
-      geoLocation: '',
+      geoLocation: geoLocation,
       bonsaiChapters: [],
       hardinessZone: hardinessZone,
       height: height,
@@ -37,9 +38,6 @@ function BonsaiDataForm({
     };
     onSubmit(bonsaiData);
   };
-
-
-
 
   return (
     <form onSubmit={handleSubmit}>
@@ -118,6 +116,15 @@ function BonsaiDataForm({
           type="text"
           value={species}
           onChange={(e) => setSpecies(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label>Geo Location:</label>
+        <input
+          type="text"
+          value={geoLocation}
+          onChange={(e) => setGeoLocation(e.target.value)}
           required
         />
       </div>

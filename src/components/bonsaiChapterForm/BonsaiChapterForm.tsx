@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './BonsaiChapterForm.module.css';
@@ -6,18 +6,27 @@ import { BonsaiChapterFile } from '../../interfaces';
 
 function BonsaiChapterForm({
   onSubmit,
+  canSkip,
+  goBack,
   chapter
 }: {
-  onSubmit: (chapter: BonsaiChapterFile) => void;
+  onSubmit: (chapter: BonsaiChapterFile, destinationForm: 'chapter' | 'submit') => void;
+  canSkip: boolean;
+  goBack?: () => void;
   chapter?: BonsaiChapterFile;
 }) {
   const [bonsaiChapter, setBonsaiChapter] = useState<BonsaiChapterFile>(
     chapter || { photos: [], caption: '', date: new Date() }
   );
 
+  const [formError, setFormError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     if (chapter) {
       setBonsaiChapter(chapter);
+    } else {
+      setBonsaiChapter({ photos: [], caption: '', date: new Date() });
     }
   }, [chapter]);
 
@@ -33,7 +42,7 @@ function BonsaiChapterForm({
     }
   };
 
-  const handleCaptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCaptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setBonsaiChapter((prevChapter) => ({
       ...prevChapter,
       caption: event.target.value
@@ -56,7 +65,20 @@ function BonsaiChapterForm({
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    onSubmit(bonsaiChapter);
+
+    // Validation checks
+    if (bonsaiChapter.photos.length === 0) {
+      setFormError('At least one photo is required.');
+      return;
+    }
+
+    if (!bonsaiChapter.caption.trim()) {
+      setFormError('Caption is required.');
+      return;
+    }
+
+    setFormError(null);
+    onSubmit(bonsaiChapter, 'submit');
     // Reset the form
     setBonsaiChapter({ photos: [], caption: '', date: new Date() });
   };
@@ -125,15 +147,17 @@ function BonsaiChapterForm({
             id="photo"
             accept="image/*"
             onChange={handlePhotoChange}
+            ref={fileInputRef}
           />
         </div>
-        <div>
+        <div className={styles.captionContainer}>
           <label htmlFor="caption">Caption:</label>
-          <input
-            type="text"
+          <textarea
+          className={styles.caption}
             id="caption"
             value={bonsaiChapter.caption}
             onChange={handleCaptionChange}
+            required
           />
         </div>
         <div>
@@ -143,11 +167,28 @@ function BonsaiChapterForm({
             id="date"
             value={bonsaiChapter.date.toISOString().split('T')[0]}
             onChange={handleDateChange}
+            required
           />
         </div>
+        {formError && <p className={styles.error}>{formError}</p>}
         <button type="submit" className={styles.btn}>
           {chapter ? 'Save Changes' : 'Submit Chapter'}
         </button>
+        <button
+          className={styles.btn}
+          onClick={(e) => {
+            e.preventDefault();
+            onSubmit(bonsaiChapter, 'chapter');
+            setBonsaiChapter({ photos: [], caption: '', date: new Date() });
+            if (fileInputRef.current) {
+              fileInputRef.current.value = '';
+            }
+          }}
+        >
+          Add New Chapter
+        </button>
+        {canSkip && (<button className={styles.btn} onClick={goBack}>Go to Review and Submit</button>)}
+        
         <div>
           {bonsaiChapter.photos.length > 0 && (
             <div>

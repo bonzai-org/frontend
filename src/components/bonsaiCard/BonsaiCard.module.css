@@ -101,8 +101,14 @@
 }
 
 .captionContainer {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  height: 50px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
   width: calc(100% - 200px);
+  padding: 5px;
   display: flex;
-  justify-content: center;
-  margin-right: 100px;
+  justify-content: flex-start;
+  margin: 0 20px;
 }

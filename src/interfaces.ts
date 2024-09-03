@@ -6,9 +6,11 @@ export interface BonsaiChapter {
 }
 
 export interface User {
-  avatar: string;
+  id: string
+  profilePhoto: string;
   username: string;
-  fullname: string;
+  bio: string;
+  email: string;
 }
 
 
