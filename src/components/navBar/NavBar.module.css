@@ -120,7 +120,7 @@
 }
 
 .divider {
-  margin: 10px 0;
+  margin: 10px 0 0 0;
   width: 100%;
   border: 0;
   border-top: 1px solid var(--primary-color-site);
