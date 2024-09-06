@@ -5,8 +5,13 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import markdown from '../../../README.md?raw'; // Use ?raw to load the markdown content as raw string
 
+interface TOCEntry {
+  title: string;
+  id: string;
+}
+
 export default function About() {
-  const [toc, setToc] = useState([]);
+  const [toc, setToc] = useState<TOCEntry[]>([]);
 
   // Function to extract headers and create table of contents
   const generateTOC = (markdown: string) => {
