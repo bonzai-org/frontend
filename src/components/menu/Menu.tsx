@@ -1,8 +1,11 @@
 import styles from './Menu.module.css';
 import { useNavigate } from 'react-router-dom';
-import {User} from '../../interfaces';
+import { User } from '../../interfaces';
 
-export default function Menu({ user, menuToggle }: {
+export default function Menu({
+  user,
+  menuToggle
+}: {
   user: User;
   menuToggle: () => void;
 }) {
@@ -40,6 +43,12 @@ export default function Menu({ user, menuToggle }: {
       </div>
       <div onClick={() => handleLinkClick('/')} className={styles.menuItem}>
         Home
+      </div>
+      <div
+        onClick={() => handleLinkClick('/about')}
+        className={styles.menuItem}
+      >
+        About
       </div>
     </div>
   );
