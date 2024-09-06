@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import styles from './About.module.css';
 import ReactMarkdown from 'react-markdown';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -8,7 +9,7 @@ export default function About() {
   const [toc, setToc] = useState([]);
 
   // Function to extract headers and create table of contents
-  const generateTOC = (markdown) => {
+  const generateTOC = (markdown: string) => {
     const headers = markdown.match(/^##\s+.+/gm);
     if (headers) {
       const tocEntries = headers.map((header) => {
@@ -25,20 +26,23 @@ export default function About() {
   }, [markdown]);
 
   return (
-    <div>
-      <h2>Table of Contents</h2>
-      <ul>
-        {toc.map(({ title, id }) => (
-          <li key={id}>
-            <a href={`#${id}`}>{title}</a>
-          </li>
-        ))}
-      </ul>
+    <div className={styles.container}>
+      <div className={styles.tocWrap}>
+        <ul className={styles.toc}>
+          {toc.map(({ title, id }) => (
+            <li key={id}>
+              <a href={`#${id}`}>{title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      <ReactMarkdown
-        children={markdown}
-        rehypePlugins={[rehypeSlug, rehypeAutolinkHeadings]}
-      />
+      <div className={styles.markdownContainer}>
+        <ReactMarkdown
+          children={markdown}
+          rehypePlugins={[rehypeSlug, rehypeAutolinkHeadings]}
+        />
+      </div>
     </div>
   );
 }
