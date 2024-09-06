@@ -4,11 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import markdown from '../../../README.md?raw'; // Use ?raw to load the markdown content as raw string
-
-interface TOCEntry {
-  title: string;
-  id: string;
-}
+import { TOCEntry } from '../../interfaces';
 
 export default function About() {
   const [toc, setToc] = useState<TOCEntry[]>([]);
