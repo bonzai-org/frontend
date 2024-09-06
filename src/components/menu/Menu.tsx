@@ -19,10 +19,13 @@ export default function Menu({
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <img src={user.avatar} className={styles.userIcon} alt="user avatar" />
+        <img
+          src={user.profilePhoto}
+          className={styles.userIcon}
+          alt="user avatar"
+        />
         <div className={styles.userInfo}>
           <p className={styles.username}>{user.username}</p>
-          <p className={styles.userfullname}>{user.fullname}</p>
         </div>
         <button onClick={menuToggle} className={styles.exitButton}>
           X
