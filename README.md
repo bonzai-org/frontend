@@ -64,9 +64,9 @@ All measurements are in cm for international standardization.
 - **Nebari**: The maximum diameter of exposed roots measured parallel to the ground.
 - **Bonsai style**: The general form of the tree. For visual examples, consult Bonsai Empire.
 - **Species**: Type the name by which you know the tree (e.g., Pomegranate).
-    - *Note*: To enforce greater standardization with the intent of making bonsai easier to search, Bonsai Book will eventually implement autocomplete or some other manner of category selection.
+  - _Note_: To enforce greater standardization with the intent of making bonsai easier to search, Bonsai Book will eventually implement autocomplete or some other manner of category selection.
 - **Geolocation**: Type your geographical location (e.g., San Francisco, CA or Ithaca, NY).
-    - *Note*: Again, autocomplete or something similar will eventually be implemented to more accurately group data points.
+  - _Note_: Again, autocomplete or something similar will eventually be implemented to more accurately group data points.
 
 ### Bonsai Chapter Upload
 
@@ -82,7 +82,7 @@ The date can be typed in or selected using the date selector. This can be approx
 - To submit the current chapter and add another chapter, click “add new chapter.”
 - To discard the current chapter and go to the review submission page (available only if a chapter has already been submitted), click the bottom button “Go to review and submit.”
 
-## Bonsai Review and Submit (Upload)
+## Bonsai Review and Submit
 
 At this stage, the user has the opportunity to review their bonsai submission.
 
