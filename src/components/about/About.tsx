@@ -32,7 +32,9 @@ export default function About() {
         <ul className={styles.toc}>
           {toc.map(({ title, id }) => (
             <li key={id}>
-              <a href={`#${id}`}>{title}</a>
+              <a className={styles.tocLink} href={`#${id}`}>
+                {title}
+              </a>
             </li>
           ))}
         </ul>

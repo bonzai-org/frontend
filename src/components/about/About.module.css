@@ -4,11 +4,36 @@
 
 .tocWrap {
   border-right: 1px solid var(--primary-color-site);
+  position: fixed;
+  top: 65px;
+  height: 100%;
 }
 
 .toc {
   list-style: none;
+  padding: 0;
+  width: 210px;
+  height: 100%;
+  margin: 10px 0 0 0;
+}
+
+.toc > li {
+  padding: 6px 4px;
+}
+
+.toc > a:visited {
+  color: black;
+}
+
+.toc > li:hover {
+  background-color: var(--subtle-background);
+}
+
+.tocLink {
+  color: black;
 }
 
 .markdownContainer {
+  margin-left: 230px; /* Adjust this value to account for the width of the fixed TOC */
+  padding: 20px;
 }
