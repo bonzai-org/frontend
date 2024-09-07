@@ -1,4 +1,4 @@
-# Bonsai Book
+# Overview
 
 Bonsai Book is a platform for users to upload their bonsai, view others’ bonsai, and search bonsai by categories (e.g., species, geographical location, etc.). Bonsai Book is free, and anybody can view the bonsai posted there. Registered users can upload their own bonsai and have commenting and voting privileges.
 
