@@ -3,6 +3,7 @@ import styles from './About.module.css';
 import ReactMarkdown from 'react-markdown';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeAddClasses from 'rehype-add-classes';
 import markdown from '../../../README.md?raw'; // Use ?raw to load the markdown content as raw string
 import { TOCEntry } from '../../interfaces';
 
@@ -43,7 +44,21 @@ export default function About() {
       <div className={styles.markdownContainer}>
         <ReactMarkdown
           children={markdown}
-          rehypePlugins={[rehypeSlug, rehypeAutolinkHeadings]}
+          rehypePlugins={[
+            rehypeSlug,
+            rehypeAutolinkHeadings,
+            [
+              rehypeAddClasses,
+              {
+                h1: styles.aboutHeader,
+                h2: styles.aboutHeader,
+                h3: styles.aboutHeader,
+                h4: styles.aboutHeader,
+                h5: styles.aboutHeader,
+                h6: styles.aboutHeader
+              }
+            ]
+          ]}
         />
       </div>
     </div>
