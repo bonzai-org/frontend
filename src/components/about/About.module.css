@@ -5,7 +5,7 @@
 .tocWrap {
   border-right: 1px solid var(--primary-color-site);
   position: fixed;
-  top: 65px;
+  top: 75px; /* Align with nav bar height */
   height: 100%;
 }
 
