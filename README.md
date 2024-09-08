@@ -1,4 +1,4 @@
-# Overview
+## Overview
 
 Bonsai Book is a platform for users to upload their bonsai, view others’ bonsai, and search bonsai by categories (e.g., species, geographical location, etc.). Bonsai Book is free, and anybody can view the bonsai posted there. Registered users can upload their own bonsai and have commenting and voting privileges.
 
@@ -54,7 +54,7 @@ To log in, the user selects the log-in/register link and enters their username a
 
 Authenticated users have the ability to upload their bonsai. This can be done by clicking on the user icon in the top right corner, then selecting the upload link from the slide-out menu. From there, users can enter categorical bonsai data, create bonsai chapters, then review and edit their submission prior to uploading it.
 
-### Bonsai Data Fields
+## Bonsai Data Fields
 
 All measurements are in cm for international standardization.
 
@@ -68,7 +68,7 @@ All measurements are in cm for international standardization.
 - **Geolocation**: Type your geographical location (e.g., San Francisco, CA or Ithaca, NY).
   - _Note_: Again, autocomplete or something similar will eventually be implemented to more accurately group data points.
 
-### Bonsai Chapter Upload
+## Bonsai Chapter Upload
 
 A bonsai chapter consists of an array of photos, a caption explaining the current state of the bonsai, and a date to represent the time period of the chapter.
 
