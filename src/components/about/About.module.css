@@ -34,8 +34,21 @@
 }
 
 .markdownContainer {
-  margin-left: 230px; /* Adjust this value to account for the width of the fixed TOC */
-  padding: 0 20px;
+  margin-left: 210px; /* Adjust this value to account for the width of the fixed TOC */
+}
+
+.markdownContainer > p {
+  line-height: 24px;
+}
+
+.markdownContainer > p,
+.aboutHeader {
+  padding: 0 40px;
+}
+
+.markdownContainer > h2 {
+  border-top: 1px solid var(--primary-color-site);
+  padding-top: 20px;
 }
 
 .aboutHeader {
