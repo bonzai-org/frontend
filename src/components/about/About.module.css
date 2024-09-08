@@ -12,13 +12,13 @@
 .toc {
   list-style: none;
   padding: 0;
-  width: 210px;
+  width: 230px;
   height: 100%;
   margin: 10px 0 0 0;
 }
 
 .toc > li {
-  padding: 6px 4px;
+  padding: 6px 6px 6px 18px;
 }
 
 .toc > a:visited {
@@ -34,7 +34,7 @@
 }
 
 .markdownContainer {
-  margin-left: 210px; /* Adjust this value to account for the width of the fixed TOC */
+  margin-left: 230px; /* Adjust this value to account for the width of the fixed TOC */
 }
 
 .markdownContainer > p {
