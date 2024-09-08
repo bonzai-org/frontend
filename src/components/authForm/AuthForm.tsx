@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './AuthForm.module.css';
 
 function AuthForm() {
-  const APIBASE = 'localhost:3000/api/';
+  const APIBASE = 'http://localhost:3000/api/';
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -51,22 +51,38 @@ function AuthForm() {
       return;
     }
     setPasswordError('');
+
     const request = isLoginForm
       ? async function () {
-          fetch(APIBASE + 'login');
+          fetch(APIBASE + 'auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              username: 'henryjacobs',
+              password: 'password'
+            })
+          });
         }
       : async function () {
-          fetch(APIBASE + 'signup');
+          fetch(APIBASE + 'auth/signup', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              username: 'henryjacobs',
+              password: 'password',
+              confirmPassword: 'password',
+              email: 'henryjacobs123@fun.com'
+            })
+          });
         };
     const response = await request();
     console.log(response);
     // if error, display error
     // else, handle response
-    alert(
-      isLoginForm
-        ? "ok cowboy, you're in"
-        : 'I have no memory, I will not recognize you next time :)'
-    );
   };
 
   useEffect(() => {
