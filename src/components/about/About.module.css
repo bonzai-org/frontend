@@ -37,8 +37,13 @@
   margin-left: 230px; /* Adjust this value to account for the width of the fixed TOC */
 }
 
-.markdownContainer > p {
+.markdownContainer > p,
+.markdownContainer > ul > li {
   line-height: 24px;
+}
+
+.markdownContainer > ul > li {
+  margin-bottom: 10px;
 }
 
 .markdownContainer > p,
@@ -47,11 +52,13 @@
 }
 
 .markdownContainer > h1,
-.markdownContainer > h2 {
+.markdownContainer > h2,
+.markdownContainer > h3 {
   padding-top: 20px;
 }
 
-.markdownContainer > h2 {
+.markdownContainer > h2,
+.markdownContainer > h3 {
   border-top: 1px solid var(--primary-color-site);
 }
 
