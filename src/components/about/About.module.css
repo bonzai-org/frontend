@@ -14,7 +14,7 @@
   padding: 0;
   width: 230px;
   height: 100%;
-  margin: 10px 0 0 0;
+  margin-top: 5px;
 }
 
 .toc > li {
@@ -46,9 +46,13 @@
   padding: 0 40px;
 }
 
+.markdownContainer > h1,
+.markdownContainer > h2 {
+  padding-top: 20px;
+}
+
 .markdownContainer > h2 {
   border-top: 1px solid var(--primary-color-site);
-  padding-top: 20px;
 }
 
 .aboutHeader {
