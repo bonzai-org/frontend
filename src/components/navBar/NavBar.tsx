@@ -31,7 +31,7 @@ function NavBar() {
   }, [isMenuOpen]);
 
   return (
-    <>
+    <div className={styles.wrap}>
       <div className={styles.container}>
         <button className={styles.logoContainer}>
           <img
@@ -68,15 +68,11 @@ function NavBar() {
 
         {isMenuOpen && (
           <div ref={menuRef} className={styles.menu}>
-            <Menu
-              user={userData}
-              menuToggle={() => setIsMenuOpen(false)}
-            />
+            <Menu user={userData} menuToggle={() => setIsMenuOpen(false)} />
           </div>
         )}
       </div>
-      <hr className={styles.divider} />
-    </>
+    </div>
   );
 }
 

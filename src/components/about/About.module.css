@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+}
+
+.tocWrap {
+  border-right: 1px solid var(--primary-color-site);
+  position: fixed;
+  top: 75px; /* Align with nav bar height */
+  height: 100%;
+}
+
+.toc {
+  list-style: none;
+  padding: 0;
+  width: 230px;
+  height: 100%;
+  margin-top: 5px;
+}
+
+.toc > li {
+  padding: 6px 6px 6px 18px;
+}
+
+.toc > a:visited {
+  color: black;
+}
+
+.toc > li:hover {
+  background-color: var(--subtle-background);
+}
+
+.tocLink {
+  color: black;
+}
+
+.markdownContainer {
+  margin-left: 230px; /* Adjust this value to account for the width of the fixed TOC */
+}
+
+.markdownContainer > p,
+.markdownContainer > ul > li {
+  line-height: 24px;
+}
+
+.markdownContainer > ul > li {
+  margin-bottom: 10px;
+}
+
+.markdownContainer > p,
+.aboutHeader {
+  padding: 0 40px;
+}
+
+.markdownContainer > h1,
+.markdownContainer > h2,
+.markdownContainer > h3 {
+  padding-top: 20px;
+}
+
+.markdownContainer > h2,
+.markdownContainer > h3 {
+  border-top: 1px solid var(--primary-color-site);
+}
+
+.aboutHeader {
+  font-size: x-large;
+  margin: 5px 0;
+  text-decoration: underline var(--primary-color-site);
+}
+
+.markdownContainer > h1 {
+  margin-top: 15px;
+}
