@@ -28,8 +28,6 @@ function AuthForm() {
       if (response.status === HttpStatusCode.Ok) {
         // Handle successful login
         setError(null);
-        const data = await response.json();
-        console.log(data);
       } else if (
         response.status === HttpStatusCode.Unauthorized ||
         response.status === HttpStatusCode.BadRequest
@@ -68,8 +66,6 @@ function AuthForm() {
       if (response.status === HttpStatusCode.Ok) {
         // Handle successful signup
         setError(null);
-        const data = await response.json();
-        console.log(data);
       } else if (response.status === HttpStatusCode.BadRequest) {
         setError(
           'Invalid signup details. Please check your input and try again.'
