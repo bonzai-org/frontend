@@ -14,7 +14,7 @@ function SignupForm({ onSubmit }: SignupFormProps) {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
@@ -39,7 +39,7 @@ function SignupForm({ onSubmit }: SignupFormProps) {
   const handlePasswordConfirmChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setPasswordConfirm(e.target.value);
+    setConfirmPassword(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -48,13 +48,13 @@ function SignupForm({ onSubmit }: SignupFormProps) {
       setEmailError('Invalid email format');
       return;
     }
-    if (password !== passwordConfirm) {
+    if (password !== confirmPassword) {
       setPasswordError('Passwords do not match');
       return;
     }
     setEmailError('');
     setPasswordError('');
-    onSubmit(username, email, password, passwordConfirm);
+    onSubmit(username, email, password, confirmPassword);
   };
 
   return (
@@ -100,7 +100,7 @@ function SignupForm({ onSubmit }: SignupFormProps) {
             name="confirmPassword"
             type="password"
             onChange={handlePasswordConfirmChange}
-            value={passwordConfirm}
+            value={confirmPassword}
           />
         </label>
         {passwordError && <p className={styles.error}>{passwordError}</p>}
