@@ -6,13 +6,12 @@ export interface BonsaiChapter {
 }
 
 export interface User {
-  id: string
+  id: string;
   profilePhoto: string;
   username: string;
   bio: string;
   email: string;
 }
-
 
 export interface Bonsai {
   id: string;
@@ -26,8 +25,6 @@ export interface Bonsai {
   hardinessZone: string;
   bonsaiChapters: BonsaiChapter[];
 }
-
-
 
 // upload
 
@@ -46,4 +43,9 @@ export interface BonsaiSubmitFormProps {
   onDiscardBonsai: () => void;
   onSubmitBonsai: () => void;
   onDeleteChapter: (index: number) => void;
+}
+
+export interface TOCEntry {
+  title: string;
+  id: string;
 }
