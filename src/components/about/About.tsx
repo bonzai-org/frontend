@@ -3,7 +3,7 @@ import styles from './About.module.css';
 import ReactMarkdown from 'react-markdown';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeAddClasses from 'rehype-add-classes';
+import rehypeAddClasses from 'rehype-class-names';
 import markdown from '../../../README.md?raw'; // Use ?raw to load the markdown content as raw string
 import { TOCEntry } from '../../interfaces';
 
