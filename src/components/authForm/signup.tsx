@@ -14,6 +14,7 @@ function Signup() {
     async function querySignup() {
         let response = await fetch('http://localhost:3000/api/auth/signup', {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -80,7 +81,7 @@ function Signup() {
                 </div>
                 <div className={styles.formGroup}>
                     <label>
-                        Password:
+                        Confirm Password:
                         <input
                             name="confirmPassword"
                             type="confirmPassword"
@@ -92,7 +93,7 @@ function Signup() {
                 </div>
                 <div className={styles.formGroup}>
                     <label>
-                        Password:
+                        Email:
                         <input
                             name="email"
                             type="email"

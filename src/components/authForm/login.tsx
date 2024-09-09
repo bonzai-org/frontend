@@ -12,6 +12,7 @@ function Login() {
     async function queryLogin() {
         let loginResponse = await fetch('http://localhost:3000/api/auth/login', {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -35,7 +36,7 @@ function Login() {
         e.preventDefault()
         let response = await queryLogin()
         if (response.status === 200) {
-            navigate('/home')
+            navigate('/')
         }
         console.log(response.status)
     };

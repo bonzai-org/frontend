@@ -9,6 +9,7 @@ import './App.css';
 import Home from './components/home/Home';
 import Login from './components/authForm/login';
 import Signup from './components/authForm/signup';
+import SendCredentials from './components/authForm/SendCookies';
 import BonsaiUpload from './components/bonsaiUpload/BonsaiUpload';
 // import AuthForm from './components/authForm/AuthForm';
 import NavBar from './components/navBar/NavBar';
@@ -37,6 +38,7 @@ function Root() {
           <Route path="/upload" element={<BonsaiUpload />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/credentials" element={<SendCredentials />} />
           <Route path="/bonsai/:id" element={<BonsaiPage />} />
         </Routes>
       </ErrorBoundary>
