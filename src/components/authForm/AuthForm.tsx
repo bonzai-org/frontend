@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './AuthForm.module.css';
 
 function AuthForm() {
-  const APIBASE = 'localhost:3000/api/';
+  // const APIBASE = 'http://localhost:3000/api/';
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -42,6 +42,7 @@ function AuthForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!isLoginForm && !validateEmail(email)) {
       setEmailError('Invalid email format');
       return;
@@ -50,23 +51,23 @@ function AuthForm() {
       setPasswordError('Passwords do not match');
       return;
     }
-    setPasswordError('');
-    const request = isLoginForm
-      ? async function () {
-          fetch(APIBASE + 'login');
-        }
-      : async function () {
-          fetch(APIBASE + 'signup');
-        };
-    const response = await request();
-    console.log(response);
+    // setPasswordError('');
+    // const request = isLoginForm
+    //   ? async function () {
+    //     fetch(APIBASE + 'login');
+    //   }
+    //   : async function () {
+    //     fetch(APIBASE + 'signup');
+    //   };
+    // const response = await request();
+    // console.log(response);
     // if error, display error
     // else, handle response
-    alert(
-      isLoginForm
-        ? "ok cowboy, you're in"
-        : 'I have no memory, I will not recognize you next time :)'
-    );
+    // alert(
+    //   isLoginForm
+    //     ? "ok cowboy, you're in"
+    //     : 'I have no memory, I will not recognize you next time :)'
+    // );
   };
 
   useEffect(() => {
