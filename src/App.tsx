@@ -13,6 +13,7 @@ import BonsaiUpload from './components/bonsaiUpload/BonsaiUpload';
 // import AuthForm from './components/authForm/AuthForm';
 import NavBar from './components/navBar/NavBar';
 import BonsaiPage from './components/bonsaiPage/BonsaiPage';
+import About from './components/about/About';
 import ErrorBoundary from './components/errorBoundary/ErrorBoundary'; // Import the ErrorBoundary
 
 const router = createBrowserRouter([{ path: '*', element: <Root /> }]);
@@ -32,6 +33,7 @@ function Root() {
       <ErrorBoundary>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/upload" element={<BonsaiUpload />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />

@@ -1,4 +1,4 @@
-# Bonsai Book
+## Overview
 
 Bonsai Book is a platform for users to upload their bonsai, view others’ bonsai, and search bonsai by categories (e.g., species, geographical location, etc.). Bonsai Book is free, and anybody can view the bonsai posted there. Registered users can upload their own bonsai and have commenting and voting privileges.
 
@@ -54,7 +54,7 @@ To log in, the user selects the log-in/register link and enters their username a
 
 Authenticated users have the ability to upload their bonsai. This can be done by clicking on the user icon in the top right corner, then selecting the upload link from the slide-out menu. From there, users can enter categorical bonsai data, create bonsai chapters, then review and edit their submission prior to uploading it.
 
-### Bonsai Data Fields
+## Bonsai Data Fields
 
 All measurements are in cm for international standardization.
 
@@ -64,11 +64,11 @@ All measurements are in cm for international standardization.
 - **Nebari**: The maximum diameter of exposed roots measured parallel to the ground.
 - **Bonsai style**: The general form of the tree. For visual examples, consult Bonsai Empire.
 - **Species**: Type the name by which you know the tree (e.g., Pomegranate).
-    - *Note*: To enforce greater standardization with the intent of making bonsai easier to search, Bonsai Book will eventually implement autocomplete or some other manner of category selection.
+  - _Note_: To enforce greater standardization with the intent of making bonsai easier to search, Bonsai Book will eventually implement autocomplete or some other manner of category selection.
 - **Geolocation**: Type your geographical location (e.g., San Francisco, CA or Ithaca, NY).
-    - *Note*: Again, autocomplete or something similar will eventually be implemented to more accurately group data points.
+  - _Note_: Again, autocomplete or something similar will eventually be implemented to more accurately group data points.
 
-### Bonsai Chapter Upload
+## Bonsai Chapter Upload
 
 A bonsai chapter consists of an array of photos, a caption explaining the current state of the bonsai, and a date to represent the time period of the chapter.
 
@@ -82,7 +82,7 @@ The date can be typed in or selected using the date selector. This can be approx
 - To submit the current chapter and add another chapter, click “add new chapter.”
 - To discard the current chapter and go to the review submission page (available only if a chapter has already been submitted), click the bottom button “Go to review and submit.”
 
-## Bonsai Review and Submit (Upload)
+## Bonsai Review and Submit
 
 At this stage, the user has the opportunity to review their bonsai submission.
 
