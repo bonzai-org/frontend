@@ -2,7 +2,6 @@ import { useState, useRef, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Menu from '../menu/Menu';
 import styles from './NavBar.module.css';
-import { userData } from '../../bonsaiProfDummyData';
 import AuthContext from '../../AuthContext';
 
 function NavBar() {
@@ -63,14 +62,17 @@ function NavBar() {
             <img src={profilePhoto} className={styles.userIcon} alt="Profile" />
           ) : (
             <div className={styles.userIcon}>
-              {username ? username.charAt(0).toUpperCase() : 'Anon'}
+              {username ? username.charAt(0).toUpperCase() : '😊'}
             </div>
           )}
         </button>
 
         {isMenuOpen && (
           <div ref={menuRef} className={styles.menu}>
-            <Menu user={userData} menuToggle={() => setIsMenuOpen(false)} />
+            <Menu
+              userIcon={{ username, profilePhoto }}
+              menuToggle={() => setIsMenuOpen(false)}
+            />
           </div>
         )}
       </div>

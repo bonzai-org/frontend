@@ -13,6 +13,11 @@ export interface User {
   email: string;
 }
 
+export interface UserIcon {
+  profilePhoto: string | null;
+  username: string | null;
+}
+
 export interface Bonsai {
   id: string;
   user: User;

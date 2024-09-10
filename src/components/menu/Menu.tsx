@@ -1,12 +1,12 @@
 import styles from './Menu.module.css';
 import { useNavigate } from 'react-router-dom';
-import { User } from '../../interfaces';
+import { UserIcon } from '../../interfaces';
 
 export default function Menu({
-  user,
+  userIcon,
   menuToggle
 }: {
-  user: User;
+  userIcon: UserIcon;
   menuToggle: () => void;
 }) {
   const navigate = useNavigate();
@@ -19,13 +19,21 @@ export default function Menu({
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <img
-          src={user.profilePhoto}
-          className={styles.userIcon}
-          alt="user avatar"
-        />
+        {userIcon.profilePhoto ? (
+          <img
+            src={userIcon.profilePhoto}
+            className={styles.userIcon}
+            alt="Profile"
+          />
+        ) : (
+          <div className={styles.userIcon}>
+            {userIcon.username
+              ? userIcon.username.charAt(0).toUpperCase()
+              : '😊'}
+          </div>
+        )}
         <div className={styles.userInfo}>
-          <p className={styles.username}>{user.username}</p>
+          <p className={styles.username}>{userIcon.username}</p>
         </div>
         <button onClick={menuToggle} className={styles.exitButton}>
           X
