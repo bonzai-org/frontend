@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './AuthForm.module.css';
 import LoginForm from '../loginForm/LoginForm';
 import SignUpForm from '../signupForm/SignUpForm';
 import { HttpStatusCode } from '../../http-codes';
+import AuthContext from '../../AuthContext';
 
 function AuthForm() {
   const APIBASE = 'http://localhost:3000/api/';
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const { setAuthData } = useContext(AuthContext);
 
   const toggleForm = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -26,8 +30,10 @@ function AuthForm() {
         body: JSON.stringify({ username, password })
       });
       if (response.status === HttpStatusCode.Ok) {
-        // Handle successful login
         setError(null);
+        const data = await response.json();
+        setAuthData(data.username, data.profilePhoto);
+        navigate('/');
       } else if (
         response.status === HttpStatusCode.Unauthorized ||
         response.status === HttpStatusCode.BadRequest
@@ -64,8 +70,10 @@ function AuthForm() {
         })
       });
       if (response.status === HttpStatusCode.Ok) {
-        // Handle successful signup
         setError(null);
+        const data = await response.json();
+        setAuthData(data.username, data.profilePhoto);
+        navigate('/');
       } else if (response.status === HttpStatusCode.BadRequest) {
         setError(
           'Invalid signup details. Please check your input and try again.'
