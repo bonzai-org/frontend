@@ -112,7 +112,7 @@
   height: 35px;
   width: 35px;
   object-fit: cover;
-  background-color: transparent;
+  background-color: var(--subtle-background);
   border-radius: 50%;
   border: 2px solid var(--primary-color-site);
 }

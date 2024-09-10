@@ -1,12 +1,14 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Menu from '../menu/Menu';
 import styles from './NavBar.module.css';
 import { userData } from '../../bonsaiProfDummyData';
+import AuthContext from '../../AuthContext';
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { username, profilePhoto } = useContext(AuthContext);
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -57,13 +59,13 @@ function NavBar() {
           />
         </form>
         <button className={styles.userIconContainer} onClick={handleMenuToggle}>
-          <img
-            src={
-              'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg'
-            }
-            className={styles.userIcon}
-            alt="user avatar"
-          />
+          {profilePhoto ? (
+            <img src={profilePhoto} className={styles.userIcon} alt="Profile" />
+          ) : (
+            <div className={styles.userIcon}>
+              {username ? username.charAt(0).toUpperCase() : 'Anon'}
+            </div>
+          )}
         </button>
 
         {isMenuOpen && (

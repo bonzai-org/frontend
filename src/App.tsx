@@ -5,7 +5,7 @@ import {
   Routes
 } from 'react-router-dom';
 import './App.css';
-
+import { AuthProvider } from './AuthContext';
 import Home from './components/home/Home';
 import BonsaiUpload from './components/bonsaiUpload/BonsaiUpload';
 import AuthForm from './components/authForm/AuthForm';
@@ -18,9 +18,11 @@ const router = createBrowserRouter([{ path: '*', element: <Root /> }]);
 
 export default function App() {
   return (
-    <div className="container">
-      <RouterProvider router={router} />
-    </div>
+    <AuthProvider>
+      <div className="container">
+        <RouterProvider router={router} />
+      </div>
+    </AuthProvider>
   );
 }
 
