@@ -59,7 +59,11 @@ function NavBar() {
         </form>
         <button className={styles.userIconContainer} onClick={handleMenuToggle}>
           {profilePhoto ? (
-            <img src={profilePhoto} className={styles.userIcon} alt="Profile" />
+            <img
+              src={profilePhoto}
+              className={styles.userIcon}
+              alt="User icon"
+            />
           ) : (
             <div className={styles.userIcon}>
               {username ? username.charAt(0).toUpperCase() : '😊'}
