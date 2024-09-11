@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HttpStatusCode } from '../../http-codes';
 import AuthContext from '../../AuthContext';
@@ -6,7 +6,7 @@ import styles from './SignUpForm.module.css';
 
 function SignupForm() {
   const APIBASE = 'http://localhost:3000/api/';
-  const [username, setUsername] = useState('');
+  const [inputUsername, setInputUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -14,15 +14,23 @@ function SignupForm() {
   const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { setAuthData } = useContext(AuthContext);
+  const { setAuthData, username } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (username) {
+      navigate('/');
+    }
+  }, []);
 
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
+  const handleinputUsernameChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setInputUsername(e.target.value);
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +68,7 @@ function SignupForm() {
         },
         credentials: 'include',
         body: JSON.stringify({
-          username,
+          inputUsername,
           password,
           confirmPassword,
           email
@@ -69,14 +77,14 @@ function SignupForm() {
       if (response.status === HttpStatusCode.Ok) {
         setError(null);
         const data = await response.json();
-        setAuthData(data.username, data.profilePhoto);
+        setAuthData(data.inputUsername, data.profilePhoto);
         navigate('/');
       } else if (response.status === HttpStatusCode.BadRequest) {
         setError(
           'Invalid signup details. Please check your input and try again.'
         );
       } else if (response.status === HttpStatusCode.Conflict) {
-        setError('Username and or email unavailable.');
+        setError('inputUsername and or email unavailable.');
       } else {
         setError('An unexpected error occurred. Please try again.');
       }
@@ -100,10 +108,10 @@ function SignupForm() {
           <label>
             Username:
             <input
-              name="username"
+              name="inputUsername"
               type="text"
-              onChange={handleUsernameChange}
-              value={username}
+              onChange={handleinputUsernameChange}
+              value={inputUsername}
             />
           </label>
         </div>

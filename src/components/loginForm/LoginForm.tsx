@@ -1,20 +1,28 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LoginForm.module.css';
 import { HttpStatusCode } from '../../http-codes';
 import AuthContext from '../../AuthContext';
 
 function LoginForm() {
-  const [username, setUsername] = useState('');
+  const [inputUsername, setInputUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { setAuthData } = useContext(AuthContext);
+  const { setAuthData, username } = useContext(AuthContext);
 
   const APIBASE = 'http://localhost:3000/api/';
 
-  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
+  useEffect(() => {
+    if (username) {
+      navigate('/');
+    }
+  }, []);
+
+  const handleinputUsernameChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setInputUsername(e.target.value);
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,18 +37,18 @@ function LoginForm() {
           'Content-Type': 'application/json'
         },
         credentials: 'include',
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ inputUsername, password })
       });
       if (response.status === HttpStatusCode.Ok) {
         setError(null);
         const data = await response.json();
-        setAuthData(data.username, data.profilePhoto);
+        setAuthData(data.inputUsername, data.profilePhoto);
         navigate('/');
       } else if (
         response.status === HttpStatusCode.Unauthorized ||
         response.status === HttpStatusCode.BadRequest
       ) {
-        setError('Invalid username and/or password.');
+        setError('Invalid inputUsername and/or password.');
       } else {
         setError('An unexpected error occurred. Please try again.');
       }
@@ -64,10 +72,10 @@ function LoginForm() {
           <label>
             Username:
             <input
-              name="username"
+              name="inputUsername"
               type="text"
-              onChange={handleUsernameChange}
-              value={username}
+              onChange={handleinputUsernameChange}
+              value={inputUsername}
             />
           </label>
         </div>
