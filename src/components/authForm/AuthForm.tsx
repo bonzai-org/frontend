@@ -78,6 +78,8 @@ function AuthForm() {
         setError(
           'Invalid signup details. Please check your input and try again.'
         );
+      } else if (response.status === HttpStatusCode.Conflict) {
+        setError('Username and or email unavailable.');
       } else {
         setError('An unexpected error occurred. Please try again.');
       }
