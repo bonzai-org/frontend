@@ -13,6 +13,11 @@ export interface User {
   email: string;
 }
 
+export interface UserIcon {
+  profilePhoto: string | null;
+  username: string | null;
+}
+
 export interface Bonsai {
   id: string;
   user: User;
@@ -48,4 +53,10 @@ export interface BonsaiSubmitFormProps {
 export interface TOCEntry {
   title: string;
   id: string;
+}
+
+export interface AuthContextProps {
+  username: string | null;
+  profilePhoto: string | null;
+  setAuthData: (username: string, profilePhoto: string) => void;
 }
