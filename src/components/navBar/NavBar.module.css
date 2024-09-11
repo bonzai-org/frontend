@@ -93,14 +93,33 @@
   border-color: #0079d3;
 }
 
+.rightSideContainer {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 10px;
+}
+
+.aboutLink {
+  color: black;
+  text-decoration: underline var(--primary-color-site) 2px;
+  margin-right: 10px;
+}
+
+.aboutLink:visited {
+  color: black;
+}
+
+.aboutLink:hover {
+  cursor: pointer;
+}
+
 .loginButton {
   border: none;
   border-radius: 20px;
   font-size: 16px;
   background-color: var(--primary-color-site);
   padding: 10px 15px;
-  position: absolute;
-  right: 60px;
 }
 
 .loginLink {
@@ -120,8 +139,7 @@
   border: none;
   align-items: center;
   padding: 0;
-  position: absolute;
-  right: 10px;
+  margin: 0 10px;
 }
 
 .userIcon:hover {
@@ -135,6 +153,12 @@
   background-color: var(--subtle-background);
   border-radius: 50%;
   border: 2px solid var(--primary-color-site);
+}
+
+.userInitial {
+  font-size: 20px;
+  height: min-content;
+  padding: 5.5px 0;
 }
 
 .menu {

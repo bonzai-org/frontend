@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Menu from '../menu/Menu';
 import styles from './NavBar.module.css';
 import AuthContext from '../../AuthContext';
@@ -8,6 +8,11 @@ function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const { username, profilePhoto } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const navToLogin = () => {
+    navigate('/login');
+  };
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -57,26 +62,33 @@ function NavBar() {
             className={styles.searchInput}
           />
         </form>
-        {username === null && (
-          <button className={styles.loginButton}>
-            <Link to={'/login'} className={styles.loginLink}>
+        <div className={styles.rightSideContainer}>
+          <Link to={'/about'} className={styles.aboutLink}>
+            About
+          </Link>
+          {username === null ? (
+            <button className={styles.loginButton} onClick={navToLogin}>
               Login
-            </Link>
-          </button>
-        )}
-        <button className={styles.userIconContainer} onClick={handleMenuToggle}>
-          {profilePhoto ? (
-            <img
-              src={profilePhoto}
-              className={styles.userIcon}
-              alt="User icon"
-            />
+            </button>
           ) : (
-            <div className={styles.userIcon}>
-              {username ? username.charAt(0).toUpperCase() : '😊'}
-            </div>
+            <button
+              className={styles.userIconContainer}
+              onClick={handleMenuToggle}
+            >
+              {profilePhoto ? (
+                <img
+                  src={profilePhoto}
+                  className={styles.userIcon}
+                  alt="User icon"
+                />
+              ) : (
+                <div className={`${styles.userIcon} ${styles.userInitial}`}>
+                  {username ? username.charAt(0).toUpperCase() : '😊'}
+                </div>
+              )}
+            </button>
           )}
-        </button>
+        </div>
 
         {isMenuOpen && (
           <div ref={menuRef} className={styles.menu}>
