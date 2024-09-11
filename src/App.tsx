@@ -8,7 +8,8 @@ import './App.css';
 import { AuthProvider } from './AuthContext';
 import Home from './components/home/Home';
 import BonsaiUpload from './components/bonsaiUpload/BonsaiUpload';
-import AuthForm from './components/authForm/AuthForm';
+import LoginForm from './components/loginForm/LoginForm';
+import SignUpForm from './components/signupForm/SignUpForm';
 import NavBar from './components/navBar/NavBar';
 import BonsaiPage from './components/bonsaiPage/BonsaiPage';
 import About from './components/about/About';
@@ -35,7 +36,8 @@ function Root() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/upload" element={<BonsaiUpload />} />
-          <Route path="/login" element={<AuthForm />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/signup" element={<SignUpForm />} />
           <Route path="/bonsai/:id" element={<BonsaiPage />} />
         </Routes>
       </ErrorBoundary>
