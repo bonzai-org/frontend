@@ -53,12 +53,6 @@ export default function Menu({
       <div onClick={() => handleLinkClick('/')} className={styles.menuItem}>
         Home
       </div>
-      <div
-        onClick={() => handleLinkClick('/about')}
-        className={styles.menuItem}
-      >
-        About
-      </div>
     </div>
   );
 }
