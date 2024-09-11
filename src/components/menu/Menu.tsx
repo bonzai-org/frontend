@@ -26,10 +26,8 @@ export default function Menu({
             alt="Profile"
           />
         ) : (
-          <div className={styles.userIcon}>
-            {userIcon.username
-              ? userIcon.username.charAt(0).toUpperCase()
-              : '😊'}
+          <div className={`${styles.userIcon} ${styles.userInitial}`}>
+            {userIcon.username && userIcon.username.charAt(0).toUpperCase()}
           </div>
         )}
         <div className={styles.userInfo}>
