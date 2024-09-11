@@ -68,7 +68,7 @@ function SignupForm() {
         },
         credentials: 'include',
         body: JSON.stringify({
-          inputUsername,
+          username: inputUsername,
           password,
           confirmPassword,
           email
@@ -77,7 +77,7 @@ function SignupForm() {
       if (response.status === HttpStatusCode.Ok) {
         setError(null);
         const data = await response.json();
-        setAuthData(data.inputUsername, data.profilePhoto);
+        setAuthData(data.username, data.profilePhoto);
         navigate('/');
       } else if (response.status === HttpStatusCode.BadRequest) {
         setError(

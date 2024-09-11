@@ -37,12 +37,12 @@ function LoginForm() {
           'Content-Type': 'application/json'
         },
         credentials: 'include',
-        body: JSON.stringify({ inputUsername, password })
+        body: JSON.stringify({ username: inputUsername, password })
       });
       if (response.status === HttpStatusCode.Ok) {
         setError(null);
         const data = await response.json();
-        setAuthData(data.inputUsername, data.profilePhoto);
+        setAuthData(data.username, data.profilePhoto);
         navigate('/');
       } else if (
         response.status === HttpStatusCode.Unauthorized ||
