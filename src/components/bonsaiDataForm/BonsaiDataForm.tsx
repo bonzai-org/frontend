@@ -30,13 +30,13 @@ function BonsaiDataForm({
       geoLocation: geoLocation,
       bonsaiChapters: [],
       hardinessZone: hardinessZone,
-      height: height,
       species: species,
-      width: width !== '' ? width : '',
-      nebari: nebari !== '' ? nebari : '',
-      style: style !== '' ? style : ''
     };
-   
+    // Add in optional fields if they are not empty
+    if (width !== '') bonsaiData.width = width;
+    if (nebari !== '') bonsaiData.nebari = nebari;
+    if (style !== '') bonsaiData.style = style;
+    if (height !== '') bonsaiData.height = height;
     onSubmit(bonsaiData);
   };
 
