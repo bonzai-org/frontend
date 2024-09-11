@@ -57,6 +57,13 @@ function NavBar() {
             className={styles.searchInput}
           />
         </form>
+        {username === null && (
+          <button className={styles.loginButton}>
+            <Link to={'/login'} className={styles.loginLink}>
+              Login
+            </Link>
+          </button>
+        )}
         <button className={styles.userIconContainer} onClick={handleMenuToggle}>
           {profilePhoto ? (
             <img

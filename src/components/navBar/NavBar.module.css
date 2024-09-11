@@ -93,6 +93,26 @@
   border-color: #0079d3;
 }
 
+.loginButton {
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  background-color: var(--primary-color-site);
+  padding: 10px 15px;
+  position: absolute;
+  right: 60px;
+}
+
+.loginLink {
+  color: white;
+  text-decoration: none;
+}
+
+.loginButton:hover {
+  cursor: pointer;
+  background-color: var(--secondary-color-site);
+}
+
 .userIconContainer {
   display: flex;
   height: 35px;
