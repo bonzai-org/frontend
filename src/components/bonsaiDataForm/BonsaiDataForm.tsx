@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './BonsaiDataForm.module.css';
 import { Bonsai, User } from '../../interfaces';
-import { HARDINESSZONES, BONSAISTYLES } from '../../BonsaiCategoryConstants';
+import { HARDINESSZONES, STYLES, OPTIONALFIELDS } from '../../BonsaiCategoryConstants';
 
 function BonsaiDataForm({
   onSubmit,
@@ -43,12 +43,14 @@ function BonsaiDataForm({
     <form onSubmit={handleSubmit}>
       <h2>Add Bonsai Data</h2>
       <div>
-        <label className={styles.hardinessLabel} htmlFor='hardiness'>Hardiness Zone:</label>
+        <label className={styles.hardinessLabel} htmlFor="hardiness">
+          Hardiness Zone:
+        </label>
         <select
           value={hardinessZone}
           onChange={(e) => setHardinessZone(e.target.value)}
           required
-          id='hardiness'
+          id="hardiness"
         >
           <option value="" disabled>
             Select Hardiness Zone
@@ -65,9 +67,7 @@ function BonsaiDataForm({
         <input
           type="number"
           value={height}
-          onChange={(e) =>
-            setHeight(e.target.value )
-          }
+          onChange={(e) => setHeight(e.target.value)}
           required
         />
       </div>
@@ -76,9 +76,7 @@ function BonsaiDataForm({
         <input
           type="number"
           value={width}
-          onChange={(e) =>
-            setWidth(e.target.value )
-          }
+          onChange={(e) => setWidth(e.target.value)}
         />
       </div>
       <div>
@@ -86,23 +84,21 @@ function BonsaiDataForm({
         <input
           type="number"
           value={nebari}
-          onChange={(e) =>
-            setNebari(e.target.value )
-          }
+          onChange={(e) => setNebari(e.target.value)}
         />
       </div>
       <div>
-      <label htmlFor="style">Bonsai Style: </label>
-      <select
+        <label htmlFor="style">Bonsai Style: </label>
+        <select
           value={style}
           onChange={(e) => setStyle(e.target.value)}
           required
-          id='style'
+          id="style"
         >
           <option value="" disabled>
             Select Style
           </option>
-          {BONSAISTYLES.map((style) => (
+          {STYLES.map((style) => (
             <option key={style} value={style}>
               {style}
             </option>

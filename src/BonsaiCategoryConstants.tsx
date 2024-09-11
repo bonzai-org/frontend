@@ -29,7 +29,7 @@ export const HARDINESSZONES = [
   '13b'
 ];
 
-export const BONSAISTYLES = [
+export const STYLES = [
   'Broom style (Hokidachi)',
   'Cascade (Kengai)',
   'Double trunk (Sokan)',
@@ -48,4 +48,4 @@ export const BONSAISTYLES = [
   'Other'
 ];
 
-export const OPTIONALBONSAIFIELDS = ['style', 'height', 'width', 'nebari'];
+export const OPTIONALFIELDS = ['style', 'height', 'width', 'nebari'];
