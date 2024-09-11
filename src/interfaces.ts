@@ -23,10 +23,10 @@ export interface Bonsai {
   user: User;
   species: string;
   geoLocation: string;
-  style: string;
-  height: string;
-  width: string;
-  nebari: string;
+  style?: string;
+  height?: string;
+  width?: string;
+  nebari?: string;
   hardinessZone: string;
   bonsaiChapters: BonsaiChapter[];
 }
