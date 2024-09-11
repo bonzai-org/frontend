@@ -48,4 +48,3 @@ export const STYLES = [
   'Other'
 ];
 
-export const OPTIONALFIELDS = ['style', 'height', 'width', 'nebari'];

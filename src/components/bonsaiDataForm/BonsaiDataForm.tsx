@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './BonsaiDataForm.module.css';
 import { Bonsai, User } from '../../interfaces';
-import { HARDINESSZONES, STYLES, OPTIONALFIELDS } from '../../BonsaiCategoryConstants';
+import { HARDINESSZONES, STYLES} from '../../BonsaiCategoryConstants';
 
 function BonsaiDataForm({
   onSubmit,
@@ -36,6 +36,7 @@ function BonsaiDataForm({
       nebari: nebari !== '' ? nebari : '',
       style: style !== '' ? style : ''
     };
+   
     onSubmit(bonsaiData);
   };
 
