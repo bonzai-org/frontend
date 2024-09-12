@@ -37,16 +37,16 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
         <strong>Hardiness Zone:</strong> {bonsaiData.hardinessZone}
       </div>
       <div>
-        <strong>Height:</strong> {bonsaiData.height}
+        <strong>Height:</strong> {bonsaiData.height || 'N/A'}
       </div>
       <div>
-        <strong>Width:</strong> {bonsaiData.width}
+        <strong>Width:</strong> {bonsaiData.width || 'N/A'}
       </div>
       <div>
-        <strong>Nebari:</strong> {bonsaiData.nebari}
+        <strong>Nebari:</strong> {bonsaiData.nebari || 'N/A'}
       </div>
       <div>
-        <strong>Style:</strong> {bonsaiData.style}
+        <strong>Style:</strong> {bonsaiData.style || 'N/A'}
       </div>
       <div>
         <strong>Species:</strong> {bonsaiData.species}
