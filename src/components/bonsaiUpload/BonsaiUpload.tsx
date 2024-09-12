@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import BonsaiDataForm from '../bonsaiDataForm/BonsaiDataForm';
 import BonsaiChapterForm from '../bonsaiChapterForm/BonsaiChapterForm';
 import BonsaiSubmitForm from '../bonsaiSubmitForm/BonsaiSubmitForm';
 import styles from './BonsaiUpload.module.css';
 import { Bonsai, BonsaiChapterFile } from '../../interfaces';
-import { userData } from '../../bonsaiProfDummyData';
+import AuthContext from '../../AuthContext';
+
 
 function BonsaiUpload() {
   const [bonsaiData, setBonsaiData] = useState<Bonsai | null>(null);
@@ -15,6 +16,7 @@ function BonsaiUpload() {
   const [bonsaiChapterIndex, setBonsaiChapterIndex] = useState<null | number>(
     null
   );
+  const { username } = useContext(AuthContext);
 
   const handleDataSubmit = (data: Bonsai) => {
     setBonsaiData(data);
@@ -67,9 +69,9 @@ function BonsaiUpload() {
     <div className={styles.container}>
       {currentForm === 'data' &&
         (bonsaiData !== null ? (
-          <BonsaiDataForm onSubmit={handleDataSubmit} bonsaiData={bonsaiData} userData={bonsaiData.user} />
+          <BonsaiDataForm onSubmit={handleDataSubmit} bonsaiData={bonsaiData} userData={{username: username }} />
         ) : (
-          <BonsaiDataForm onSubmit={handleDataSubmit} userData={userData} />
+          <BonsaiDataForm onSubmit={handleDataSubmit} userData={{username: username}} />
         ))}
       {currentForm === 'chapter' &&
         (bonsaiChapterIndex !== null ? (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './BonsaiDataForm.module.css';
-import { Bonsai, User } from '../../interfaces';
+import { Bonsai, UserPartial } from '../../interfaces';
 import { HARDINESSZONES, STYLES} from '../../BonsaiCategoryConstants';
 
 function BonsaiDataForm({

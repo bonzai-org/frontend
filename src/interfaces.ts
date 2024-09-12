@@ -5,7 +5,12 @@ export interface BonsaiChapter {
   bonsaiId: string;
 }
 
-export interface User {
+export interface UserPartial {
+  username: string;
+  profilePhoto?: string;
+}
+
+export interface UserFull {
   id: string;
   profilePhoto: string;
   username: string;
