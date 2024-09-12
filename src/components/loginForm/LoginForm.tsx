@@ -29,7 +29,8 @@ function LoginForm() {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     try {
       const response = await fetch(APIBASE + 'auth/login', {
         method: 'POST',
