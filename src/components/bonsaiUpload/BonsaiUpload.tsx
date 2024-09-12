@@ -78,9 +78,9 @@ function BonsaiUpload() {
     <div className={styles.container}>
       {currentForm === 'data' &&
         (bonsaiData !== null ? (
-          <BonsaiDataForm onSubmit={handleDataSubmit} bonsaiData={bonsaiData} userData={{username: username }} />
+          <BonsaiDataForm onSubmit={handleDataSubmit} bonsaiData={bonsaiData} userData={{username: username ?? '' }} />
         ) : (
-          <BonsaiDataForm onSubmit={handleDataSubmit} userData={{username: username}} />
+          <BonsaiDataForm onSubmit={handleDataSubmit}  userData={{username: username ?? '' }}  />
         ))}
       {currentForm === 'chapter' &&
         (bonsaiChapterIndex !== null ? (
