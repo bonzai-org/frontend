@@ -22,19 +22,19 @@ This platform is primarily geared toward new practitioners, and people who are c
 
 ## Use Cases
 
-Feasability:
+- **Feasability**:
 
 Say a user in Los Angeles takes a trip up to Seattle, where they stop at the Pacific Bonsai Museum, see the Domoto maple, and are inspired. They want to know, “Could I grow this at home?”  The best answer is often an example. They go to Bonsai Book, and search for trident maples in Los Angeles (or, more specifically, in their USDA hardiness zone). Each result this search returns is an authentic answer to their question.
 
-Styling tips:
+- **Styling tips**:
 
 Up the coast, in San Francisco, a user just went to their first meeting of the San Francisco Bonsai Club, and came home with a coastal live oak pre-bonsai. They’re excited, but they have no idea what to do, what to expect. They search coastal live oak on Bonsai Book, and scroll through a few results to get an idea of how the trees grow, and the techniques that can be used to shape that growth.
 
-Show and tell:
+- **Show and tell**:
 
 From that same club, a relatively new practitioner finally has a mature piece that they’re really proud of, and they want to show off. They upload their piece to Bonsai Book, and watch as upvotes and comments slowly accumulate, and their bonsai eventually gains a place on their home page (a measurement of a bonsai’s popularity).
 
-Discussing work:
+- **Discussing work**:
 
 A new user sees this popular bonsai on their own home page. Curious, they post a comment asking how they achieved their remarkable ‘grown on a rock’ effect. The bonsai’s poster replies, and a discussion ensues.
 
