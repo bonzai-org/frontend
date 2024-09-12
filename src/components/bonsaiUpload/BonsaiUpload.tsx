@@ -5,6 +5,7 @@ import BonsaiSubmitForm from '../bonsaiSubmitForm/BonsaiSubmitForm';
 import styles from './BonsaiUpload.module.css';
 import { Bonsai, BonsaiChapterFile } from '../../interfaces';
 import AuthContext from '../../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 function BonsaiUpload() {
@@ -17,6 +18,14 @@ function BonsaiUpload() {
     null
   );
   const { username } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // must be logged in to upload a bonsai
+  useEffect(() => {
+    if (!username) {
+      navigate('/')
+    }
+  },[username]);
 
   const handleDataSubmit = (data: Bonsai) => {
     setBonsaiData(data);
