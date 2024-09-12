@@ -10,7 +10,7 @@ function BonsaiDataForm({
 }: {
   onSubmit: (data: Bonsai) => void;
   bonsaiData?: Bonsai;
-  userData: User;
+  userData: UserPartial;
 }) {
   const [hardinessZone, setHardinessZone] = useState(
     bonsaiData?.hardinessZone || ''
