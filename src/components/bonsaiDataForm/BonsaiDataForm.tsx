@@ -69,7 +69,6 @@ function BonsaiDataForm({
           type="number"
           value={height}
           onChange={(e) => setHeight(e.target.value)}
-          required
         />
       </div>
       <div>
@@ -93,7 +92,6 @@ function BonsaiDataForm({
         <select
           value={style}
           onChange={(e) => setStyle(e.target.value)}
-          required
           id="style"
         >
           <option value="" disabled>
