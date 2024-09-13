@@ -76,3 +76,17 @@ export interface AuthContextProps {
   profilePhoto: string | null;
   setAuthData: (username: string, profilePhoto: string) => void;
 }
+
+// responses
+
+export interface BonsaiPageResponse {
+  geoLocation: string;
+  hardinessZone: string;
+  species: string;
+  height?: string;
+  width?: string;
+  nebari?: string;
+  style?: string;
+  bonsaiChapters: BonsaiChapter[];
+  username: string;
+}
