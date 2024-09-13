@@ -32,7 +32,7 @@ const userData = {
 
 const bonsaiData = {
   id: '1',
-  user: userData,
+  username: 'JNaka',
   bonsaiChapters: [bonsaiChapterData1, bonsaiChapterData2],
   geoLocation: 'San Francisco, CA',
   hardinessZone: '9A',

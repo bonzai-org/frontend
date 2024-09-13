@@ -72,7 +72,7 @@ export default function BonsaiPage() {
     <div>
       {bonsai && (
         <div className={styles.pageContainer}>
-          <h1>{`${bonsai.user.username}'s ${bonsai.species}`}</h1>
+          <h1>{`${bonsai.username}'s ${bonsai.species}`}</h1>
           <div className={styles.bonsaiDataContainer}>
             {bonsai.geoLocation && (
               <div className={styles.categoryContainer}>
