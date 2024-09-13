@@ -44,6 +44,17 @@ export interface BonsaiChapterFile {
   date: Date;
 }
 
+export interface BonsaiPayload {
+  bonsaiChapters: BonsaiChapterFile[];
+  geoLocation: string;
+  hardinessZone: string;
+  species: string;
+  height?: string;
+  width?: string;
+  nebari?: string;
+  style?: string;
+}
+
 export interface BonsaiSubmitFormProps {
   bonsaiData: Bonsai;
   bonsaiChapterArr: BonsaiChapterFile[];
