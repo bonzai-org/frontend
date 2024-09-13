@@ -51,6 +51,9 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
       <div>
         <strong>Species:</strong> {bonsaiData.species}
       </div>
+      <div>
+        <strong>Geo Location:</strong> {bonsaiData.geoLocation}
+      </div>
       <button className={styles.btn} onClick={onEditData}>
         Edit Bonsai Data
       </button>
