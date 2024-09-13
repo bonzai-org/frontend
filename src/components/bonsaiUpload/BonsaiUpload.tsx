@@ -69,7 +69,7 @@ function BonsaiUpload() {
       handleErrSet('Please fill out all required bonsai data fields');
       return;
     }
-    else if (bonsaiChapterArr.length === 0) {
+    if (bonsaiChapterArr.length === 0) {
       handleErrSet('Please add at least one chapter');
       return;
     }
