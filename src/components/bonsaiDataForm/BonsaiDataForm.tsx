@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import styles from './BonsaiDataForm.module.css';
-import { BonsaiData, UserPartial } from '../../interfaces';
+import { BonsaiData} from '../../interfaces';
 import { HARDINESSZONES, STYLES} from '../../BonsaiCategoryConstants';
 
 function BonsaiDataForm({
   onSubmit,
-  bonsaiData,
-  userData
+  bonsaiData
 }: {
   onSubmit: (data: BonsaiData) => void;
   bonsaiData?: BonsaiData;
-  userData: UserPartial;
 }) {
   const [hardinessZone, setHardinessZone] = useState(
     bonsaiData?.hardinessZone || ''
