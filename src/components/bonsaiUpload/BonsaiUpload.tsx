@@ -3,13 +3,13 @@ import BonsaiDataForm from '../bonsaiDataForm/BonsaiDataForm';
 import BonsaiChapterForm from '../bonsaiChapterForm/BonsaiChapterForm';
 import BonsaiSubmitForm from '../bonsaiSubmitForm/BonsaiSubmitForm';
 import styles from './BonsaiUpload.module.css';
-import { Bonsai, BonsaiChapterFile } from '../../interfaces';
+import { BonsaiData, BonsaiChapterFile, BonsaiPayload } from '../../interfaces';
 import AuthContext from '../../AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 
 function BonsaiUpload() {
-  const [bonsaiData, setBonsaiData] = useState<Bonsai | null>(null);
+  const [bonsaiData, setBonsaiData] = useState<BonsaiData | null>(null);
   const [bonsaiChapterArr, setBonsaiChapterArr] = useState<BonsaiChapterFile[]>([]);
   const [currentForm, setCurrentForm] = useState<'data' | 'chapter' | 'submit'>(
     'data'
@@ -27,7 +27,7 @@ function BonsaiUpload() {
     }
   },[username]);
 
-  const handleDataSubmit = (data: Bonsai) => {
+  const handleDataSubmit = (data: BonsaiData) => {
     setBonsaiData(data);
     console.log(bonsaiChapterArr);
     if (bonsaiChapterArr.length > 0) {
@@ -66,7 +66,8 @@ function BonsaiUpload() {
   };
 
   const handleSubmitBonsai = () => {
-    console.log('Submitting Bonsai:', bonsaiData, bonsaiChapterArr);
+    const bonsaiPayload: BonsaiPayload = {...bonsaiData, bonsaiChapters: bonsaiChapterArr};
+    console.log('submitting bonsai: ', bonsaiPayload);
   };
 
   const handleDeleteChapter = (index: number) => {

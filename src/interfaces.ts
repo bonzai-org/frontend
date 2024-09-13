@@ -44,6 +44,16 @@ export interface BonsaiChapterFile {
   date: Date;
 }
 
+export interface BonsaiData {
+  geoLocation: string;
+  hardinessZone: string;
+  species: string;
+  height?: string;
+  width?: string;
+  nebari?: string;
+  style?: string;
+}
+
 // what client sends to backend on create bonsai
 export interface BonsaiPayload {
   bonsaiChapters: BonsaiChapterFile[];
@@ -57,7 +67,7 @@ export interface BonsaiPayload {
 }
 
 export interface BonsaiSubmitFormProps {
-  bonsaiData: Bonsai;
+  bonsaiData: BonsaiData;
   bonsaiChapterArr: BonsaiChapterFile[];
   onAddNewChapter: () => void;
   onEditData: () => void;
