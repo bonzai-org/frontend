@@ -2,13 +2,13 @@ import { createContext, useState, ReactNode } from 'react';
 import { AuthContextProps } from './interfaces';
 
 const AuthContext = createContext<AuthContextProps>({
-  username: null,
+  username: 'nick',
   profilePhoto: null,
   setAuthData: () => {}
 });
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [username, setUsername] = useState<string | null>(null);
+  const [username, setUsername] = useState<string | null>('nick');
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
 
   const setAuthData = (username: string, profilePhoto: string) => {

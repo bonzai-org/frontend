@@ -86,10 +86,8 @@ function BonsaiUpload() {
   };
 
   const handleErrSet = (err: string | null) => {
-    console.log('Setting error:', err);
     setError(err);
     setTimeout(() => {
-      console.log('Clearing error');
       setError(null);
     }, 5000); // Clear error after 5 seconds
   }
