@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './BonsaiDataForm.module.css';
-import { Bonsai, User } from '../../interfaces';
-import { HARDINESSZONES, BONSAISTYLES } from '../../BonsaiCategoryConstants';
+import { Bonsai, UserPartial } from '../../interfaces';
+import { HARDINESSZONES, STYLES} from '../../BonsaiCategoryConstants';
 
 function BonsaiDataForm({
   onSubmit,
@@ -10,7 +10,7 @@ function BonsaiDataForm({
 }: {
   onSubmit: (data: Bonsai) => void;
   bonsaiData?: Bonsai;
-  userData: User;
+  userData: UserPartial;
 }) {
   const [hardinessZone, setHardinessZone] = useState(
     bonsaiData?.hardinessZone || ''
@@ -26,16 +26,17 @@ function BonsaiDataForm({
     event.preventDefault();
     const bonsaiData: Bonsai = {
       id: '',
-      user: userData,
+      username: userData.username,
       geoLocation: geoLocation,
       bonsaiChapters: [],
       hardinessZone: hardinessZone,
-      height: height,
       species: species,
-      width: width !== '' ? width : '',
-      nebari: nebari !== '' ? nebari : '',
-      style: style !== '' ? style : ''
     };
+    // Add in optional fields if they are not empty
+    if (width !== '') bonsaiData.width = width;
+    if (nebari !== '') bonsaiData.nebari = nebari;
+    if (style !== '') bonsaiData.style = style;
+    if (height !== '') bonsaiData.height = height;
     onSubmit(bonsaiData);
   };
 
@@ -43,12 +44,14 @@ function BonsaiDataForm({
     <form onSubmit={handleSubmit}>
       <h2>Add Bonsai Data</h2>
       <div>
-        <label className={styles.hardinessLabel} htmlFor='hardiness'>Hardiness Zone:</label>
+        <label className={styles.hardinessLabel} htmlFor="hardiness">
+          Hardiness Zone:
+        </label>
         <select
           value={hardinessZone}
           onChange={(e) => setHardinessZone(e.target.value)}
           required
-          id='hardiness'
+          id="hardiness"
         >
           <option value="" disabled>
             Select Hardiness Zone
@@ -65,10 +68,7 @@ function BonsaiDataForm({
         <input
           type="number"
           value={height}
-          onChange={(e) =>
-            setHeight(e.target.value )
-          }
-          required
+          onChange={(e) => setHeight(e.target.value)}
         />
       </div>
       <div>
@@ -76,9 +76,7 @@ function BonsaiDataForm({
         <input
           type="number"
           value={width}
-          onChange={(e) =>
-            setWidth(e.target.value )
-          }
+          onChange={(e) => setWidth(e.target.value)}
         />
       </div>
       <div>
@@ -86,23 +84,20 @@ function BonsaiDataForm({
         <input
           type="number"
           value={nebari}
-          onChange={(e) =>
-            setNebari(e.target.value )
-          }
+          onChange={(e) => setNebari(e.target.value)}
         />
       </div>
       <div>
-      <label htmlFor="style">Bonsai Style: </label>
-      <select
+        <label htmlFor="style">Bonsai Style: </label>
+        <select
           value={style}
           onChange={(e) => setStyle(e.target.value)}
-          required
-          id='style'
+          id="style"
         >
           <option value="" disabled>
             Select Style
           </option>
-          {BONSAISTYLES.map((style) => (
+          {STYLES.map((style) => (
             <option key={style} value={style}>
               {style}
             </option>

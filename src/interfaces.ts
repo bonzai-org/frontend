@@ -5,7 +5,12 @@ export interface BonsaiChapter {
   bonsaiId: string;
 }
 
-export interface User {
+export interface UserPartial {
+  username: string;
+  profilePhoto?: string;
+}
+
+export interface UserFull {
   id: string;
   profilePhoto: string;
   username: string;
@@ -20,13 +25,13 @@ export interface UserIcon {
 
 export interface Bonsai {
   id: string;
-  user: User;
+  username: string;
   species: string;
   geoLocation: string;
-  style: string;
-  height: string;
-  width: string;
-  nebari: string;
+  style?: string;
+  height?: string;
+  width?: string;
+  nebari?: string;
   hardinessZone: string;
   bonsaiChapters: BonsaiChapter[];
 }
