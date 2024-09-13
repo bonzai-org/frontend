@@ -66,6 +66,10 @@ function BonsaiUpload() {
   };
 
   const handleSubmitBonsai = () => {
+    if (!bonsaiData?.geoLocation || !bonsaiData?.hardinessZone || !bonsaiData?.species || !bonsaiChapterArr.length) {
+      //error handling
+      return;
+    }
     const bonsaiPayload: BonsaiPayload = {...bonsaiData, bonsaiChapters: bonsaiChapterArr};
     console.log('submitting bonsai: ', bonsaiPayload);
   };
@@ -79,9 +83,9 @@ function BonsaiUpload() {
     <div className={styles.container}>
       {currentForm === 'data' &&
         (bonsaiData !== null ? (
-          <BonsaiDataForm onSubmit={handleDataSubmit} bonsaiData={bonsaiData} userData={{username: username ?? '' }} />
+          <BonsaiDataForm onSubmit={handleDataSubmit} bonsaiData={bonsaiData}  />
         ) : (
-          <BonsaiDataForm onSubmit={handleDataSubmit}  userData={{username: username ?? '' }}  />
+          <BonsaiDataForm onSubmit={handleDataSubmit}  />
         ))}
       {currentForm === 'chapter' &&
         (bonsaiChapterIndex !== null ? (
