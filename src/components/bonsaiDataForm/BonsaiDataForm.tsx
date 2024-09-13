@@ -26,7 +26,7 @@ function BonsaiDataForm({
     event.preventDefault();
     const bonsaiData: Bonsai = {
       id: '',
-      user: userData,
+      username: userData.username,
       geoLocation: geoLocation,
       bonsaiChapters: [],
       hardinessZone: hardinessZone,

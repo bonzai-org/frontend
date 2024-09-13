@@ -25,7 +25,7 @@ export interface UserIcon {
 
 export interface Bonsai {
   id: string;
-  user: UserPartial;
+  username: string;
   species: string;
   geoLocation: string;
   style?: string;
