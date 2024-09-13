@@ -44,6 +44,7 @@ export interface BonsaiChapterFile {
   date: Date;
 }
 
+// what client sends to backend on create bonsai
 export interface BonsaiPayload {
   bonsaiChapters: BonsaiChapterFile[];
   geoLocation: string;
@@ -79,6 +80,7 @@ export interface AuthContextProps {
 
 // responses
 
+// what client receives from backend on get bonsai
 export interface BonsaiPageResponse {
   geoLocation: string;
   hardinessZone: string;
@@ -89,4 +91,5 @@ export interface BonsaiPageResponse {
   style?: string;
   bonsaiChapters: BonsaiChapter[];
   username: string;
+  id: string;
 }
