@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HttpStatusCode } from '../../http-codes';
-import { handleFetch} from '../../handleFetch';
+import { handleFetch} from '../../handleFetchReq';
+import { handleAuthSuccess } from '../../handleFetchRes';
 import AuthContext from '../../AuthContext';
 import styles from './SignUpForm.module.css';
 
@@ -69,16 +70,13 @@ function SignupForm() {
       });
       
       if (response.status === HttpStatusCode.Ok) {
-        setError(null);
-        const data = await response.json();
-        setAuthData(data.username, data.profilePhoto);
-        navigate('/');
+        handleAuthSuccess(response, setError, setAuthData, () => navigate('/'));
       } else if (response.status === HttpStatusCode.BadRequest) {
         setError(
           'Invalid signup details. Please check your input and try again.'
         );
       } else if (response.status === HttpStatusCode.Conflict) {
-        setError('inputUsername and or email unavailable.');
+        setError('Username and or email unavailable.');
       } else {
         setError('An unexpected error occurred. Please try again.');
       }

@@ -2,7 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LoginForm.module.css';
 import { HttpStatusCode } from '../../http-codes';
-import { handleFetch } from '../../handleFetch';
+import { handleFetch } from '../../handleFetchReq';
+import { handleAuthSuccess } from '../../handleFetchRes';
 import AuthContext from '../../AuthContext';
 
 
@@ -36,15 +37,12 @@ function LoginForm() {
       const response = await handleFetch('POST', 'auth/login', { username: inputUsername, password })
    
       if (response.status === HttpStatusCode.Ok) {
-        setError(null);
-        const data = await response.json();
-        setAuthData(data.username, data.profilePhoto);
-        navigate('/');
+        handleAuthSuccess(response, setError, setAuthData, () => navigate('/'));
       } else if (
         response.status === HttpStatusCode.Unauthorized ||
         response.status === HttpStatusCode.BadRequest
       ) {
-        setError('Invalid inputUsername and/or password.');
+        setError('Invalid username and/or password.');
       } else {
         setError('An unexpected error occurred. Please try again.');
       }
