@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import UserIcon from '../userIcon/UserIcon';
 import styles from './BonsaiCard.module.css';
-import { Bonsai } from '../../interfaces';
+import { Bonsai } from '../../interfaces/bonsai';
 import { useState, useEffect } from 'react';
 
 function BonsaiCard({ bonsai }: { bonsai: Bonsai }) {
@@ -44,7 +44,7 @@ function BonsaiCard({ bonsai }: { bonsai: Bonsai }) {
   return (
     <div className={styles.cardContainer} onClick={handleCardClick}>
       <div className={styles.bonsaiInfoContainer}>
-        <UserIcon user={bonsai.user} />
+        <UserIcon user={{username: bonsai.username}} />
         <div className={styles.bonsaiInfoCell}>
           <p>Species: </p>
           <p>{bonsai.species}</p>

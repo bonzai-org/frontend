@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './BonsaiChapterForm.module.css';
-import { BonsaiChapterFile } from '../../interfaces';
+import { BonsaiChapterFile } from '../../interfaces/uploadBonsai';
 
 function BonsaiChapterForm({
   onSubmit,

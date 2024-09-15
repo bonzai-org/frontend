@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { bonsaiData } from '../../bonsaiProfDummyData';
 import styles from './BonsaiPage.module.css';
-import { Bonsai } from '../../interfaces';
+import { Bonsai } from '../../interfaces/bonsai';
 
 export default function BonsaiPage() {
   const { id } = useParams<{ id: string }>();

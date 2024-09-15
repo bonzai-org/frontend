@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './BonsaiDataForm.module.css';
-import { BonsaiData} from '../../interfaces';
+import { BonsaiData} from '../../interfaces/uploadBonsai';
 import { HARDINESSZONES, STYLES} from '../../BonsaiCategoryConstants';
 
 function BonsaiDataForm({

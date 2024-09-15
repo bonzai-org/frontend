@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../bonsaiSubmitForm/BonsaSubmitForm.module.css';
-import { BonsaiSubmitFormProps } from '../../interfaces';
+import { BonsaiSubmitFormProps } from '../../interfaces/uploadBonsai';
 
 const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
   bonsaiData,

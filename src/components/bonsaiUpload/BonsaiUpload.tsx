@@ -3,7 +3,8 @@ import BonsaiDataForm from '../bonsaiDataForm/BonsaiDataForm';
 import BonsaiChapterForm from '../bonsaiChapterForm/BonsaiChapterForm';
 import BonsaiSubmitForm from '../bonsaiSubmitForm/BonsaiSubmitForm';
 import styles from './BonsaiUpload.module.css';
-import { BonsaiData, BonsaiChapterFile, BonsaiPayload } from '../../interfaces';
+import { BonsaiData, BonsaiChapterFile} from '../../interfaces/uploadBonsai';
+import { CreateBonsaiPayload } from '../../interfaces/requests/posts';
 import AuthContext from '../../AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -73,7 +74,7 @@ function BonsaiUpload() {
       handleErrSet('Please add at least one chapter');
       return;
     }
-    const bonsaiPayload: BonsaiPayload = {...bonsaiData, bonsaiChapters: bonsaiChapterArr};
+    const bonsaiPayload: CreateBonsaiPayload = {...bonsaiData, bonsaiChapters: bonsaiChapterArr};
     console.log('submitting bonsai: ', bonsaiPayload);
   };
 
