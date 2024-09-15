@@ -1,18 +1,22 @@
 import styles from './UserIcon.module.css';
-import { User } from '../../interfaces';
+import { UserPartial } from '../../interfaces/user';
 
-function UserIcon({ user }: { user: User }) {
+function UserIcon({ user }: { user: UserPartial }) {
   return (
     <div>
       <button className={styles.userIconContainer}>
-        <img
-          src={
-            user.profilePhoto 
-          }
-          className={styles.userIcon}
-          alt="user avatar"
-        />
 
+              {user.profilePhoto ? (
+                <img
+                  src={user.profilePhoto}
+                  className={styles.userIcon}
+                  alt="User icon"
+                />
+              ) : (
+                <div className={`${styles.userIcon} ${styles.userInitial}`}>
+                  {user.username.charAt(0).toUpperCase()}
+                </div>
+              )}
         <a className={styles.userLink}>{user.username}</a>
       </button>
     </div>
