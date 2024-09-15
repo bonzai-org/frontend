@@ -1,25 +1,19 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LoginForm.module.css';
 import { HttpStatusCode } from '../../http-codes';
 import { handleFetch } from '../../handleFetchReq';
 import { handleAuthSuccess } from '../../handleFetchRes';
-import AuthContext from '../../AuthContext';
+import useRedirectAuthUser from '../../redirAuthUser';
 
-
+ 
 function LoginForm() {
   const [inputUsername, setInputUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { setAuthData, username } = useContext(AuthContext);
 
-
-  useEffect(() => {
-    if (username) {
-      navigate('/');
-    }
-  }, []);
+useRedirectAuthUser();
 
   const handleinputUsernameChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -37,7 +31,7 @@ function LoginForm() {
       const response = await handleFetch('POST', 'auth/login', { username: inputUsername, password })
    
       if (response.status === HttpStatusCode.Ok) {
-        handleAuthSuccess(response, setError, setAuthData, () => navigate('/'));
+        handleAuthSuccess(response, setError, () => navigate('/'));
       } else if (
         response.status === HttpStatusCode.Unauthorized ||
         response.status === HttpStatusCode.BadRequest

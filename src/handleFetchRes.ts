@@ -1,5 +1,9 @@
+import AuthContext from "./AuthContext";
+import { useContext } from "react";
+
 export async function handleAuthSuccess(response: Response, setErrorMsg: (message: string | null) => void,
- setAuthData: (username: string, profilePhoto: string) => void, redir: () => void) {
+ redir: () => void) {
+    const { setAuthData } = useContext(AuthContext);
     {
         setErrorMsg(null);
         const data = await response.json();

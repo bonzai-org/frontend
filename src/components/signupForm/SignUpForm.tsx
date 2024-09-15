@@ -1,10 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HttpStatusCode } from '../../http-codes';
 import { handleFetch} from '../../handleFetchReq';
 import { handleAuthSuccess } from '../../handleFetchRes';
-import AuthContext from '../../AuthContext';
 import styles from './SignUpForm.module.css';
+import useRedirectAuthUser from '../../redirAuthUser';
 
 function SignupForm() {
   const [inputUsername, setInputUsername] = useState('');
@@ -15,13 +15,8 @@ function SignupForm() {
   const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { setAuthData, username } = useContext(AuthContext);
 
-  useEffect(() => {
-    if (username) {
-      navigate('/');
-    }
-  }, []);
+useRedirectAuthUser();
 
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -70,7 +65,7 @@ function SignupForm() {
       });
       
       if (response.status === HttpStatusCode.Ok) {
-        handleAuthSuccess(response, setError, setAuthData, () => navigate('/'));
+        handleAuthSuccess(response, setError, () => navigate('/'));
       } else if (response.status === HttpStatusCode.BadRequest) {
         setError(
           'Invalid signup details. Please check your input and try again.'
