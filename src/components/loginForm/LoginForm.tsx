@@ -4,11 +4,12 @@ import styles from './LoginForm.module.css';
 import { submitLogin } from '../../authSubmit';
 import AuthContext from '../../AuthContext';
 
-
 function LoginForm() {
   const [inputUsername, setInputUsername] = useState('');
   const [password, setPassword] = useState('');
+
   const [error, setError] = useState<string | null>(null);
+
   const navigate = useNavigate();
   const { setAuthData, username } = useContext(AuthContext);
 

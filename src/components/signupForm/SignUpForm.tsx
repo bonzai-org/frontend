@@ -9,9 +9,11 @@ function SignupForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
   const [emailError, setEmailError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+
   const navigate = useNavigate();
   const { setAuthData, username } = useContext(AuthContext);
 
