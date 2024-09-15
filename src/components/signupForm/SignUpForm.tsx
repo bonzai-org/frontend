@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HttpStatusCode } from '../../http-codes';
-import { handleFetch} from '../../handleFetchReq';
-import { handleAuthSuccess } from '../../handleFetchRes';
+import { submitSignUp } from '../../authSubmit';
 import styles from './SignUpForm.module.css';
 import useRedirectAuthUser from '../../redirAuthUser';
+import AuthContext from '../../AuthContext';
 
 function SignupForm() {
   const [inputUsername, setInputUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [passwordError, setPasswordError] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { setAuthData } = useContext(AuthContext);
 
-useRedirectAuthUser();
-
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
+  useRedirectAuthUser();
 
   const handleinputUsernameChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -45,42 +40,8 @@ useRedirectAuthUser();
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!validateEmail(email)) {
-      setEmailError('Invalid email format');
-      return;
-    }
-    if (password !== confirmPassword) {
-      setPasswordError('Passwords do not match');
-      return;
-    }
-    setEmailError('');
-    setPasswordError('');
-    try {
-      const response = await handleFetch('POST', 'auth/signup', {
-        username: inputUsername,
-        password,
-        confirmPassword,
-        email
-      });
-      
-      if (response.status === HttpStatusCode.Ok) {
-        handleAuthSuccess(response, setError, () => navigate('/'));
-      } else if (response.status === HttpStatusCode.BadRequest) {
-        setError(
-          'Invalid signup details. Please check your input and try again.'
-        );
-      } else if (response.status === HttpStatusCode.Conflict) {
-        setError('Username and or email unavailable.');
-      } else {
-        setError('An unexpected error occurred. Please try again.');
-      }
-    } catch (error) {
-      setError(
-        'An error occurred. Please check your network connection and try again.'
-      );
-    }
-  };
+    submitSignUp(e, email, password, confirmPassword, inputUsername, setEmailError, setPasswordError, setError, () => navigate('/'), setAuthData);
+  }
 
   const redirAuth = () => {
     navigate('/login');
@@ -146,7 +107,7 @@ useRedirectAuthUser();
         >
           Log in
         </button>
-      </form>
+      </form >
     </div>
   );
 }
