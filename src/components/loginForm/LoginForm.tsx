@@ -2,7 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LoginForm.module.css';
 import { HttpStatusCode } from '../../http-codes';
+import { handleFetch } from '../../handleFetch';
 import AuthContext from '../../AuthContext';
+
 
 function LoginForm() {
   const [inputUsername, setInputUsername] = useState('');
@@ -11,7 +13,6 @@ function LoginForm() {
   const navigate = useNavigate();
   const { setAuthData, username } = useContext(AuthContext);
 
-  const APIBASE = 'http://localhost:3000/api/';
 
   useEffect(() => {
     if (username) {
@@ -32,14 +33,8 @@ function LoginForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch(APIBASE + 'auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify({ username: inputUsername, password })
-      });
+      const response = await handleFetch('POST', 'auth/login', { username: inputUsername, password })
+   
       if (response.status === HttpStatusCode.Ok) {
         setError(null);
         const data = await response.json();

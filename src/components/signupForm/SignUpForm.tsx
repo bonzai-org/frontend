@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HttpStatusCode } from '../../http-codes';
+import { handleFetch} from '../../handleFetch';
 import AuthContext from '../../AuthContext';
 import styles from './SignUpForm.module.css';
 
 function SignupForm() {
-  const APIBASE = 'http://localhost:3000/api/';
   const [inputUsername, setInputUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -61,19 +61,13 @@ function SignupForm() {
     setEmailError('');
     setPasswordError('');
     try {
-      const response = await fetch(APIBASE + 'auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify({
-          username: inputUsername,
-          password,
-          confirmPassword,
-          email
-        })
+      const response = await handleFetch('POST', 'auth/signup', {
+        username: inputUsername,
+        password,
+        confirmPassword,
+        email
       });
+      
       if (response.status === HttpStatusCode.Ok) {
         setError(null);
         const data = await response.json();
