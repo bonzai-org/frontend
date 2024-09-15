@@ -52,3 +52,30 @@ export async function submitSignUp(
         setError('An error occurred. Please check your network connection and try again.');
     }
 };
+
+export async function submitLogin(e: React.FormEvent<HTMLFormElement>,
+    setError: React.Dispatch<React.SetStateAction<string | null>>,
+    inputUsername: string,
+    password: string,
+    redirToHome: () => void,
+    setAuthData: (username: string, profilePhoto: string) => void) {
+    e.preventDefault();
+    try {
+        const response = await handleFetch('POST', 'auth/login', { username: inputUsername, password })
+
+        if (response.status === HttpStatusCode.Ok) {
+            handleAuthSuccess(response, setError, redirToHome, setAuthData);
+        } else if (
+            response.status === HttpStatusCode.Unauthorized ||
+            response.status === HttpStatusCode.BadRequest
+        ) {
+            setError('Invalid username and/or password.');
+        } else {
+            setError('An unexpected error occurred. Please try again.');
+        }
+    } catch (error) {
+        setError(
+            'An error occurred. Please check your network connection and try again.'
+        );
+    }
+};

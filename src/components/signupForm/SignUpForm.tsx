@@ -1,8 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { submitSignUp } from '../../authSubmit';
 import styles from './SignUpForm.module.css';
-import useRedirectAuthUser from '../../redirAuthUser';
 import AuthContext from '../../AuthContext';
 
 function SignupForm() {
@@ -14,9 +13,13 @@ function SignupForm() {
   const [passwordError, setPasswordError] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { setAuthData } = useContext(AuthContext);
+  const { setAuthData, username } = useContext(AuthContext);
 
-  useRedirectAuthUser();
+  useEffect(() => {
+    if (username) {
+      navigate('/');
+    }
+  }, [username, navigate]);
 
   const handleinputUsernameChange = (
     e: React.ChangeEvent<HTMLInputElement>

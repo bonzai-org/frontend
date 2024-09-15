@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LoginForm.module.css';
-import { HttpStatusCode } from '../../http-codes';
-import { handleFetch } from '../../handleFetchReq';
-import { handleAuthSuccess } from '../../handleFetchRes';
-import useRedirectAuthUser from '../../redirAuthUser';
+import { submitLogin } from '../../authSubmit';
+import AuthContext from '../../AuthContext';
 
- 
+
 function LoginForm() {
   const [inputUsername, setInputUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { setAuthData, username } = useContext(AuthContext);
 
-useRedirectAuthUser();
+  useEffect(() => {
+    if (username) {
+      navigate('/');
+    }
+  }, [username, navigate]);
 
   const handleinputUsernameChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -26,26 +29,9 @@ useRedirectAuthUser();
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const response = await handleFetch('POST', 'auth/login', { username: inputUsername, password })
-   
-      if (response.status === HttpStatusCode.Ok) {
-        handleAuthSuccess(response, setError, () => navigate('/'));
-      } else if (
-        response.status === HttpStatusCode.Unauthorized ||
-        response.status === HttpStatusCode.BadRequest
-      ) {
-        setError('Invalid username and/or password.');
-      } else {
-        setError('An unexpected error occurred. Please try again.');
-      }
-    } catch (error) {
-      setError(
-        'An error occurred. Please check your network connection and try again.'
-      );
-    }
-  };
+    submitLogin(e, setError, inputUsername, password, () => navigate('/'), setAuthData
+    );
+  }
 
   const redirAuth = () => {
     navigate('/signup');
