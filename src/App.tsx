@@ -13,7 +13,8 @@ import SignUpForm from './components/signupForm/SignUpForm';
 import NavBar from './components/navBar/NavBar';
 import BonsaiPage from './components/bonsaiPage/BonsaiPage';
 import About from './components/about/About';
-import ErrorBoundary from './components/errorBoundary/ErrorBoundary'; // Import the ErrorBoundary
+import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
+import NotFound from './components/notFound/NotFound';
 
 const router = createBrowserRouter([{ path: '*', element: <Root /> }]);
 
@@ -39,6 +40,7 @@ function Root() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="/bonsai/:id" element={<BonsaiPage />} />
+          <Route path="*" element={<NotFound />} /> {/* Catch-all route for 404 */}
         </Routes>
       </ErrorBoundary>
     </>
