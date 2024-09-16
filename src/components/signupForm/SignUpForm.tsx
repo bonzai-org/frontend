@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { submitSignUp } from '../../authSubmit';
+import { submitSignUp } from '../../fetchHelpers/authSubmit';
 import styles from './SignUpForm.module.css';
 import AuthContext from '../../AuthContext';
 import FormWrap from '../formWrap/formWrap';

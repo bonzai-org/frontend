@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { bonsaiData } from '../../bonsaiProfDummyData';
 import styles from './BonsaiPage.module.css';
 import { Bonsai } from '../../interfaces/bonsai';
+import { fetchBonsai } from '../../fetchHelpers/fetchBonsai';
 
 export default function BonsaiPage() {
   const { id } = useParams<{ id: string }>();
@@ -12,8 +13,13 @@ export default function BonsaiPage() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
-    console.log('Fetching bonsai with ID: ', id);
-    setBonsai(bonsaiData);
+    fetchBonsaiData();
+    async function fetchBonsaiData() {
+      if (id) {
+        const bonsai = await fetchBonsai(id);
+        setBonsai(bonsai);
+      }
+    }
   }, [id]);
 
   const handleNextChapter = () => {
@@ -72,7 +78,7 @@ export default function BonsaiPage() {
     <div>
       {bonsai && (
         <div className={styles.pageContainer}>
-          <h1>{`${bonsai.username}'s ${bonsai.species}`}</h1>
+          <h1>{`${bonsai.user.username}'s ${bonsai.species}`}</h1>
           <div className={styles.bonsaiDataContainer}>
             {bonsai.geoLocation && (
               <div className={styles.categoryContainer}>
@@ -143,20 +149,20 @@ export default function BonsaiPage() {
               <div className={styles.imageGallery}>
                 {bonsai.bonsaiChapters[currentChapterIndex].photoUrls.length >
                   1 && (
-                  <button
-                    className={styles.imageButton}
-                    onClick={handlePrevImage}
-                    disabled={isProcessing}
-                  >
-                    {'<'}
-                  </button>
-                )}
+                    <button
+                      className={styles.imageButton}
+                      onClick={handlePrevImage}
+                      disabled={isProcessing}
+                    >
+                      {'<'}
+                    </button>
+                  )}
 
                 <div className={styles.imageFrame}>
                   <img
                     src={
                       bonsai.bonsaiChapters[currentChapterIndex].photoUrls[
-                        currentImageIndex
+                      currentImageIndex
                       ]
                     }
                     alt={`Bonsai Chapter ${currentChapterIndex + 1} Photo`}
@@ -166,14 +172,14 @@ export default function BonsaiPage() {
                 </div>
                 {bonsai.bonsaiChapters[currentChapterIndex].photoUrls.length >
                   1 && (
-                  <button
-                    className={styles.imageButton}
-                    onClick={handleNextImage}
-                    disabled={isProcessing}
-                  >
-                    {'>'}
-                  </button>
-                )}
+                    <button
+                      className={styles.imageButton}
+                      onClick={handleNextImage}
+                      disabled={isProcessing}
+                    >
+                      {'>'}
+                    </button>
+                  )}
               </div>
             </div>
           )}

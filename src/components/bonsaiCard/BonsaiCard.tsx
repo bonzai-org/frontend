@@ -44,7 +44,7 @@ function BonsaiCard({ bonsai }: { bonsai: Bonsai }) {
   return (
     <div className={styles.cardContainer} onClick={handleCardClick}>
       <div className={styles.bonsaiInfoContainer}>
-        <UserIcon user={{username: bonsai.username}} />
+        <UserIcon user={{ username: bonsai.user.username }} />
         <div className={styles.bonsaiInfoCell}>
           <p>Species: </p>
           <p>{bonsai.species}</p>

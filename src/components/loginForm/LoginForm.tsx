@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './LoginForm.module.css';
-import { submitLogin } from '../../authSubmit';
+import { submitLogin } from '../../fetchHelpers/authSubmit';
 import AuthContext from '../../AuthContext';
 import FormWrap from '../formWrap/formWrap';
 
