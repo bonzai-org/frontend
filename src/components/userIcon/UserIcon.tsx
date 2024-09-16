@@ -6,17 +6,17 @@ function UserIcon({ user }: { user: UserPartial }) {
     <div>
       <button className={styles.userIconContainer}>
 
-              {user.profilePhoto ? (
-                <img
-                  src={user.profilePhoto}
-                  className={styles.userIcon}
-                  alt="User icon"
-                />
-              ) : (
-                <div className={`${styles.userIcon} ${styles.userInitial}`}>
-                  {user.username.charAt(0).toUpperCase()}
-                </div>
-              )}
+        {user.profilePhoto ? (
+          <img
+            src={user.profilePhoto}
+            className={styles.userIcon}
+            alt="User icon"
+          />
+        ) : (
+          <div className={`${styles.userIcon} ${styles.userInitial}`}>
+            {user.username.charAt(0).toUpperCase()}
+          </div>
+        )}
         <a className={styles.userLink}>{user.username}</a>
       </button>
     </div>
