@@ -26,13 +26,17 @@ const userData = {
   username: 'JNaka',
   bio: 'GoAt',
   email: 'johnnaka@bmail.com'
-  
+
 };
 
 
 const bonsaiData = {
   id: '1',
-  username: 'JNaka',
+  user: {
+    'username': 'JNaka',
+    'profilePhoto':
+      'https://res.cloudinary.com/dscsiijis/image/upload/v1721414755/IMG_3701_bkure4.jpg'
+  },
   bonsaiChapters: [bonsaiChapterData1, bonsaiChapterData2],
   geoLocation: 'San Francisco, CA',
   hardinessZone: '9A',

@@ -13,13 +13,14 @@ export default function BonsaiPage() {
   const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
-    fetchBonsaiData();
-    async function fetchBonsaiData() {
-      if (id) {
-        const bonsai = await fetchBonsai(id);
-        setBonsai(bonsai);
-      }
-    }
+    setBonsai(bonsaiData);
+    /*     fetchBonsaiData();
+        async function fetchBonsaiData() {
+          if (id) {
+            const bonsai = await fetchBonsai(id);
+            setBonsai(bonsai);
+          }
+        } */
   }, [id]);
 
   const handleNextChapter = () => {
