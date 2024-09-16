@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { bonsaiData } from '../../bonsaiProfDummyData';
 import styles from './BonsaiPage.module.css';
 import { Bonsai } from '../../interfaces/bonsai';
-import { fetchBonsai } from '../../fetchHelpers/fetchBonsai';
+import { getBonsai } from '../../fetchHelpers/fetchBonsai';
 
 export default function BonsaiPage() {
   const { id } = useParams<{ id: string }>();
@@ -17,7 +17,7 @@ export default function BonsaiPage() {
     /*     fetchBonsaiData();
         async function fetchBonsaiData() {
           if (id) {
-            const bonsai = await fetchBonsai(id);
+            const bonsai = await getBonsai(id);
             setBonsai(bonsai);
           }
         } */

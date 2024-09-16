@@ -7,6 +7,7 @@ import { BonsaiData, BonsaiChapterFile } from '../../interfaces/uploadBonsai';
 import { CreateBonsaiPayload } from '../../interfaces/requests';
 import AuthContext from '../../AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { postBonsai } from '../../fetchHelpers/fetchBonsai';
 
 
 function BonsaiUpload() {
@@ -64,20 +65,6 @@ function BonsaiUpload() {
     setBonsaiChapterArr([]);
     setCurrentForm('data');
   };
-
-  const handleSubmitBonsai = () => {
-    if (!bonsaiData?.geoLocation || !bonsaiData?.hardinessZone || !bonsaiData?.species) {
-      handleErrSet('Please fill out all required bonsai data fields');
-      return;
-    }
-    if (bonsaiChapterArr.length === 0) {
-      handleErrSet('Please add at least one chapter');
-      return;
-    }
-    const bonsaiPayload: CreateBonsaiPayload = { ...bonsaiData, bonsaiChapters: bonsaiChapterArr };
-    console.log('submitting bonsai: ', bonsaiPayload);
-  };
-
   const handleDeleteChapter = (index: number) => {
     const newChapterArr = bonsaiChapterArr.filter((_, i) => i !== index);
     if (newChapterArr.length === 0) {
@@ -93,6 +80,22 @@ function BonsaiUpload() {
     }, 5000); // Clear error after 5 seconds
   }
 
+  const handleSubmitBonsai = async () => {
+    if (!bonsaiData?.geoLocation || !bonsaiData?.hardinessZone || !bonsaiData?.species) {
+      handleErrSet('Please fill out all required bonsai data fields');
+      return;
+    }
+    if (bonsaiChapterArr.length === 0) {
+      handleErrSet('Please add at least one chapter');
+      return;
+    }
+    const bonsaiPayload: CreateBonsaiPayload = { ...bonsaiData, bonsaiChapters: bonsaiChapterArr };
+    const response = await postBonsai(bonsaiPayload);
+    if (response.status !== 204) {
+      handleErrSet('Failed to upload');
+    };
+  }
+
   return (
     <div className={styles.container}>
 
@@ -102,6 +105,7 @@ function BonsaiUpload() {
         ) : (
           <BonsaiDataForm onSubmit={handleDataSubmit} />
         ))}
+
       {currentForm === 'chapter' &&
         (bonsaiChapterIndex !== null ? (
           <BonsaiChapterForm
@@ -115,6 +119,7 @@ function BonsaiUpload() {
           <BonsaiChapterForm onSubmit={handleChapterSubmit} canSkip={bonsaiChapterArr.length > 0} setErr={handleErrSet}
             goBack={() => setCurrentForm('submit')} />
         ))}
+
       {currentForm === 'submit' && bonsaiData && (
         <BonsaiSubmitForm
           bonsaiData={bonsaiData}
@@ -127,6 +132,7 @@ function BonsaiUpload() {
           onDeleteChapter={handleDeleteChapter}
         />
       )}
+
       {error && (
         <div className={styles.errorContainer}>
           <p className={styles.error}>{error}</p>
