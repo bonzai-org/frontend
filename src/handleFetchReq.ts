@@ -1,18 +1,18 @@
 const APIBASE = 'http://localhost:3000/api/';
-import {CreateBonsaiPayload, LogInPayload, SignUpPayload} from "./interfaces/requests/posts";
+import { CreateBonsaiPayload, LogInPayload, SignUpPayload } from "./interfaces/requests";
 
 
-export async function handleFetch(method: string, endpoint: string, body?: any){ 
-    if (body) {
-        return fetchWithBody(method, endpoint, body);
-    } else {
-        return fetchWithoutBody(method, endpoint);
-    }
+export async function handleFetch(method: string, endpoint: string, body?: any) {
+  if (body) {
+    return fetchWithBody(method, endpoint, body);
+  } else {
+    return fetchWithoutBody(method, endpoint);
+  }
 }
 
-async function fetchWithBody( method: string,
-    endpoint: string,
-    body: CreateBonsaiPayload | LogInPayload | SignUpPayload) {
+async function fetchWithBody(method: string,
+  endpoint: string,
+  body: CreateBonsaiPayload | LogInPayload | SignUpPayload) {
   try {
     const response = await fetch(APIBASE + endpoint, {
       method: method,
@@ -22,13 +22,13 @@ async function fetchWithBody( method: string,
       credentials: 'include',
       body: JSON.stringify(body),
     });
-      return response;
-    } catch (error) {
-      throw error;
-    }
+    return response;
+  } catch (error) {
+    throw error;
+  }
 }
 
-async function fetchWithoutBody(method: string, endpoint: string){
+async function fetchWithoutBody(method: string, endpoint: string) {
   try {
     const response = await fetch(APIBASE + endpoint, {
       method: method,

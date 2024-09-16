@@ -1,6 +1,6 @@
-import { BonsaiChapterFile } from "../uploadBonsai";
+import { BonsaiChapterFile } from "./uploadBonsai";
 
-// create bonsai request payload
+// POST api/bonsai
 export interface CreateBonsaiPayload {
     bonsaiChapters: BonsaiChapterFile[];
     geoLocation: string;
@@ -10,16 +10,21 @@ export interface CreateBonsaiPayload {
     width?: string;
     nebari?: string;
     style?: string;
-  }
+}
 
-export interface LogInPayload{
+// POST api/auth/login
+export interface LogInPayload {
     username: string;
     password: string;
 }
 
+// POST api/auth/signup
 export interface SignUpPayload {
     username: string;
     password: string;
     confirmPassword: string;
     email: string;
 }
+
+
+
