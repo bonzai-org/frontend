@@ -5,7 +5,7 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeAddClasses from 'rehype-class-names';
 import markdown from '../../../README.md?raw'; // Use ?raw to load the markdown content as raw string
-import { TOCEntry } from '../../interfaces';
+import { TOCEntry } from '../../interfaces/misc';
 
 export default function About() {
   const [toc, setToc] = useState<TOCEntry[]>([]);

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import UserIcon from '../userIcon/UserIcon';
 import styles from './BonsaiCard.module.css';
-import { Bonsai } from '../../interfaces';
+import { Bonsai } from '../../interfaces/bonsai';
 import { useState, useEffect } from 'react';
 
 function BonsaiCard({ bonsai }: { bonsai: Bonsai }) {

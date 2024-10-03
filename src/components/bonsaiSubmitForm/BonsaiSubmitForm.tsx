@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../bonsaiSubmitForm/BonsaSubmitForm.module.css';
-import { BonsaiSubmitFormProps } from '../../interfaces';
+import { BonsaiSubmitFormProps } from '../../interfaces/uploadBonsai';
 
 const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
   bonsaiData,
@@ -50,6 +50,9 @@ const BonsaiSubmitForm: React.FC<BonsaiSubmitFormProps> = ({
       </div>
       <div>
         <strong>Species:</strong> {bonsaiData.species}
+      </div>
+      <div>
+        <strong>Geo Location:</strong> {bonsaiData.geoLocation}
       </div>
       <button className={styles.btn} onClick={onEditData}>
         Edit Bonsai Data

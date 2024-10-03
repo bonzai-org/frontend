@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import styles from './BonsaiDataForm.module.css';
-import { Bonsai, UserPartial } from '../../interfaces';
+import { BonsaiData} from '../../interfaces/uploadBonsai';
 import { HARDINESSZONES, STYLES} from '../../BonsaiCategoryConstants';
 
 function BonsaiDataForm({
   onSubmit,
-  bonsaiData,
-  userData
+  bonsaiData
 }: {
-  onSubmit: (data: Bonsai) => void;
-  bonsaiData?: Bonsai;
-  userData: UserPartial;
+  onSubmit: (data: BonsaiData) => void;
+  bonsaiData?: BonsaiData;
 }) {
   const [hardinessZone, setHardinessZone] = useState(
     bonsaiData?.hardinessZone || ''
@@ -24,11 +22,8 @@ function BonsaiDataForm({
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const bonsaiData: Bonsai = {
-      id: '',
-      username: userData.username,
+    const bonsaiData: BonsaiData = {
       geoLocation: geoLocation,
-      bonsaiChapters: [],
       hardinessZone: hardinessZone,
       species: species,
     };

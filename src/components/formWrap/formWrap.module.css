@@ -1,0 +1,19 @@
+.container {
+    width: 300px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form > * {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 15px;
+    font-weight: bold;
+  }
+
+  .title {
+    text-align: center;
+  }

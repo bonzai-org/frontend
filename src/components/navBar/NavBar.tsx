@@ -90,7 +90,7 @@ function NavBar() {
           )}
         </div>
 
-        {isMenuOpen && (
+        {(isMenuOpen && username && profilePhoto) && (
           <div ref={menuRef} className={styles.menu}>
             <Menu
               userIcon={{ username, profilePhoto }}

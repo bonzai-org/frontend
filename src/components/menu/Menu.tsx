@@ -1,12 +1,12 @@
 import styles from './Menu.module.css';
 import { useNavigate } from 'react-router-dom';
-import { UserIcon } from '../../interfaces';
+import { UserPartial } from '../../interfaces/user';
 
 export default function Menu({
   userIcon,
   menuToggle
 }: {
-  userIcon: UserIcon;
+  userIcon: UserPartial;
   menuToggle: () => void;
 }) {
   const navigate = useNavigate();

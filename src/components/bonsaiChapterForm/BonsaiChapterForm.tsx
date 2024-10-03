@@ -2,24 +2,24 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import styles from './BonsaiChapterForm.module.css';
-import { BonsaiChapterFile } from '../../interfaces';
+import { BonsaiChapterFile } from '../../interfaces/uploadBonsai';
 
 function BonsaiChapterForm({
   onSubmit,
   canSkip,
   goBack,
-  chapter
+  chapter,
+  setErr
 }: {
   onSubmit: (chapter: BonsaiChapterFile, destinationForm: 'chapter' | 'submit') => void;
   canSkip: boolean;
+  setErr: (err: string | null) => void;
   goBack?: () => void;
   chapter?: BonsaiChapterFile;
 }) {
   const [bonsaiChapter, setBonsaiChapter] = useState<BonsaiChapterFile>(
     chapter || { photos: [], caption: '', date: new Date() }
   );
-
-  const [formError, setFormError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -68,16 +68,16 @@ function BonsaiChapterForm({
 
     // Validation checks
     if (bonsaiChapter.photos.length === 0) {
-      setFormError('At least one photo is required.');
+      setErr('At least one photo is required.');
       return;
     }
 
     if (!bonsaiChapter.caption.trim()) {
-      setFormError('Caption is required.');
+      setErr('Caption is required.');
       return;
     }
 
-    setFormError(null);
+    setErr(null);
     onSubmit(bonsaiChapter, 'submit');
     // Reset the form
     setBonsaiChapter({ photos: [], caption: '', date: new Date() });
@@ -170,7 +170,6 @@ function BonsaiChapterForm({
             required
           />
         </div>
-        {formError && <p className={styles.error}>{formError}</p>}
         <button type="submit" className={styles.btn}>
           {chapter ? 'Save Changes' : 'Submit Chapter'}
         </button>
