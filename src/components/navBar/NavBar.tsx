@@ -83,7 +83,7 @@ function NavBar() {
                 />
               ) : (
                 <div className={`${styles.userIcon} ${styles.userInitial}`}>
-                  {username ? username.charAt(0).toUpperCase() : '😊'}
+                  {username.charAt(0).toUpperCase()}
                 </div>
               )}
             </button>
