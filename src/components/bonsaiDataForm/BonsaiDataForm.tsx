@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './BonsaiDataForm.module.css';
-import { BonsaiData} from '../../interfaces/uploadBonsai';
-import { HARDINESSZONES, STYLES} from '../../BonsaiCategoryConstants';
+import { BonsaiData } from '../../interfaces/uploadBonsai';
+import { HARDINESSZONES, STYLES } from '../../BonsaiCategoryConstants';
 
 function BonsaiDataForm({
   onSubmit,
@@ -63,6 +63,7 @@ function BonsaiDataForm({
         <input
           type="number"
           value={height}
+          step="0.5"
           onChange={(e) => setHeight(e.target.value)}
         />
       </div>
@@ -71,6 +72,7 @@ function BonsaiDataForm({
         <input
           type="number"
           value={width}
+          step="0.5"
           onChange={(e) => setWidth(e.target.value)}
         />
       </div>
@@ -79,6 +81,7 @@ function BonsaiDataForm({
         <input
           type="number"
           value={nebari}
+          step="0.5"
           onChange={(e) => setNebari(e.target.value)}
         />
       </div>
