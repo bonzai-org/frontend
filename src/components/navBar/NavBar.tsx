@@ -83,17 +83,17 @@ function NavBar() {
                 />
               ) : (
                 <div className={`${styles.userIcon} ${styles.userInitial}`}>
-                  {username ? username.charAt(0).toUpperCase() : '😊'}
+                  {username.charAt(0).toUpperCase()}
                 </div>
               )}
             </button>
           )}
         </div>
 
-        {(isMenuOpen && username && profilePhoto) && (
+        {(isMenuOpen && username) && (
           <div ref={menuRef} className={styles.menu}>
             <Menu
-              userIcon={{ username, profilePhoto }}
+              userIcon={{ username }}
               menuToggle={() => setIsMenuOpen(false)}
             />
           </div>
