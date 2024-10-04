@@ -85,7 +85,7 @@ All measurements are in cm for international standardization. All measurement fi
 
 - **Hardiness Zone**: A geographic area ranging from 0a to 13b defined by its average annual minimum winter temperature. This can help determine what plants can survive in a given area. To determine this, search “Hardiness zones [insert user area e.g., Europe]” and consult the resulting map.
 - **Height**: Measured from the soil to the apex (tallest point) of the bonsai.
-- **Width**: The maximum diameter of the tree measured parallel to the ground.
+- **Width**: The maximum diameter of the trunk measured parallel to the ground.
 - **Nebari**: The maximum diameter of exposed roots measured parallel to the ground.
 - **Bonsai style**: The general form of the tree. For visual examples, consult Bonsai Empire.
 - **Species**: Type the name by which you know the tree (e.g., Pomegranate).
