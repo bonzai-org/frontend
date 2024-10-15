@@ -4,7 +4,7 @@ import BonsaiChapterForm from '../bonsaiChapterForm/BonsaiChapterForm';
 import BonsaiSubmitForm from '../bonsaiSubmitForm/BonsaiSubmitForm';
 import styles from './BonsaiUpload.module.css';
 import { BonsaiData, BonsaiChapterFile } from '../../interfaces/uploadBonsai';
-import { CreateBonsaiPayload } from '../../interfaces/requests';
+import { CreateBonsaiPayload, NewBonsaiRequest } from '../../interfaces/requests';
 import AuthContext from '../../AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { postBonsai } from '../../fetchHelpers/fetchBonsai';
@@ -89,9 +89,82 @@ function BonsaiUpload() {
       handleErrSet('Please add at least one chapter');
       return;
     }
+    // ensure photos not null
+
     const bonsaiPayload: CreateBonsaiPayload = { ...bonsaiData, bonsaiChapters: bonsaiChapterArr };
-    const response = await postBonsai(bonsaiPayload);
-    if (response.status !== 204) {
+
+    const masterPayload: NewBonsaiRequest = {
+      hardinessZone: bonsaiData.hardinessZone,
+      species: bonsaiData.species,
+      geoLocation: bonsaiData.geoLocation
+    };
+    if (bonsaiData.height) {
+      masterPayload.height = bonsaiData.height;
+    }
+    if (bonsaiData.width) {
+      masterPayload.width = bonsaiData.width;
+    }
+    if (bonsaiData.nebari) {
+      masterPayload.nebari = bonsaiData.nebari;
+    }
+    masterPayload.chapters = bonsaiChapterArr.map((chapter) => {
+      const chapterPhotos = chapter.photos.map((photo, index) => {
+        if (photo) {
+          return {
+            fileType: photo.type,
+            photoOrder: index
+          }
+        }
+      })
+      return ({
+        date: chapter.date,
+        caption: chapter.caption,
+        photos: chapterPhotos,
+      })
+    })
+    console.log(masterPayload)
+    let request = await fetch('http://localhost:3000/api/bonsai/create', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify(masterPayload)
+    })
+    console.log('this mf worked!')
+    console.log(request.status)
+    let body = await request.json()
+    console.log(body)
+
+    let requests = []
+    let fatfuckingctr = 0
+    for (let i = 0; i < bonsaiChapterArr.length; i++) {
+      for (let j = 0; j < bonsaiChapterArr[i].photos.length; j++) {
+        let promise = fetch(body.signedUrls[fatfuckingctr], {
+          method: 'PUT',
+          headers: {
+            'content-type': 'image/jpeg'
+          },
+          body: bonsaiChapterArr[i].photos[j]
+        });
+        fatfuckingctr += 1
+        console.log(body.signedUrls[i + j])
+        requests.push(promise)
+      }
+    }
+
+    let success = await fetch(`http://localhost:3000/api/bonsai/create/confirm/${body.bonsaiPublicHash}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json'
+      },
+      credentials: 'include'
+    })
+
+
+
+    /*     const response = await postBonsai(bonsaiPayload); */
+    if (body.status !== 204) {
       handleErrSet('Failed to upload');
     };
   }

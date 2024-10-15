@@ -25,3 +25,24 @@ export interface CreateBonsaiPayload {
     nebari?: string;
     style?: string;
 }
+export interface NewBonsaiRequest {
+    hardinessZone: string,
+    height?: number,
+    width?: number,
+    nebari?: number,
+    style?: string,
+    species: string,
+    geoLocation: string,
+    chapters: BonsaiChapterMetadata[]
+}
+
+export interface BonsaiChapterMetadata {
+    date: Date,
+    caption: string,
+    photos: BonsaiChapterPhoto[]
+}
+
+export interface BonsaiChapterPhoto {
+    fileType: 'image/jpeg',
+    photoOrder: number,
+}
